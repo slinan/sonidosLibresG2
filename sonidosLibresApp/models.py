@@ -57,8 +57,8 @@ class UserProfile(models.Model):
 
 
 
-    # python manage.py makemigrations bikes4FreeApp
-    # python manage.py sqlmigrate bikes4FreeApp 0001
+    # python manage.py makemigrations sonidosLibresApp
+    # python manage.py sqlmigrate sonidosLibresApp 0001
     # python manage.py migrate
     # python manage.py createsuperuser
-    # $ heroku run python manage.py migrate
+    # $ heroku run python manage.py migrate --app sonidoslibres
