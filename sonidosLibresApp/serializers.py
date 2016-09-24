@@ -1,30 +1,21 @@
 from rest_framework import serializers
 from rest_auth.serializers import UserDetailsSerializer
-from .models import PuntoPrestamo, TipoBicicleta, Multa, Usuario, Bicicleta, TipoInfraccion
 
-class PuntoPrestamoSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=PuntoPrestamo
+from sonidosLibresApp.customFilters import AudioFilter
+from .models import Audio, Category, Album
 
-class TipoBicicletaSerializer(serializers.ModelSerializer):
-    class Meta:
-        model=TipoBicicleta
 
-class MultaSerializer(serializers.ModelSerializer):
+class AudioSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Multa
+        model = Audio
 
-class UsuarioSerializer(serializers.ModelSerializer):
+class AlbumSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Usuario
+        model = Album
 
-class BicicletaSerializer(serializers.ModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
     class Meta:
-        model = Bicicleta
-
-class TipoInfraccionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TipoInfraccion
+        model=Category
 
 class UserSerializer(UserDetailsSerializer):
 
@@ -45,12 +36,3 @@ class UserSerializer(UserDetailsSerializer):
             profile.name = name
             profile.save()
         return instance
-
-class LoginSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Usuario
-        fields = ('email', 'password')
-
-class ErrorSerializer(serializers.ModelSerializer):
-    class Meta:
-        fields = ('error')

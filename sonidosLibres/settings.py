@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'corsheaders',
+    'crispy_forms'
 ]
 
 SITE_ID = 1
@@ -121,6 +122,7 @@ REST_AUTH_SERIALIZERS = {
 }
 
 REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.BasicAuthentication',
     )

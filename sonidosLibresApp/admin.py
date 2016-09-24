@@ -1,8 +1,8 @@
 from django.contrib import admin
 
-from .models import PuntoPrestamo, TipoBicicleta, Bicicleta, Usuario
+from .models import Category, Audio, Commentary, Album
 
-admin.site.register(PuntoPrestamo)
-admin.site.register(TipoBicicleta)
-admin.site.register(Bicicleta)
-admin.site.register(Usuario)
+admin.site.register(Category)
+admin.site.register(Audio)
+admin.site.register(Commentary)
+admin.site.register(Album)
