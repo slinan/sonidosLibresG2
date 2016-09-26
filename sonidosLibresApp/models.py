@@ -19,6 +19,8 @@ class Category(models.Model):
     name = models.CharField(max_length=40)
 
 class Album (models.Model):
+    def __str__(self):
+        return self.title
     title = models.CharField(max_length=100)
     rating = models.IntegerField()
     numOfRatings = models.IntegerField()
@@ -35,7 +37,7 @@ class Audio(models.Model):
     numOfRatings = models.IntegerField()
     categories = models.ManyToManyField(Category,related_name="audios")
     uploadDate = models.DateField()
-    album = models.ForeignKey(Album, blank=True, null=True)
+    album = models.ManyToManyField(Album, related_name="audios")
 
 class Commentary (models.Model):
     class Meta:
