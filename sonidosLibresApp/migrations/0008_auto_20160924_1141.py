@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
             name='usuario',
         ),
         migrations.AlterModelOptions(
-            name='category.html',
+            name='category',
             options={'verbose_name_plural': 'categories'},
         ),
         migrations.AddField(
