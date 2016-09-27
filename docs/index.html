@@ -33,7 +33,7 @@
     <script defer  src="https://unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
 
 </head>
-<body ng-app="songs">
+<body ng-app="mainApp">
 
     <header>
       <div ng-include="'socialBar.html'"></div>
@@ -177,83 +177,22 @@
           </section>
 
             <section id="albums">
-            <div class="container">
-              <h1>Categorias</h1>
-              <div class="top-carouselnav"> <a href="#" class="prev-album"><span class="fa fa-caret-left"></span></a> <a href="#" class="next-album"><span class="fa fa-caret-right"></span></a> </div>
-              <div class="albums-carousel">
-                <div class="album"> <img src="assets/img/albums/1.jpg" alt=""/>
-                  <div class="hover">
-                    <ul>
-                      <li><a href="assets/img/albums/1.jpg" data-rel="prettyPhoto"><span class="fa fa-search"  ></span></a></li>
-                      <li><a href="album-detail.html"><span class="fa fa-link"></span></a></li>
-                    </ul>
-                    <h3>Efectos de Sonido</h3>
-                    <h2>Categoría</h2>
-                  </div>
+            <div class="container" ng-controller="categoryController">
+                <h1>Categorias</h1>
+                <div class="top-carouselnav"> <a href="#" class="prev-album"><span class="fa fa-caret-left"></span></a> <a href="#" class="next-album"><span class="fa fa-caret-right"></span></a> </div>
+                <div class="albums-carousel">
+                    <div ng-class="'album'" ng-repeat="category in categories" style="margin-right: 15px;">
+                        <img src="assets/img/albums/1.jpg" alt=""/>
+                        <div class="hover">
+                            <ul>
+                                <li><a href="assets/img/albums/1.jpg" data-rel="prettyPhoto"><span class="fa fa-search"  ></span></a></li>
+                                <li><a href="album-detail.html"><span class="fa fa-link"></span></a></li>
+                            </ul>
+                            <h3>{{ category.name }}</h3>
+                            <h2>Categoría</h2>
+                        </div>
+                    </div>
                 </div>
-                <!--\\album-->
-
-                <div class="album"> <img src="assets/img/albums/2.jpg" alt=""/>
-                  <div class="hover">
-                    <ul>
-                      <li><a href="assets/img/albums/2.jpg" data-rel="prettyPhoto"><span class="fa fa-search"  ></span></a></li>
-                      <li><a href="album-detail.html"><span class="fa fa-link"></span></a></li>
-                    </ul>
-                    <h3>Canciones</h3>
-                    <h2>Categoría</h2>
-                  </div>
-                </div>
-                <!--\\album-->
-
-                <div class="album"> <img src="assets/img/albums/3.jpg" alt=""/>
-                  <div class="hover">
-                    <ul>
-                      <li><a href="assets/img/albums/3.jpg" data-rel="prettyPhoto"><span class="fa fa-search"  ></span></a></li>
-                      <li><a href="album-detail.html"><span class="fa fa-link"></span></a></li>
-                    </ul>
-                    <h3>Experimental</h3>
-                    <h2>Categoría</h2>
-                  </div>
-                </div>
-                <!--\\album-->
-
-                <div class="album"> <img src="assets/img/albums/4.jpg" alt=""/>
-                  <div class="hover">
-                    <ul>
-                      <li><a href="assets/img/albums/4.jpg" data-rel="prettyPhoto"><span class="fa fa-search"  ></span></a></li>
-                      <li><a href="album-detail.html"><span class="fa fa-link"></span></a></li>
-                    </ul>
-                    <h3>Relajantes</h3>
-                    <h2>Categoría</h2>
-                  </div>
-                </div>
-                <!--\\album-->
-
-                <div class="album"> <img src="assets/img/albums/5.jpg" alt=""/>
-                  <div class="hover">
-                    <ul>
-                      <li><a href="assets/img/albums/5.jpg" data-rel="prettyPhoto"><span class="fa fa-search"  ></span></a></li>
-                      <li><a href="album-detail.html"><span class="fa fa-link"></span></a></li>
-                    </ul>
-                    <h3>Ambientales</h3>
-                    <h2>Categoría</h2>
-                  </div>
-                </div>
-                <!--\\album-->
-
-                <div class="album"> <img src="assets/img/albums/6.jpg" alt=""/>
-                  <div class="hover">
-                    <ul>
-                      <li><a href="assets/img/albums/6.jpg" data-rel="prettyPhoto"><span class="fa fa-search"  ></span></a></li>
-                      <li><a href="album-detail.html"><span class="fa fa-link"></span></a></li>
-                    </ul>
-                    <h3>Melodia</h3>
-                    <h2>Categoría</h2>
-                  </div>
-                </div>
-                <!--\\album-->
-
-              </div>
             </div>
             </section>
 
@@ -438,6 +377,7 @@
     <script defer  src="assets/js/jquery.calendar-widget.js"></script>
     <script defer  src="assets/js/isotope.js"></script>
     <script defer  src="assets/js/main.js"></script>
-    <script defer  src="assets/js/app.js"></script>
+    <script defer  src="assets/js/app/mainApp.js"></script>
+    <script defer  src="assets/js/app/controller/categoryController.js"></script>
 </body>
 </html>
