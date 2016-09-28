@@ -40,6 +40,8 @@ class Audio(models.Model):
     album = models.ManyToManyField(Album, related_name="audios")
 
 class Commentary (models.Model):
+    def __str__(self):
+        return self.name
     class Meta:
         verbose_name_plural = "commentaries"
     commentary = models.TextField()

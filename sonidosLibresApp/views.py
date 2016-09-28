@@ -12,8 +12,8 @@ from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from sonidosLibresApp import customFilters
 from rest_framework import filters
 from sonidosLibresApp.customFilters import AudioFilter
-from sonidosLibresApp.serializers import AudioSerializer, CategorySerializer, AlbumSerializer
-from .models import Audio, Category, Album
+from sonidosLibresApp.serializers import AudioSerializer, CategorySerializer, AlbumSerializer, CommentarySerializer
+from .models import Audio, Category, Album, Commentary
 from rest_framework import status
 from rest_framework.response import Response
 from django.contrib.auth.decorators import login_required
@@ -82,3 +82,41 @@ class AlbumList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Generic
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
+
+class AlbumDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
+    queryset = Album.objects.all()
+    serializer_class = AlbumSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+
+class CommentaryList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+    queryset = Commentary.objects.all()
+    serializer_class = CommentarySerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+
+class CommentaryDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
+    queryset = Commentary.objects.all()
+    serializer_class = CommentarySerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)

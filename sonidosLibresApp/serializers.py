@@ -2,7 +2,7 @@ from rest_framework import serializers
 from rest_auth.serializers import UserDetailsSerializer
 
 from sonidosLibresApp.customFilters import AudioFilter
-from .models import Audio, Category, Album
+from .models import Audio, Category, Album, Commentary
 
 
 class AudioSerializer(serializers.ModelSerializer):
@@ -16,6 +16,10 @@ class AlbumSerializer(serializers.ModelSerializer):
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model=Category
+
+class CommentarySerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Commentary
 
 class UserSerializer(UserDetailsSerializer):
 
