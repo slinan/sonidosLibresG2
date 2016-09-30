@@ -7,8 +7,6 @@ router = DefaultRouter()
 
 urlpatterns = [
     url(r'^', include(router.urls)),
-    url(r'^rest-auth/', include('rest_auth.urls')),
-    url(r'^rest-auth/registration/', include('rest_auth.registration.urls')),
     url(r'^audios/$', views.AudioList.as_view()),
     url(r'^audios/(?P<pk>[0-9]+)/$', views.AudioDetail.as_view()),
     url(r'^categories/$', views.CategoryList.as_view()),

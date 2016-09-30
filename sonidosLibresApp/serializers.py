@@ -1,5 +1,5 @@
+from django.contrib.auth.models import User
 from rest_framework import serializers
-from rest_auth.serializers import UserDetailsSerializer
 
 from sonidosLibresApp.customFilters import AudioFilter
 from .models import Audio, Category, Album, Commentary
@@ -21,22 +21,22 @@ class CommentarySerializer(serializers.ModelSerializer):
     class Meta:
         model=Commentary
 
-class UserSerializer(UserDetailsSerializer):
 
-    name = serializers.CharField(source="userprofile.name")
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'password', 'email', 'first_name', 'last_name','is_superuser', 'is_staff','is_active', 'groups')
+        write_only_fields = ('password',)
+        read_only_fields = ('id',)
 
-    class Meta(UserDetailsSerializer.Meta):
-        fields = UserDetailsSerializer.Meta.fields + ('name',)
+    def create(self, validated_data):
+        user = User.objects.create(
+            username=validated_data['username'],
+            email=validated_data['email'],
+            first_name=validated_data['first_name'],
+            last_name=validated_data['last_name']
+        )
+        user.set_password(validated_data['password'])
+        user.save()
 
-    def update(self, instance, validated_data):
-        profile_data = validated_data.pop('userprofile', {})
-        name = profile_data.get('name')
-
-        instance = super(UserSerializer, self).update(instance, validated_data)
-
-        # get and update user profile
-        profile = instance.userprofile
-        if profile_data and name:
-            profile.name = name
-            profile.save()
-        return instance
+        return user
