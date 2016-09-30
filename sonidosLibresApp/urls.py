@@ -15,6 +15,8 @@ urlpatterns = [
     url(r'^albums/(?P<pk>[0-9]+)/$', views.AlbumDetail.as_view()),
     url(r'^commentaries/$', views.CommentaryList.as_view()),
     url(r'^commentaries/(?P<pk>[0-9]+)/$', views.CommentaryDetail.as_view()),
+    url(r'^albumAudio/(?P<idAudio>[0-9]+)/(?P<idAlbum>[0-9]+)$', views.AudioAlbumAssociation.as_view()),
+
 ]
 
 #urlpatterns =format_suffix_patterns(urlpatterns)

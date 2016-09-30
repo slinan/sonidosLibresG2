@@ -120,3 +120,19 @@ class CommentaryDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixin
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
+class AudioAlbumAssociation(APIView):
+
+    def get(self,request,idAudio, idAlbum,format=None):
+        audio = Audio.objects.get(id=idAudio)
+        album = Album.objects.get(id=idAlbum)
+        album.audios.add(audio)
+        serializer = AudioSerializer(audio)
+        return Response(serializer.data)
+
+    def delete(self, request, idAudio, idAlbum, format=None):
+        audio = Audio.objects.get(id=idAudio)
+        album = Album.objects.get(id=idAlbum)
+        album.audios.remove(audio)
+        serializer = AudioSerializer(audio)
+        return Response(serializer.data)
