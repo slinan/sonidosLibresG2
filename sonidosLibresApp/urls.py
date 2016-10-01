@@ -18,6 +18,8 @@ urlpatterns = [
     url(r'^commentaries/$', views.CommentaryList.as_view()),
     url(r'^commentaries/(?P<pk>[0-9]+)/$', views.CommentaryDetail.as_view()),
     url(r'^albumAudio/(?P<idAudio>[0-9]+)/(?P<idAlbum>[0-9]+)$', views.AudioAlbumAssociation.as_view()),
+    url(r'^rateAudio/(?P<idAudio>[0-9]+)/(?P<rating>[0-5])$', views.RateAudio.as_view()),
+    url(r'^rateAlbum/(?P<idAlbum>[0-9]+)/(?P<rating>[0-5])$', views.RateAlbum.as_view()),
 
 ]
 

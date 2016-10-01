@@ -33,7 +33,7 @@ class Album (models.Model):
     def __str__(self):
         return self.title
     title = models.CharField(max_length=100)
-    rating = models.IntegerField()
+    rating = models.FloatField()
     numOfRatings = models.IntegerField()
     categories = models.ManyToManyField(Category,related_name="albums")
     artists = models.ManyToManyField(Artist, related_name="albums")
@@ -45,7 +45,7 @@ class Audio(models.Model):
     audio = models.URLField()
     playCount = models.IntegerField()
     downloadsCount = models.IntegerField()
-    rating = models.IntegerField()
+    rating = models.FloatField()
     numOfRatings = models.IntegerField()
     categories = models.ManyToManyField(Category,related_name="audios")
     uploadDate = models.DateField()
@@ -60,6 +60,7 @@ class Commentary (models.Model):
     commentary = models.TextField()
     date = models.DateField()
     audio = models.ForeignKey(Audio,on_delete=models.CASCADE)
+    user = models.OneToOneField(User, null=True, blank=True)
 
     # python manage.py makemigrations sonidosLibresApp
     # python manage.py sqlmigrate sonidosLibresApp 0001

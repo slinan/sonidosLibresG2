@@ -146,7 +146,6 @@ class CommentaryDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixin
         return self.destroy(request, *args, **kwargs)
 
 class AudioAlbumAssociation(APIView):
-
     def get(self,request,idAudio, idAlbum,format=None):
         audio = Audio.objects.get(id=idAudio)
         album = Album.objects.get(id=idAlbum)
@@ -159,4 +158,28 @@ class AudioAlbumAssociation(APIView):
         album = Album.objects.get(id=idAlbum)
         album.audios.remove(audio)
         serializer = AudioSerializer(audio)
+        return Response(serializer.data)
+
+class RateAudio(APIView):
+    def get(self,request,idAudio, rating,format=None):
+        audio = Audio.objects.get(id=idAudio)
+
+        audio.numOfRatings += 1
+        ratingSum = audio.rating + int(rating)
+        audio.rating = ratingSum/audio.numOfRatings
+        audio.save()
+
+        serializer = AudioSerializer(audio)
+        return Response(serializer.data)
+
+class RateAlbum(APIView):
+    def get(self,request,idAlbum, rating,format=None):
+        album = Album.objects.get(id=idAlbum)
+
+        album.numOfRatings = album.numOfRatings +1
+        ratingSum = album.rating + int(rating)
+        album.rating = ratingSum/album.numOfRatings
+        album.save()
+
+        serializer = AlbumSerializer(album)
         return Response(serializer.data)
