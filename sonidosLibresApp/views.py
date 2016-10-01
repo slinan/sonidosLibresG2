@@ -12,8 +12,9 @@ from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 from sonidosLibresApp import customFilters
 from rest_framework import filters
 from sonidosLibresApp.customFilters import AudioFilter
-from sonidosLibresApp.serializers import AudioSerializer, CategorySerializer, AlbumSerializer, CommentarySerializer
-from .models import Audio, Category, Album, Commentary
+from sonidosLibresApp.serializers import AudioSerializer, CategorySerializer, AlbumSerializer, CommentarySerializer, \
+    ArtistSerializer
+from .models import Audio, Category, Album, Commentary, Artist
 from rest_framework import status
 from rest_framework.response import Response
 from django.contrib.auth.decorators import login_required
@@ -37,6 +38,29 @@ class AudioList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Generic
 class AudioDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
     queryset = Audio.objects.all()
     serializer_class = AudioSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
+
+class ArtistList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+    queryset = Artist.objects.all()
+    serializer_class = ArtistSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        return self.create(request, *args, **kwargs)
+
+class ArtistDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
+    queryset = Artist.objects.all()
+    serializer_class = ArtistSerializer
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)

@@ -17,6 +17,17 @@ class Category(models.Model):
         verbose_name_plural = "categories"
 
     name = models.CharField(max_length=40)
+    image = models.URLField()
+
+class Artist(models.Model):
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name_plural = "artists"
+
+    name = models.CharField(max_length=40)
+    user = models.OneToOneField(User, null=True, blank=True)
+    image = models.URLField()
 
 class Album (models.Model):
     def __str__(self):
@@ -25,6 +36,7 @@ class Album (models.Model):
     rating = models.IntegerField()
     numOfRatings = models.IntegerField()
     categories = models.ManyToManyField(Category,related_name="albums")
+    artists = models.ManyToManyField(Artist, related_name="albums")
 
 class Audio(models.Model):
     def __str__(self):
@@ -38,6 +50,7 @@ class Audio(models.Model):
     categories = models.ManyToManyField(Category,related_name="audios")
     uploadDate = models.DateField()
     album = models.ManyToManyField(Album, related_name="audios")
+    artists = models.ManyToManyField(Artist, related_name="audios")
 
 class Commentary (models.Model):
     def __str__(self):

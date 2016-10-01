@@ -2,7 +2,7 @@ from django.contrib.auth.models import User
 from rest_framework import serializers
 
 from sonidosLibresApp.customFilters import AudioFilter
-from .models import Audio, Category, Album, Commentary
+from .models import Audio, Category, Album, Commentary, Artist
 
 
 class AudioSerializer(serializers.ModelSerializer):
@@ -12,6 +12,10 @@ class AudioSerializer(serializers.ModelSerializer):
 class AlbumSerializer(serializers.ModelSerializer):
     class Meta:
         model = Album
+
+class ArtistSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Artist
 
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
