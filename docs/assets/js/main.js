@@ -1,4 +1,5 @@
-(function ($) {
+//(function ($) {
+$(window).on("load", function() {
     "use strict";
     /*	Table OF Contents
 	==========================
