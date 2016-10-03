@@ -163,23 +163,19 @@ class AudioAlbumAssociation(APIView):
 class RateAudio(APIView):
     def get(self,request,idAudio, rating,format=None):
         audio = Audio.objects.get(id=idAudio)
-
+        newRate = ((audio.rating * audio.numOfRatings) + int(rating))/(audio.numOfRatings + 1)
+        audio.rating=newRate
         audio.numOfRatings += 1
-        ratingSum = audio.rating + int(rating)
-        audio.rating = ratingSum/audio.numOfRatings
         audio.save()
-
         serializer = AudioSerializer(audio)
         return Response(serializer.data)
 
 class RateAlbum(APIView):
     def get(self,request,idAlbum, rating,format=None):
         album = Album.objects.get(id=idAlbum)
-
-        album.numOfRatings = album.numOfRatings +1
-        ratingSum = album.rating + int(rating)
-        album.rating = ratingSum/album.numOfRatings
+        newRate = ((album.rating * album.numOfRatings) + int(rating))/(album.numOfRatings + 1)
+        album.rating=newRate
+        album.numOfRatings += 1
         album.save()
-
         serializer = AlbumSerializer(album)
         return Response(serializer.data)
