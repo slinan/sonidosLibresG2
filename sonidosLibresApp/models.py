@@ -42,7 +42,8 @@ class Audio(models.Model):
     def __str__(self):
         return self.title
     title = models.CharField(max_length=40)
-    audio = models.URLField()
+    audioDownload = models.URLField()
+    audioPlay = models.URLField()
     playCount = models.IntegerField()
     downloadsCount = models.IntegerField()
     rating = models.FloatField()

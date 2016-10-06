@@ -11,7 +11,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
 
 from sonidosLibresApp import customFilters
 from rest_framework import filters
-from sonidosLibresApp.customFilters import AudioFilter
+from sonidosLibresApp.customPagination import StandardResultsSetPagination
 from sonidosLibresApp.serializers import AudioSerializer, CategorySerializer, AlbumSerializer, CommentarySerializer, \
     ArtistSerializer
 from .models import Audio, Category, Album, Commentary, Artist
@@ -26,6 +26,7 @@ class AudioList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Generic
     queryset = Audio.objects.all()
     serializer_class = AudioSerializer
     filter_backends = (filters.DjangoFilterBackend,filters.OrderingFilter,)
+    pagination_class = StandardResultsSetPagination
     filter_fields = ('title', 'audio', 'categories')
     ordering_fields = ('title', 'rating')
 
@@ -98,6 +99,7 @@ class AlbumList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Generic
     queryset = Album.objects.all()
     serializer_class = AlbumSerializer
     filter_backends = (filters.DjangoFilterBackend,filters.OrderingFilter,)
+    pagination_class = StandardResultsSetPagination
     filter_fields = ('title', 'rating', 'categories')
     ordering_fields = ('title', 'rating')
 

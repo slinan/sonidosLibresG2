@@ -1,7 +1,6 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from sonidosLibresApp.customFilters import AudioFilter
 from .models import Audio, Category, Album, Commentary, Artist
 
 
