@@ -62,7 +62,7 @@ class Commentary (models.Model):
     class Meta:
         verbose_name_plural = "commentaries"
     commentary = models.TextField()
-    date = models.DateField()
+    date = models.DateTimeField(editable=False, default = django.utils.timezone.now)
     audio = models.ForeignKey(Audio,on_delete=models.CASCADE)
     user = models.OneToOneField(User, null=True, blank=True)
 
