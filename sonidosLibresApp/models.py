@@ -58,7 +58,7 @@ class Audio(models.Model):
 
 class Commentary (models.Model):
     def __str__(self):
-        return self.name
+        return self.commentary
     class Meta:
         verbose_name_plural = "commentaries"
     commentary = models.TextField()
