@@ -20,6 +20,8 @@ urlpatterns = [
     url(r'^albumAudio/(?P<idAudio>[0-9]+)/(?P<idAlbum>[0-9]+)$', views.AudioAlbumAssociation.as_view()),
     url(r'^rateAudio/(?P<idAudio>[0-9]+)/(?P<rating>[0-5])$', views.RateAudio.as_view()),
     url(r'^rateAlbum/(?P<idAlbum>[0-9]+)/(?P<rating>[0-5])$', views.RateAlbum.as_view()),
+    url(r'^play/(?P<idAudio>[0-9]+)/$', views.PlayAudio.as_view()),
+    url(r'^download/(?P<idAudio>[0-9]+)/$', views.DownloadAudio.as_view()),
 
 ]
 

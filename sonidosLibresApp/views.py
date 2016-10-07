@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 from django.http import Http404
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -28,7 +29,7 @@ class AudioList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Generic
     filter_backends = (filters.DjangoFilterBackend,filters.OrderingFilter,)
     pagination_class = StandardResultsSetPagination
     filter_fields = ('title', 'categories')
-    ordering_fields = ('title', 'rating')
+    ordering_fields = ('title', 'rating', 'playCount', 'downloadsCount')
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -180,4 +181,20 @@ class RateAlbum(APIView):
         album.numOfRatings += 1
         album.save()
         serializer = AlbumSerializer(album)
+        return Response(serializer.data)
+
+class PlayAudio(APIView):
+    def get(self,request,idAudio,format=None):
+        audio = Audio.objects.get(id=idAudio)
+        audio.playCount += 1
+        audio.save()
+        serializer = AudioSerializer(audio)
+        return Response(serializer.data)
+
+class DownloadAudio(APIView):
+    def get(self,request,idAudio,format=None):
+        audio = Audio.objects.get(id=idAudio)
+        audio.downloadsCount += 1
+        audio.save()
+        serializer = AudioSerializer(audio)
         return Response(serializer.data)

@@ -3,6 +3,9 @@ from rest_framework import serializers
 
 from .models import Audio, Category, Album, Commentary, Artist
 
+class AudioCreate(serializers.ModelSerializer):
+    class Meta:
+        model = Audio
 
 class AudioSerializer(serializers.ModelSerializer):
     class Meta:
