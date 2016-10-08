@@ -1,3 +1,5 @@
+from django.http import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework import mixins
@@ -187,3 +189,33 @@ class DownloadAudio(APIView):
         audio.save()
         serializer = AudioSerializer(audio)
         return Response(serializer.data)
+
+class CategoriesTopRating(APIView):
+    def get(self,request,size,format=None):
+        resp = []
+        categories = Category.objects.all()
+        for c in categories:
+            cat = {}
+            serializer = CategorySerializer(c)
+            cat['id']=c.pk
+            cat['name']=c.name
+            cat['image'] = c.image
+            audios = Audio.objects.all()
+            audList = []
+            for a in audios:
+                aud = {}
+                aud['id'] = a.pk
+                aud['name'] = a.name
+                aud['title'] = a.title
+                aud['audioDownload'] = a.audioDownload
+                aud['audioPlay'] = a.audioPlay
+                aud['playCount'] = a.playCount
+                aud['downloadsCount'] = a.downloadsCount
+                aud['rating'] = a.rating
+                aud['uploadDate'] = a.uploadDate
+                audList.append(aud)
+
+            cat['audios']=audList
+            resp.append(cat)
+
+        return JsonResponse(resp, safe=False)

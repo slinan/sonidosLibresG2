@@ -23,6 +23,12 @@ class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model=Category
 
+class CategoryWithAudiosSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Category
+        fields = ['id','name', 'image','audios']
+
+
 class CommentarySerializer(serializers.ModelSerializer):
     class Meta:
         model=Commentary
