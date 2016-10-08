@@ -200,8 +200,9 @@ class CategoriesTopRating(APIView):
             cat['id']=c.pk
             cat['name']=c.name
             cat['image'] = c.image
-            audios = Audio.objects.all()
+            audios = Audio.objects.filter(categories__in=[c.pk]).order_by('-rating')
             audList = []
+            var = 0
             for a in audios:
                 aud = {}
                 aud['id'] = a.pk
@@ -214,6 +215,8 @@ class CategoriesTopRating(APIView):
                 aud['rating'] = a.rating
                 aud['uploadDate'] = a.uploadDate
                 audList.append(aud)
+                if var == int(size)-1:
+                    break
 
             cat['audios']=audList
             resp.append(cat)
