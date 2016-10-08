@@ -28,8 +28,8 @@ class AudioList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Generic
     serializer_class = AudioSerializer
     filter_backends = (filters.DjangoFilterBackend,filters.OrderingFilter,)
     pagination_class = StandardResultsSetPagination
-    filter_fields = ('title', 'categories')
-    ordering_fields = ('title', 'rating', 'playCount', 'downloadsCount')
+    filter_fields = ('title', 'rating', 'playCount', 'downloadsCount','uploadDate','numOfRatings')
+    ordering_fields = ('title', 'rating', 'playCount', 'downloadsCount','uploadDate','numOfRatings')
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
