@@ -28,9 +28,9 @@
     <script defer  src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular-resource.js"></script>
     <script defer  src="assets/js/app/mainApp.js"></script>
     <script defer  src="assets/js/app/controller/categoryController.js"></script>
-    <script defer  src="assets/js/app/controller/songController.js"></script>
-    <script defer  src="assets/js/app/services/categoryServices.js"></script>
-    <script defer  src="assets/js/app/factory/categoryFactory.js"></script>
+    <script defer  src="assets/js/app/controller/audioController.js"></script>
+    <script defer  src="assets/js/app/services/categoryService.js"></script>
+    <script defer  src="assets/js/app/services/audioService.js"></script>
     <script defer  src="assets/jPlayer/jquery.jplayer.min.js"></script>
     <script defer  src="assets/jPlayer/add-on/jplayer.playlist.min.js"></script>
     <script async  src="assets/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
@@ -68,7 +68,7 @@
     </ul>
 
     <section id="audio-player">
-      <div class="container" ng-controller="songController">
+      <div class="container" ng-controller="audioController">
         <div class="rock-player">
           <div class="playListTrigger">
             <a href="#"><i class="fa fa-list"></i></a>
@@ -88,7 +88,7 @@
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
                   <div class="player-status">
-                    <h5 class="audio-title">{{songs[0].artists[0]}} - {{ songs[0].title }}</h5>
+                    <h5 class="audio-title"> ? - ?</h5>
                     <div class="audio-timer"><span class="current-time jp-current-time">00:00</span> / <span class="total-time jp-duration">--:--</span></div>
                     <div class="audio-progress">
                       <div class="jp-seek-bar">
@@ -184,13 +184,13 @@
             <h1>Categorias</h1>
             <div class="top-carouselnav"> <a href="#" class="prev-album"><span class="fa fa-caret-left"></span></a> <a href="#" class="next-album"><span class="fa fa-caret-right"></span></a> </div>
             <div class="albums-carousel">
-                <div ng-class="'album'" ng-repeat="category in categories" style="margin-right: 15px; width: 270px; height: 270px">
+                <div ng-class="'album'" ng-repeat="category in getCategories()" style="margin-right: 15px; width: 270px; height: 270px">
                     <header>
                         <h1><span class="icon icon-top"></span> <a href="/">{{ category.name }}</a> </h1>
                             <a class="h-right more" href="/"><span class="icon icon-more"> </span> Ver más</a>
                     </header>
-                    <ul>
-                        <li ng-repeat="audioCat in getTopAudios(category.id, 5)">{{ audioCat.title }}</li>
+                    <ul ng-controller="audioController">
+                        <li ng-repeat="audioCat in getTop5ByCategory(category.id)">{{ audioCat.title }}</li>
                     </ul>
                 </div>
             </div>
