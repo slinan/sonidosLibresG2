@@ -53,6 +53,5 @@ pip-log.txt
 /db.sqlite3
 commands.txt
 schema.sql
-/sonidosLibresApp/migrations
 
 
