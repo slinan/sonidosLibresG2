@@ -1,6 +1,8 @@
+from datetime import datetime
+
+import django
 from django.db import models
 from django.contrib.auth.models import User
-import datetime
 from django.utils import timezone
 
 class UserProfile(models.Model):
@@ -33,32 +35,34 @@ class Album (models.Model):
     def __str__(self):
         return self.title
     title = models.CharField(max_length=100)
-    rating = models.FloatField()
-    numOfRatings = models.IntegerField()
+    rating = models.FloatField(editable=False, default = 0)
+    numOfRatings = models.IntegerField(editable=False, default = 0)
     categories = models.ManyToManyField(Category,related_name="albums")
     artists = models.ManyToManyField(Artist, related_name="albums")
 
 class Audio(models.Model):
     def __str__(self):
         return self.title
+    name = models.CharField(max_length=40)
     title = models.CharField(max_length=40)
-    audio = models.URLField()
-    playCount = models.IntegerField()
-    downloadsCount = models.IntegerField()
-    rating = models.FloatField()
-    numOfRatings = models.IntegerField()
+    audioDownload = models.URLField()
+    audioPlay = models.URLField()
+    playCount = models.IntegerField(editable=False, default = 0)
+    downloadsCount = models.IntegerField(editable=False, default = 0)
+    rating = models.FloatField(editable=False, default = 0)
+    numOfRatings = models.IntegerField(editable=False, default = 0)
     categories = models.ManyToManyField(Category,related_name="audios")
-    uploadDate = models.DateField()
-    album = models.ManyToManyField(Album, related_name="audios")
+    uploadDate = models.DateTimeField(editable=False, default = django.utils.timezone.now)
+    albums = models.ManyToManyField(Album, related_name="audios")
     artists = models.ManyToManyField(Artist, related_name="audios")
 
 class Commentary (models.Model):
     def __str__(self):
-        return self.name
+        return self.commentary
     class Meta:
         verbose_name_plural = "commentaries"
     commentary = models.TextField()
-    date = models.DateField()
+    date = models.DateTimeField(editable=False, default = django.utils.timezone.now)
     audio = models.ForeignKey(Audio,on_delete=models.CASCADE)
     user = models.OneToOneField(User, null=True, blank=True)
 
