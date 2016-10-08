@@ -1,13 +1,13 @@
 mainApp.controller('categoryController', ['$scope', 'categoryService', function($scope, categoryService) {
 
-    $scope.getCategories = function () {
+    $scope.categories = [];
         categoryService.getCategories()
             .then(function (response) {
                 $scope.categories = response.data;
+                console.log($scope.categories)
             }, function (error) {
                 $scope.status = 'No es posible cargar las categorias: ' + error.message;
             });
-    };
 
     $scope.updateCategory = function (id) {
         var category;
