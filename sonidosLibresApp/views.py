@@ -1,24 +1,13 @@
-from datetime import datetime, timedelta
-from django.http import Http404
-from django.http import JsonResponse
 from django.shortcuts import render
 from rest_framework import generics
 from rest_framework import mixins
-from rest_framework import viewsets
-from rest_framework.decorators import api_view, detail_route, list_route
-from rest_framework.parsers import JSONParser
 from rest_framework.views import APIView
-from rest_framework.permissions import AllowAny, IsAuthenticated, IsAdminUser
-
-from sonidosLibresApp import customFilters
 from rest_framework import filters
 from sonidosLibresApp.customPagination import StandardResultsSetPagination
 from sonidosLibresApp.serializers import AudioSerializer, CategorySerializer, AlbumSerializer, CommentarySerializer, \
     ArtistSerializer
 from .models import Audio, Category, Album, Commentary, Artist
-from rest_framework import status
 from rest_framework.response import Response
-from django.contrib.auth.decorators import login_required
 
 def index(request):
     return render(request, 'index.html')
@@ -101,8 +90,8 @@ class AlbumList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Generic
     serializer_class = AlbumSerializer
     filter_backends = (filters.DjangoFilterBackend,filters.OrderingFilter,)
     pagination_class = StandardResultsSetPagination
-    filter_fields = ('title', 'rating', 'categories')
-    ordering_fields = ('title', 'rating')
+    filter_fields = ('title', 'rating', 'categories','numOfRatings','artists')
+    ordering_fields = ('title', 'rating', 'categories','numOfRatings','artists')
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
