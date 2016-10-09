@@ -87,6 +87,7 @@ $(window).on("load", function() {
 	/*============================
 	Jplayer
 	============================*/
+
 	var werock,playlistScroller;
 	$('.playListTrigger > a').click(function(){
 		$('#audio-player').toggleClass('open');
@@ -148,6 +149,7 @@ $(window).on("load", function() {
 			$(".audio-track").mCustomScrollbar("scrollTo", 'li.jp-playlist-current');
 		});
 	}
+
 	/*============================
 	Init
 	============================*/
@@ -395,7 +397,7 @@ $(window).on("load", function() {
 			});
 			
 		}
-		
+
 		
 		/*=======================
 		10-Contact Form validation
@@ -431,4 +433,4 @@ $(window).on("load", function() {
 		}	
 	}
 
-})(jQuery);
+});

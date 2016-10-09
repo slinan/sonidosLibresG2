@@ -49,7 +49,6 @@
     <script defer  src="assets/js/jquery.calendar-widget.js"></script>
     <script defer  src="assets/js/isotope.js"></script>
     <script defer  src="assets/js/main.js"></script>
-
     <!--<link rel="stylesheet" type="text/css" href="assets/css/blue.css">
     <link rel="stylesheet" type="text/css" href="assets/css/orange.css">
     <link rel="stylesheet" type="text/css" href="assets/css/red.css">
@@ -186,11 +185,13 @@
             <div class="albums-carousel">
                 <div ng-class="'album'" ng-repeat="category in categories" style="margin-right: 15px; width: 270px; height: 270px">
                     <header>
-                        <h1><span class="icon icon-top"></span> <a href="/">{{ category.name }}</a> </h1>
+                        <h1><span class="icon icon-top"></span> {{ category.name }}</h1>
                             <a class="h-right more" href="/sonidosLibresG2/docs/category-detail.html#/?id={{ category.id }}"><span class="icon icon-more"> </span> Ver más</a>
 
                     </header>
-                        <h4 ng-repeat="audioCat in findTopCategory(category.id)">{{ audioCat.title }}</h4>
+                        <div ng-repeat="audioCat in findTopCategory(category.id)">
+                            {{ audioCat.title }} <span data-title='{{ audioCat.title }}' data-artist="{{ audioCat.artists[0] }}" data-mp3="{{ audioCat.audioPlay }}" title="add to playlist"> <i class="fa fa-play"></i></span>
+                        </div>
                 </div>
             </div>
         </div>
