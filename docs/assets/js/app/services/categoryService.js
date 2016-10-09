@@ -23,6 +23,10 @@ mainApp.factory('categoryService', ['$http', function($http) {
         return $http.delete(urlBase + '/' + id);
     };
 
+    categoryService.getRelatedCategories = function (id) {
+        return $http.get(urlBase + '/');
+    };
+
     return categoryService;
 }]);
 

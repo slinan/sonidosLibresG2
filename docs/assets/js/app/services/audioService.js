@@ -33,6 +33,10 @@ mainApp.factory('audioService', ['$http', function($http) {
         return $http.get(urlBase + urlTopCategroies + size);
     };
 
+    audioService.getAudiosByCategory = function (idCategory, page, pageSize) {
+        return $http.get(urlBase +  urlAudio + '/?categories=' + idCategory + '&page=' + page + '&page_size=' + pageSize);
+    };
+
     return audioService;
 }]);
 

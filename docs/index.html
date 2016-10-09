@@ -88,7 +88,7 @@
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
                   <div class="player-status">
-                    <h5 class="audio-title">{{songs[0].artists[0]}} - {{ songs[0].title }}</h5>
+                    <h5 class="audio-title"> ? - ?</h5>
                     <div class="audio-timer"><span class="current-time jp-current-time">00:00</span> / <span class="total-time jp-duration">--:--</span></div>
                     <div class="audio-progress">
                       <div class="jp-seek-bar">
@@ -187,7 +187,8 @@
                 <div ng-class="'album'" ng-repeat="category in categories" style="margin-right: 15px; width: 270px; height: 270px">
                     <header>
                         <h1><span class="icon icon-top"></span> <a href="/">{{ category.name }}</a> </h1>
-                            <a class="h-right more" href="/category-detail"><span class="icon icon-more"> </span> Ver más</a>
+                            <a class="h-right more" href="/sonidosLibresG2/docs/category-detail.html#/?id={{ category.id }}"><span class="icon icon-more"> </span> Ver más</a>
+
                     </header>
                         <h4 ng-repeat="audioCat in findTopCategory(category.id)">{{ audioCat.title }}</h4>
                 </div>

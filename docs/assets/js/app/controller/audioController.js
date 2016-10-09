@@ -2,7 +2,6 @@ mainApp.controller("audioController", ['$scope', 'audioService', function ($scop
 
     getPlayListAudios();
 
-    $scope.playListAudios = [];
     $scope.top5ByCategory = [];
     $scope.status = "";
     $scope.getAudios = getAudios;
@@ -18,7 +17,7 @@ mainApp.controller("audioController", ['$scope', 'audioService', function ($scop
     };
 
     function getPlayListAudios() {
-        audioService.getTopAudios('uploadDate', 1, 5)
+        audioService.getTopAudios('-uploadDate', 1, 5)
             .then(function (response) {
                 $scope.playListAudios = response.data.results;
             }, function (error) {
