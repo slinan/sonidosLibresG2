@@ -33,336 +33,27 @@ Style Sheets
 <link rel="stylesheet" type="text/css" href="assets/css/green.css">
 <link rel="stylesheet" type="text/css" href="assets/css/purple.css">-->
 
-<script async  src="assets/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-<script defer  src="assets/js/jquery.js"></script>
+    <script defer  src="assets/js/angular/1.5.2/angular.min.js"></script>
+    <script defer  src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular-resource.js"></script>
+    <script async  src="assets/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script defer  src="assets/js/jquery.js"></script>
+    <script defer  src="assets/js/app/mainApp.js"></script>
+    <script defer  src="assets/js/app/controller/categoryDetailController.js"></script>
+    <script defer  src="assets/js/app/controller/audioController.js"></script>
+    <script defer  src="assets/js/app/services/categoryService.js"></script>
+    <script defer  src="assets/js/app/services/audioService.js"></script>
 </head>
-<body>
+<body ng-app="mainApp">
 
+    <header>
+          <div ng-include="'socialBar.html'"></div>
+          <div ng-include="'navigationBar.html'"></div>
+    </header>
 
-<!--=================================
-	Header
-	=================================-->
-<header>
-  <div class="social-links">
-    <div class="container">
-      <ul class="social">
-        <li><a href="#"><span class="fa fa-facebook"></span></a></li>
-        <li ><a href="#"><span class="fa fa-twitter"></span></a></li>
-        <li ><a href="#"><span class="fa fa-pinterest"></span></a></li>
-        <li ><a href="#"><span class="fa fa-linkedin"></span></a></li>
-        <li ><a href="#"><span class="fa fa-flickr"></span></a></li>
-        <li ><a href="#"><span class="fa fa-youtube"></span></a></li>
-        <li ><a href="#"><span class="fa fa-instagram"></span></a></li>
-      </ul>
-    </div>
-  </div>
-  <nav class="navbar yamm navbar-default">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle fa fa-navicon"></button>
-        <a class="navbar-brand" href="index.html">
-            <img src="assets/img/basic/logo.png" alt="logo" />
-        </a>
-      </div>
-      <div class="nav_wrapper">
-        <div class="nav_scroll">
-          <div class="nav-search">
-            <form>
-              <input type="text" placeholder="Search" />
-              <button type="submit"><i class="fa fa-search"></i></button>
-            </form>
-          </div>
-          
-          <ul class="nav navbar-nav">
-            <li class="active dropdown"><a href="#">Home <i class="fa fa-caret-right"></i></a>
-              <ul class="dropdown-menu">
-              	
-                <li><a href="index.html">Home1</a></li>
-                <li><a href="home2.html">Home2</a> </li>
-              </ul>
-            </li>
-            <li class="yamm-fw dropdown"><a href="#" >Blog <i class="fa fa-caret-right"></i></a>
-              <ul class="dropdown-menu">
-              	
-                <li>
-                  <div class="yamm-content">
-                    <div class="row">
-                      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="yamm-blog"> <img src="assets/img/news/blog1.png" alt="dummy">
-                          <h4><a href="blog-detail.html">Justin Timberlake Threw Himself 'Inside Llewyn Davis'</a></h4>
-                        </div>
-                        <!--yamm artist info--> 
-                        <a class="to-page" href="blog.html">View All posts</a> </div>
-                      <!--col-->
-                      
-                      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                        <div class="row">
-                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <div class="yamm-blog-detail clearfix"> <img src="assets/img/news/h.png" alt="/">
-                              <h4><a href="blog-detail.html">Justin Timberlake</a></h4>
-                              <p>'I use uncertainty as motivation and hopefully Rob uses it as motivation.</p>
-                            </div>
-                          </div>
-                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <div class="yamm-blog-detail clearfix"> <img src="assets/img/news/c.png" alt="/">
-                              <h4><a href="blog-detail.html">Justin Timberlake</a></h4>
-                              <p>'I use uncertainty as motivation and hopefully Rob uses it as motivation.</p>
-                            </div>
-                          </div>
-                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <div class="yamm-blog-detail clearfix"> <img src="assets/img/news/d.png" alt="/">
-                              <h4><a href="blog-detail.html">Justin Timberlake</a></h4>
-                              <p>'I use uncertainty as motivation and hopefully Rob uses it as motivation.</p>
-                            </div>
-                          </div>
-                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <div class="yamm-blog-detail clearfix"> <img src="assets/img/news/e.png" alt="/">
-                              <h4><a href="blog-detail.html">Justin Timberlake</a></h4>
-                              <p>'I use uncertainty as motivation and hopefully Rob uses it as motivation.</p>
-                            </div>
-                          </div>
-                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <div class="yamm-blog-detail clearfix"> <img src="assets/img/news/f.png" alt="/">
-                              <h4><a href="blog-detail.html">Justin Timberlake</a></h4>
-                              <p>'I use uncertainty as motivation and hopefully Rob uses it as motivation.</p>
-                            </div>
-                          </div>
-                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <div class="yamm-blog-detail clearfix"> <img src="assets/img/news/g.png" alt="/">
-                              <h4><a href="blog-detail.html">Justin Timberlake</a></h4>
-                              <p>'I use uncertainty as motivation and hopefully Rob uses it as motivation.</p>
-                            </div>
-                          </div>
-                        </div>
-                        <!--row--> 
-                      </div>
-                      <!--col--> 
-                      
-                    </div>
-                    <!--row--> 
-                  </div>
-                  <!--yamm content--> 
-                </li>
-              </ul>
-            </li>
-            <li class="dropdown"><a href="#">Events <i class="fa fa-caret-right"></i></a>
-              <ul class="dropdown-menu">
-              	
-                <li><a href="events.html">Events</a> </li>
-                <li><a href="event-detail.html">Event Detail</a> </li>
-              </ul>
-            </li>
-            <li class="yamm-fw dropdown"><a href="#">Artist <i class="fa fa-caret-right"></i></a>
-              <ul class="dropdown-menu">
-              	
-                <li>
-                  <div class="yamm-content">
-                    <div class="row">
-                      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="row">
-                          <div class="yamm-artist-info">
-                            <h2>featured artist</h2>
-                            <div class="col-lg-5 col-md-6 col-sm-12 col-xs-12"> <img src="assets/img/artist/artist3.jpg" alt=""> </div>
-                            <div class="col-lg-7 col-md-6 col-sm-12 col-xs-12">
-                              <h4><a href="artist-detail.html">enrique iglesias</a></h4>
-                              <p>'I use uncertainty as motivation and hopefully Rob uses it as motivation.I use uncertainty as motivation and hopefully Rob uses it as motivation</p>
-                            </div>
-                            <!--col--> 
-                          </div>
-                          <!--yamm artist info--> 
-                        </div>
-                        <!--row--> 
-                      </div>
-                      <!--col-->
-                      
-                      <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-                        <ul class="yamm-artist-name">
-                          <li><a href="artist-detail.html">enrique iglesias</a></li>
-                          <li> <a href="artist-detail.html">Justin Timberlake</a></li>
-                          <li><a href="artist-detail.html">Madonna</a></li>
-                          <li><a href="artist-detail.html">britney spears</a></li>
-                          <li class="to-page"><a href="artist.html">View All</a></li>
-                        </ul>
-                      </div>
-                      <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                        <div class="yamm-artist-album">
-                          <h2>Top 5 album</h2>
-                          <a href="album-detail.html"><img src="assets/img/albums/10.jpg" alt=""></a> <a href="album-detail.html"><img src="assets/img/albums/11.jpg" alt=""></a> <a href="album-detail.html"><img src="assets/img/albums/12.jpg" alt=""></a> <a href="album-detail.html"><img src="assets/img/albums/13.jpg" alt=""></a> </div>
-                      </div>
-                      <!--yamm artist album--> 
-                      
-                    </div>
-                    <!--row--> 
-                  </div>
-                  <!--yamm content--> 
-                </li>
-              </ul>
-            </li>
-            <li class="dropdown"><a href="#">Albums <i class="fa fa-caret-right"></i></a>
-              <ul class="dropdown-menu">
-              	
-                <li><a href="album.html">Albums</a> </li>
-                <li><a href="album-detail.html">Album Detail</a> </li>
-              </ul>
-            </li>
-            <li class="yamm-fw dropdown"><a href="#" >Videos <i class="fa fa-caret-right"></i></a>
-              <ul class="dropdown-menu">
-              	
-                <li>
-                  <div class="yamm-content">
-                    <div class="row">
-                      <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                        <div class="video-feed"> <img src="assets/img/videos/video1.jpg" alt=""/> <a href="#"><span class="fa fa-play"></span></a>
-                          <h5>Music Band Concert - 2013</h5>
-                        </div>
-                        <!--\\video-feed--> 
-                        <a class="to-page" href="videos.html">View All videos</a> </div>
-                      <!--col-->
-                      
-                      <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
-                        <div class="row">
-                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <div class="video-feed"> <img src="assets/img/videos/1.jpg" alt=""/> <a href="video-detail.html"><span class="fa fa-play"></span></a>
-                              <h6>1 week ago</h6>
-                            </div>
-                            <!--\\video-feed-->
-                            <h4>Enrique concert</h4>
-                            <p>I use uncertainty as motivation and hopefully Rob uses it as motivation.I use uncertainty as motivation and hopefully Rob uses it as motivationf</p>
-                          </div>
-                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <div class="video-feed"> <img src="assets/img/videos/2.jpg" alt=""/> <a href="video-detail.html"><span class="fa fa-play"></span></a>
-                              <h6>1 week ago</h6>
-                            </div>
-                            <!--\\video-feed-->
-                            <h4>Enrique concert</h4>
-                            <p>I use uncertainty as motivation and hopefully Rob uses it as motivation.I use uncertainty as motivation and hopefully Rob uses it as motivationf</p>
-                          </div>
-                          <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                            <div class="video-feed"> <img src="assets/img/videos/3.jpg" alt=""/> <a href="video-detail.html"><span class="fa fa-play"></span></a>
-                              <h6>1 week ago</h6>
-                            </div>
-                            <!--\\video-feed-->
-                            <h4>Enrique concert</h4>
-                            <p>I use uncertainty as motivation and hopefully Rob uses it as motivation.I use uncertainty as motivation and hopefully Rob uses it as motivationf</p>
-                          </div>
-                        </div>
-                        <!--row--> 
-                      </div>
-                      <!--col--> 
-                      
-                    </div>
-                    <!--row--> 
-                  </div>
-                  <!--yamm content--> 
-                </li>
-              </ul>
-            </li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="news.html">News</a></li>
-            <li><a href="contact.html" >Contact</a></li>
-          </ul>
-        </div>
-        <!--/.nav-collapse --> 
-        
-      </div>
-    </div>
-  </nav>
-</header>
+    <ul class="vegas-slides hidden">
+      <li><img data-fade='2000' src="assets/img/BG/bg4.jpg" alt="" /></li>
+    </ul>
 
-<!--=================================
-Vegas Slider Images
-=================================-->
-
-<ul class="vegas-slides hidden">
-  <li><img data-fade='2000' src="assets/img/BG/bg1.jpg" alt="" /></li>
-  <li><img data-fade='2000' src="assets/img/BG/bg2.jpg" alt="" /></li>
-  <li><img data-fade='2000' src="assets/img/BG/bg3.jpg" alt="" /></li>
-  <li><img data-fade='2000' src="assets/img/BG/bg4.jpg" alt="" /></li>
-</ul>
-
-<!--=================================
-JPlayer (Audio Player)
-=================================-->
-
-<section id="audio-player">
-  <div class="container">
-    <div class="rock-player">
-      <div class="row">
-        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-          <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-              <div id="player-instance" class="jp-jplayer"></div>
-              <div class="controls">
-                <div class="jp-prev"></div>
-                <div  class="play-pause jp-play"></div>
-                <div  class="play-pause jp-pause" style="display:none"></div>
-                <div class="jp-next"></div>
-              </div>
-              <!--controls--> 
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-              <div class="player-status">
-                <h5 class="audio-title">Maroon 5 - Moves Like Jagger ft. Christina Aguilera</h5>
-                <div class="audio-timer"><span class="current-time jp-current-time">01:02</span> / <span class="total-time jp-duration">4:05</span></div>
-                <div class="audio-progress">
-                  <div class="jp-seek-bar">
-                    <div class="audio-play-bar jp-play-bar" style="width:20%;"></div>
-                  </div>
-                  <!--jp-seek-bar--> 
-                </div>
-                <!--audio-progress--> 
-              </div>
-              <!--player-status--> 
-            </div>
-            <!--column--> 
-          </div>
-          <!--inner-row--> 
-        </div>
-        <!--column-->
-        
-        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-          <div class="audio-list">
-            <div class="audio-list-icon"></div>
-            <div class="jp-playlist"> 
-              <!--Add Songs In mp3 formate here-->
-              <ul class="hidden playlist-files">
-                <li data-title="Maroon 5 - Moves Like Jagger" 
-                                    	data-artist="ft. Christina" 
-                                        data-mp3="http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3"></li>
-                <li data-title="Coldplay - Princess Of China" 
-                                    	data-artist="ft. Rihanna" 
-                                        data-mp3="http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3"></li>
-                <li data-title="Lorem Ipsum" 
-                                    	data-artist="ft. Rocker" 
-                                        data-mp3="http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3"></li>
-                <li data-title="New Fish!!!" 
-                                    	data-artist="ft. Jailer" 
-                                        data-mp3="http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3"></li>
-                <li data-title="I wanna grow" 
-                                    	data-artist="ft. MeDon" 
-                                        data-mp3="http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3"></li>
-                <li data-title="do be do" 
-                                    	data-artist="ft. scoby" 
-                                        data-mp3="http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3"></li>
-                <li data-title="We aint smart" 
-                                    	data-artist="ft. SomeFool" 
-                                        data-mp3="http://www.jplayer.org/audio/mp3/TSP-01-Cro_magnon_man.mp3"></li>
-              </ul>
-              <!--Playlist ends-->
-              <h5>Audio Playlist</h5>
-              <div class="audio-track">
-                <ul>
-                  <li></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <!--row--> 
-    </div>
-  </div>
-</section>
 
 <div id="ajaxArea">
     <div class="pageContentArea">
@@ -370,17 +61,17 @@ JPlayer (Audio Player)
     bread crums
     =================================-->
       <section class="breadcrumb">
-           <div class="container">
+           <div class="container" ng-controller="categoryDetailController">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6">
-                        <h1>Album</h1>
-                        <h5>Lorem Ipsum Album</h5>
+                        <h1>Categoría</h1>
+                        <h5>{{ category.name }}</h5>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <ul>
-                            <li><a href="#">Home</a></li>
-                            <li><a href="#">artists</a></li>
-                            <li><a href="#">Detail</a></li>
+                            <li><a href="/index.html#">Inicio</a></li>
+                            <li><a href="#">Categoría</a></li>
+
                         </ul>
                     </div>
                 </div>

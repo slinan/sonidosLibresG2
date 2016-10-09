@@ -1,27 +1,26 @@
 mainApp.controller("audioController", ['$scope', 'audioService', function ($scope, audioService) {
 
-    $scope.getAudios = function (){
+    getPlayListAudios();
+
+    $scope.playListAudios = [];
+    $scope.top5ByCategory = [];
+    $scope.status = "";
+    $scope.getAudios = getAudios;
+    $scope.getPlayListAudios = getPlayListAudios;
+
+    function getAudios(){
         audioService.getAudios()
             .then(function (response) {
-                $scope.audios = response.data;
+                $scope.audios = response.data.results;
             }, function (error) {
                 $scope.status = 'No es posible cargar los audios: ' + error.message;
             });
     };
 
-    $scope.getPlayListAudios = function () {
+    function getPlayListAudios() {
         audioService.getTopAudios('uploadDate', 1, 5)
             .then(function (response) {
-                $scope.playListAudios = response.data;
-            }, function (error) {
-                $scope.status = 'No es posible cargar los audios: ' + error.message;
-            });
-    };
-
-    $scope.getTop5ByCategory = function (idCategory){
-        audioService.getTopAudiosByCategory(idCategory, 'rating', 1, 5)
-            .then(function (response) {
-                $scope.top5ByCategory = response.data;
+                $scope.playListAudios = response.data.results;
             }, function (error) {
                 $scope.status = 'No es posible cargar los audios: ' + error.message;
             });
@@ -30,7 +29,7 @@ mainApp.controller("audioController", ['$scope', 'audioService', function ($scop
 
 mainApp.directive('myList', function() {
     return {
-        template: '<ul class="hidden playlist-files"><li ng-repeat="audio in getPlayListAudios()" data-title="{{audio.title}}" data-artist="{{audio.artists[0]}}" data-mp3="{{audio.audioPlay}}"></li></ul>'
+        template: '<ul class="hidden playlist-files"><li ng-repeat="audio in playListAudios" data-title="{{audio.title}}" data-artist="{{audio.artists[0]}}" data-mp3="{{audio.audioPlay}}"></li></ul>'
     };
 });
 
