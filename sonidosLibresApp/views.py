@@ -44,6 +44,8 @@ class AudioDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.Des
 class ArtistList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Artist.objects.all()
     serializer_class = ArtistSerializer
+    pagination_class = StandardResultsSetPagination
+
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -67,6 +69,8 @@ class ArtistDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.De
 class CategoryList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    pagination_class = StandardResultsSetPagination
+
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -129,6 +133,8 @@ class CommentaryList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Ge
 class CommentaryDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
     queryset = Commentary.objects.all()
     serializer_class = CommentarySerializer
+    pagination_class = StandardResultsSetPagination
+
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
