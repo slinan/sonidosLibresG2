@@ -189,9 +189,7 @@
                         <h1><span class="icon icon-top"></span> <a href="/">{{ category.name }}</a> </h1>
                             <a class="h-right more" href="/category-detail"><span class="icon icon-more"> </span> Ver más</a>
                     </header>
-                    <ul>
-                        <li ng-repeat="audioCat in findTopCategory(category.id)">{{ audioCat.title }}</li>
-                    </ul>
+                        <h4 ng-repeat="audioCat in findTopCategory(category.id)">{{ audioCat.title }}</h4>
                 </div>
             </div>
         </div>
