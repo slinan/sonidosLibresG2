@@ -21,119 +21,99 @@
     <link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
     <link rel="stylesheet" href="assets/css/main.css">
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
-    <script defer  src="assets/js/jquery.js"></script>
-    <script defer  src="assets/js/angular/1.5.2/angular.min.js"></script>
-    <script defer  src="https://unpkg.com/angular-ui-router/release/angular-ui-router.min.js"></script>
-    <script defer  src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular-resource.js"></script>
-    <script defer  src="assets/js/app/mainApp.js"></script>
-    <script defer  src="assets/js/app/controller/categoryHomeController.js"></script>
-    <script defer  src="assets/js/app/controller/audioController.js"></script>
-    <script defer  src="assets/js/app/services/categoryService.js"></script>
-    <script defer  src="assets/js/app/services/audioService.js"></script>
-    <script defer  src="assets/jPlayer/jquery.jplayer.min.js"></script>
-    <script defer  src="assets/jPlayer/add-on/jplayer.playlist.min.js"></script>
-    <script async  src="assets/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-
-    <script defer  src="assets/js/bootstrap.min.js"></script>
-    <script defer  src="assets/js/jquery.easing-1.3.pack.js"></script>
-    <script defer  src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
-    <script defer  src="assets/js/jquery.mousewheel.min.js"></script>
-    <script defer  src="assets/js/jflickrfeed.min.js"></script>
-    <script defer  src="assets/js/jquery.flexslider-min.js"></script>
-    <script defer  src="assets/js/jquery.carouFredSel-6.2.1-packed.js"></script>
-    <script defer  src="assets/js/tweetie.min.js"></script>
-    <script defer  src="assets/js/jquery.prettyPhoto.js"></script>
-    <script defer  src="assets/js/jquery.vegas.min.js"></script>
-    <script defer  src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <script defer  src="assets/js/jquery.calendar-widget.js"></script>
-    <script defer  src="assets/js/isotope.js"></script>
-    <script defer  src="assets/js/main.js"></script>
     <!--<link rel="stylesheet" type="text/css" href="assets/css/blue.css">
     <link rel="stylesheet" type="text/css" href="assets/css/orange.css">
     <link rel="stylesheet" type="text/css" href="assets/css/red.css">
     <link rel="stylesheet" type="text/css" href="assets/css/green.css">
     <link rel="stylesheet" type="text/css" href="assets/css/purple.css">-->
 
+    <script async  src="assets/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <script defer  src="assets/js/jquery.js"></script>
 </head>
-<body ng-app="mainApp">
-    <header>
-      <div ng-include="'socialBar.html'"></div>
-      <div ng-include="'navigationBar.html'"></div>
-    </header>
+<body onload="init()">
 
-    <ul class="vegas-slides hidden">
-      <li><img data-fade='2000' src="assets/img/BG/bg4.jpg" alt="" /></li>
-    </ul>
+<header>
+  <div id="socialBar"></div>
+  <div id="navigationBar"></div>
+</header>
 
-    <section id="audio-player">
-      <div class="container" ng-controller="audioController">
-        <div class="rock-player">
-          <div class="playListTrigger">
-            <a href="#"><i class="fa fa-list"></i></a>
-          </div><!--triggerPlayList in responsive-->
+<ul class="vegas-slides hidden">
+  <li><img data-fade='2000' src="assets/img/BG/bg4.jpg" alt="" /></li>
+</ul>
+
+<!--=================================
+REPRODUCTOR DE AUDIO
+=================================-->
+<section id="audio-player">
+  <div class="container">
+    <div class="rock-player">
+      <div class="playListTrigger">
+        <a href="#"><i class="fa fa-list"></i></a>
+      </div><!--triggerPlayList in responsive-->
+      <div class="row">
+        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
           <div class="row">
-            <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-              <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                  <div id="player-instance" class="jp-jplayer"></div>
-                  <div class="controls">
-                    <div class="jp-prev"></div>
-                    <div  class="play-pause jp-play"></div>
-                    <div  class="play-pause jp-pause" style="display:none"></div>
-                    <div class="jp-next"></div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+              <div id="player-instance" class="jp-jplayer"></div>
+              <div class="controls">
+                <div class="jp-prev"></div>
+                <div  class="play-pause jp-play"></div>
+                <div  class="play-pause jp-pause" style="display:none"></div>
+                <div class="jp-next"></div>
+              </div>
+              <!--controls-->
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+              <div class="player-status">
+                <h5 class="audio-title"> ? - ?</h5>
+                <div class="audio-timer"><span class="current-time jp-current-time">00:00</span> / <span class="total-time jp-duration">--:--</span></div>
+                <div class="audio-progress">
+                  <div class="jp-seek-bar">
+                    <div class="audio-play-bar jp-play-bar" style="width:20%;"></div>
                   </div>
-                  <!--controls-->
+                  <!--jp-seek-bar-->
                 </div>
-                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-                  <div class="player-status">
-                    <h5 class="audio-title"> ? - ?</h5>
-                    <div class="audio-timer"><span class="current-time jp-current-time">00:00</span> / <span class="total-time jp-duration">--:--</span></div>
-                    <div class="audio-progress">
-                      <div class="jp-seek-bar">
-                        <div class="audio-play-bar jp-play-bar" style="width:20%;"></div>
-                      </div>
-                      <!--jp-seek-bar-->
-                    </div>
-                    <!--audio-progress-->
-                  </div>
-                  <!--player-status-->
-                </div><!--column-->
+                <!--audio-progress-->
               </div>
-              <!--inner-row-->
-            </div>
-            <!--column-->
-
-            <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-              <div class="audio-list">
-                <div class="audio-list-icon"></div>
-                <div class="jp-playlist">
-                  <!--Add Songs In mp3 formate here-->
-
-                   <span my-list></span>
-
-                  <!--Playlist ends-->
-                  <h5>Lista de reproducción</h5>
-                  <div class="audio-track">
-                    <ul>
-                      <li></li>
-                    </ul>
-                  </div>
-              </div>
-            </div>
+              <!--player-status-->
+            </div><!--column-->
           </div>
-          <!--row-->
+          <!--inner-row-->
+        </div>
+        <!--column-->
+
+        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+          <div class="audio-list">
+            <div class="audio-list-icon"></div>
+            <div class="jp-playlist">
+              <!--Add Songs In mp3 formate here-->
+
+               <ul id="hiddenPlaylist" class="hidden playlist-files"></ul>
+
+              <!--Playlist ends-->
+              <h5>Lista de reproducción</h5>
+              <div class="audio-track">
+                <ul>
+                  <li></li>
+                </ul>
+              </div>
+          </div>
         </div>
       </div>
-          </div>
-    </section>
+      <!--row-->
+    </div>
+  </div>
+      </div>
+</section>
 
-    <div id="ajaxArea">
+<div id="ajaxArea">
     <div class="pageContentArea">
-
+        <!--=================================
+        SLIDER PRINCIPAL
+        =================================-->
         <section id="home-slider">
-        <div class="container">
-          <div class="home-inner">
+            <div class="container">
+            <div class="home-inner">
 
             <div id="homeSliderNav" class="slider-nav">
               <a id="home-prev" href="#" class="prev fa fa-chevron-left"></a>
@@ -175,192 +155,163 @@
               </ul>
             </div>
           </div>
-        </div>
-      </section>
-
-        <section id="albums">
-        <div class="container" ng-controller="categoryHomeController">
-            <h1>Categorias</h1>
-            <div class="top-carouselnav"> <a href="#" class="prev-album"><span class="fa fa-caret-left"></span></a> <a href="#" class="next-album"><span class="fa fa-caret-right"></span></a> </div>
-            <div class="albums-carousel">
-                <div ng-class="'album'" ng-repeat="category in categories" style="margin-right: 15px; width: 270px; height: 270px">
-                    <header>
-                        <h1><span class="icon icon-top"></span> {{ category.name }}</h1>
-                            <a class="h-right more" href="/sonidosLibresG2/docs/category-detail.html#/?id={{ category.id }}"><span class="icon icon-more"> </span> Ver más</a>
-
-                    </header>
-                        <div ng-repeat="audioCat in findTopCategory(category.id)">
-                            {{ audioCat.title }} <span data-title='{{ audioCat.title }}' data-artist="{{ audioCat.artists[0] }}" data-mp3="{{ audioCat.audioPlay }}" title="add to playlist"> <i class="fa fa-play"></i></span>
-                        </div>
-                </div>
             </div>
-        </div>
+        </section>
+
+        <!--=================================
+        CATEGORIAS
+        =================================-->
+        <section id="albums">
+            <div class="container">
+                <h1>Categorias</h1>
+                <div class="alreadyAdded-warning alert-theme alert">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-9">
+                            Este audio ya se encuentra en el lista de reproducción, ¿Quieres volverlo a adicionar y reproducirlo inmediatamente?
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            <button class="btn addAgain">Si</button><button class="btn dontAdd">No</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <div class="top-carouselnav"> <a href="#" class="prev-album"><span class="fa fa-caret-left"></span></a> <a href="#" class="next-album"><span class="fa fa-caret-right"></span></a> </div>
+                <div id="categories" class="albums-carousel"></div>
+            </div>
         </section>
 
         <div class="clearfix"></div>
 
+        <!--=================================
+        SECCION DE INFORMACIÓN
+        =================================-->
         <section id="updates">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-3">
-              <h1>Convocatorias</h1>
-              <div class="event-feed">
-                <div class="date"> <span class="day">24</span> <span class="month">OCT</span> </div>
-                <h5>Gritos de terror</h5>
-                <p>Ambientar obra de teatro</p>
-                <a class="btn" href="#">Participar</a> </div>
-              <!--\\event-->
+            <div class="container">
+                <div class="row">
+                    <!--=================================
+                    CONVOCATORIAS
+                    =================================-->
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <h1>Convocatorias</h1>
+                        <div class="event-feed">
+                            <div class="date"> <span class="day">24</span> <span class="month">OCT</span> </div>
+                            <h5>Gritos de terror</h5>
+                            <p>Ambientar obra de teatro</p>
+                            <a class="btn" href="#">Participar</a>
+                        </div>
 
-              <div class="event-feed">
-                <div class="date"> <span class="day">26</span> <span class="month">NOV</span> </div>
-                <h5>Introdución para album clásico</h5>
-                <p>Duración máxima de 2 min</p>
-                <a class="btn sold-out">Participar</a> </div>
-              <!--\\event-->
+                        <div class="event-feed">
+                            <div class="date"> <span class="day">26</span> <span class="month">NOV</span> </div>
+                            <h5>Introdución para album clásico</h5>
+                            <p>Duración máxima de 2 min</p>
+                            <a class="btn sold-out">Participar</a>
+                        </div>
 
-              <div class="event-feed">
-                <div class="date"> <span class="day">29</span> <span class="month">DIC</span> </div>
-                <h5>Sonidos para pelicula</h5>
-                <p>Acción</p>
-                <a class="btn" href="#">Participar</a> </div>
+                        <div class="event-feed">
+                            <div class="date"> <span class="day">29</span> <span class="month">DIC</span> </div>
+                            <h5>Sonidos para pelicula</h5>
+                            <p>Acción</p>
+                            <a class="btn" href="#">Participar</a>
+                        </div>
 
-                <div class="event-feed">
-                <div class="date"> <span class="day">30</span> <span class="month">DIC</span> </div>
-                <h5>Sonidos para pelicula</h5>
-                <p>Acción</p>
-                <a class="btn" href="#">Participar</a> </div>
-              <!--\\event-->
+                        <div class="event-feed">
+                            <div class="date"> <span class="day">30</span> <span class="month">DIC</span> </div>
+                            <h5>Sonidos para pelicula</h5>
+                            <p>Acción</p>
+                            <a class="btn" href="#">Participar</a>
+                        </div>
+                    </div>
 
+                    <!--=================================
+                    MAS VOTADAS
+                    =================================-->
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <h1>Más votadas</h1>
+                        <div class="news-feed"> <img src="assets/img/news/1.jpg" alt="dummy"> <a href="#">Brisa desertica con viento'</a>
+                            <ul>
+                                <li>Calificación: 4.5</li>
+                                <li><span class="fa fa-comment"></span>115 comentarios</li>
+                            </ul>
+                            <p>Brisa desertica con viento, perfecta para ambientar una playa o desierto con un mar cerca</p>
+                        </div>
+
+                        <div class="news-feed"> <img src="assets/img/news/2.jpg" alt="dummy"> <a href="#">Musica de suspenso</a>
+                            <ul>
+                                <li>Calificación: 4.5</li>
+                                <li><span class="fa fa-comment"></span>55 comentarios</li>
+                            </ul>
+                            <p>Util para ambientar una situación de suspenso en obra de teatro o pelicula</p>
+                        </div>
+
+                        <div class="news-feed"> <img src="assets/img/news/3.jpg" alt="dummy"> <a href="#">Ambiente de Noche- Grillos</a>
+                            <ul>
+                                <li>Calificación: 4.4</li>
+                                <li><span class="fa fa-comment"></span>54 comentarios</li>
+                            </ul>
+                            <p>Noche en un lugar abierto o bosque</p>
+                        </div>
+
+                        <div class="news-feed"> <img src="assets/img/news/4.jpg" alt="dummy"> <a href="#">Introducción de acción</a>
+                            <ul>
+                                <li>Calificación: 4.3</li>
+                                <li><span class="fa fa-comment"></span>45 comentarios</li>
+                            </ul>
+                            <p>Perfecta para comenzar una escena de acción en una pelicula u obra de teatro</p>
+                        </div>
+
+                        <div class="news-feed"> <img src="assets/img/news/4.jpg" alt="dummy"> <a href="#">Ambiental de humor y situación cómica</a>
+                            <ul>
+                                <li>Calificación: 4.0</li>
+                                <li><span class="fa fa-comment"></span>95 comentarios</li>
+                            </ul>
+                            <p>Fondo para una situación cómica</p>
+                        </div>
+                    </div>
+
+                    <!--=================================
+                    TOP DE ARTISTAS
+                    =================================-->
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <h1>Top Artistas</h1>
+                        <div class="video-feed"> <img src="assets/img/videos/1.jpg" alt=""/> <a href="video-detail.html"><span class="fa fa-play"></span></a>
+                            <h6>1 semana atrás</h6>
+                        </div>
+
+                        <div class="video-feed"> <img src="assets/img/videos/2.jpg" alt=""/> <a href="video-detail.html"><span class="fa fa-play"></span></a>
+                            <h6>1 semana atrás</h6>
+                        </div>
+
+                        <div class="video-feed"> <img src="assets/img/videos/3.jpg" alt=""/> <a href="video-detail.html"><span class="fa fa-play"></span></a>
+                            <h6>1 semana atrás</h6>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <!--latest events-->
-
-            <div class="col-lg-6 col-md-6 col-sm-6">
-              <h1>Más votadas</h1>
-              <div class="news-feed"> <img src="assets/img/news/1.jpg" alt="dummy"> <a href="#">Brisa desertica con viento'</a>
-                <ul>
-                  <li>Calificación: 4.5</li>
-                  <li><span class="fa fa-comment"></span>115 comentarios</li>
-                </ul>
-                <p>Brisa desertica con viento, perfecta para ambientar una playa o desierto con un mar cerca</p>
-              </div>
-              <!--\\latest news-->
-
-              <div class="news-feed"> <img src="assets/img/news/2.jpg" alt="dummy"> <a href="#">Musica de suspenso</a>
-                <ul>
-                  <li>Calificación: 4.5</li>
-                  <li><span class="fa fa-comment"></span>55 comentarios</li>
-                </ul>
-                <p>Util para ambientar una situación de suspenso en obra de teatro o pelicula</p>
-              </div>
-              <!--\\latest news-->
-
-              <div class="news-feed"> <img src="assets/img/news/3.jpg" alt="dummy"> <a href="#">Ambiente de Noche- Grillos</a>
-                <ul>
-                  <li>Calificación: 4.4</li>
-                  <li><span class="fa fa-comment"></span>54 comentarios</li>
-                </ul>
-                <p>Noche en un lugar abierto o bosque</p>
-              </div>
-              <!--\\latest news-->
-
-              <div class="news-feed"> <img src="assets/img/news/4.jpg" alt="dummy"> <a href="#">Introducción de acción</a>
-                <ul>
-                  <li>Calificación: 4.3</li>
-                  <li><span class="fa fa-comment"></span>45 comentarios</li>
-                </ul>
-                <p>Perfecta para comenzar una escena de acción en una pelicula u obra de teatro</p>
-              </div>
-
-                <div class="news-feed"> <img src="assets/img/news/4.jpg" alt="dummy"> <a href="#">Ambiental de humor y situación cómica</a>
-                <ul>
-                  <li>Calificación: 4.0</li>
-                  <li><span class="fa fa-comment"></span>95 comentarios</li>
-                </ul>
-                <p>Fondo para una situación cómica</p>
-              </div>
-              <!--\\latest news-->
-
-            </div>
-            <!--latest news-->
-            <div class="col-lg-3 col-md-3 col-sm-3">
-              <h1>Top Artistas</h1>
-              <div class="video-feed"> <img src="assets/img/videos/1.jpg" alt=""/> <a href="video-detail.html"><span class="fa fa-play"></span></a>
-                <h6>1 week ago</h6>
-              </div>
-              <!--\\video-feed-->
-
-              <div class="video-feed"> <img src="assets/img/videos/2.jpg" alt=""/> <a href="video-detail.html"><span class="fa fa-play"></span></a>
-                <h6>1 week ago</h6>
-              </div>
-              <!--\\video-feed-->
-
-              <div class="video-feed"> <img src="assets/img/videos/3.jpg" alt=""/> <a href="video-detail.html"><span class="fa fa-play"></span></a>
-                <h6>1 week ago</h6>
-              </div>
-              <!--\\video-feed-->
-
-            </div>
-            <!--latest videos-->
-          </div>
-        </div>
-      </section>
+        </section>
 
         <div class="rockPlayerHolder"></div>
-
     </div>
 </div>
 
-    <footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3 col-md-3 col-sm-3">
-        <h4><span class="fa fa-sitemap"></span>Mapa del Sitio</h4>
-        <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-6">
-            <ul class="sitemap">
-              <li><a href="#">INICIO</a></li>
-              <li><a href="#">CONVOCATORIAS</a></li>
-              <li><a href="#">ARTISTAS</a></li>
-              <li><a href="#">ALBUMES</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6">
-            <ul class="sitemap">
-              <li><a href="#">CATEGORIAS</a></li>
-              <li><a href="#">CONTACTO</a></li>
-              <li><a href="#">AYUDA</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <!--\\column-->
+<div id="footer"></div>
 
-      <div class="col-lg-3 col-md-3 col-sm-3">
-        <h4><span class="fa fa-twitter"></span>Obras recientemente subidas</h4>
-        <div class="latest-tweet" data-username="envato" data-limit="2"></div>
-      </div>
-      <!--\\column-->
-
-      <div class="col-lg-3 col-md-3 col-sm-3">
-        <h4><span class="fa fa-flickr"></span>Albumes recientemente creados</h4>
-        <ul id="flicker-feed" data-limit="6" data-userID="52617155@N08"></ul>
-      </div>
-      <!--\\column-->
-
-      <div class="col-lg-3 col-md-3 col-sm-3">
-        <h4><span class="fa fa-envelope"></span>Registrate</h4>
-        <form id="newsletter">
-          <input placeholder="Ingresa tu correo electrónico aquí" />
-          <button class="submit-btn">Registrarse</button>
-        </form>
-      </div>
-      <!--\\column-->
-
-    </div>
-    <!--\\row-->
-  </div>
-  <!--\\container-->
-</footer>
-
+<script defer  src="assets/js/bootstrap.min.js"></script>
+    <script defer  src="assets/js/jquery.easing-1.3.pack.js"></script>
+    <script defer  src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script defer  src="assets/js/jquery.mousewheel.min.js"></script>
+    <script defer  src="assets/js/jflickrfeed.min.js"></script>
+    <script defer  src="assets/js/jquery.flexslider-min.js"></script>
+    <script defer  src="assets/js/jquery.carouFredSel-6.2.1-packed.js"></script>
+    <script defer  src="assets/js/tweetie.min.js"></script>
+    <script defer  src="assets/js/jquery.prettyPhoto.js"></script>
+    <script defer  src="assets/jPlayer/jquery.jplayer.min.js"></script>
+    <script defer  src="assets/jPlayer/add-on/jplayer.playlist.min.js"></script>
+    <script defer  src="assets/js/jquery.vegas.min.js"></script>
+    <script defer  src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script defer  src="assets/js/jquery.calendar-widget.js"></script>
+    <script defer  src="assets/js/isotope.js"></script>
+    <script defer  src="assets/js/main.js"></script>
+    <script defer  src="assets/js/app/util/util.js"></script>
+    <script defer  src="assets/js/app/services/index.js"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 <!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>WeRock</title>
+<title>Sonidos Libres - Categoria</title>
 
 <!--=================================
 Meta tags
@@ -33,103 +33,95 @@ Style Sheets
 <link rel="stylesheet" type="text/css" href="assets/css/green.css">
 <link rel="stylesheet" type="text/css" href="assets/css/purple.css">-->
 
-    <script defer  src="assets/js/angular/1.5.2/angular.min.js"></script>
-    <script defer  src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular-resource.js"></script>
     <script async  src="assets/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <script defer  src="assets/js/jquery.js"></script>
-    <script defer  src="assets/js/app/mainApp.js"></script>
-    <script defer  src="assets/js/app/controller/categoryDetailController.js"></script>
-    <script defer  src="assets/js/app/controller/audioController.js"></script>
-    <script defer  src="assets/js/app/services/categoryService.js"></script>
-    <script defer  src="assets/js/app/services/audioService.js"></script>
 </head>
-<body ng-app="mainApp">
+<body onload="init()">
 
-    <header>
-          <div ng-include="'socialBar.html'"></div>
-          <div ng-include="'navigationBar.html'"></div>
-    </header>
+<header>
+  <div id="socialBar"></div>
+  <div id="navigationBar"></div>
+</header>
 
-    <ul class="vegas-slides hidden">
-      <li><img data-fade='2000' src="assets/img/BG/bg4.jpg" alt="" /></li>
-    </ul>
+<ul class="vegas-slides hidden">
+  <li><img data-fade='2000' src="assets/img/BG/bg4.jpg" alt="" /></li>
+</ul>
 
-    <section id="audio-player">
-  <div class="container">
-    <div class="rock-player">
-      <div class="playListTrigger">
-      	<a href="#"><i class="fa fa-list"></i></a>
-      </div><!--triggerPlayList in responsive-->
+<!--=================================
+REPRODUCTOR DE AUDIO
+=================================-->
+<section id="audio-player">
+<div class="container">
+<div class="rock-player">
+  <div class="playListTrigger">
+    <a href="#"><i class="fa fa-list"></i></a>
+  </div><!--triggerPlayList in responsive-->
+  <div class="row">
+    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
       <div class="row">
-        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-          <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-              <div id="player-instance" class="jp-jplayer"></div>
-              <div class="controls">
-                <div class="jp-prev"></div>
-                <div  class="play-pause jp-play"></div>
-                <div  class="play-pause jp-pause" style="display:none"></div>
-                <div class="jp-next"></div>
-              </div>
-              <!--controls-->
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-              <div class="player-status">
-                <h5 class="audio-title">Selecciona un audio</h5>
-                <div class="audio-timer"><span class="current-time jp-current-time">00:00</span> / <span class="total-time jp-duration">00:00</span></div>
-                <div class="audio-progress">
-                  <div class="jp-seek-bar">
-                    <div class="audio-play-bar jp-play-bar" style="width:20%;"></div>
-                  </div>
-                  <!--jp-seek-bar-->
-                </div>
-                <!--audio-progress-->
-              </div>
-              <!--player-status-->
-            </div>
-            <!--column-->
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+          <div id="player-instance" class="jp-jplayer"></div>
+          <div class="controls">
+            <div class="jp-prev"></div>
+            <div  class="play-pause jp-play"></div>
+            <div  class="play-pause jp-pause" style="display:none"></div>
+            <div class="jp-next"></div>
           </div>
-          <!--inner-row-->
+          <!--controls-->
+        </div>
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+          <div class="player-status">
+            <h5 class="audio-title">Selecciona un audio</h5>
+            <div class="audio-timer"><span class="current-time jp-current-time">00:00</span> / <span class="total-time jp-duration">00:00</span></div>
+            <div class="audio-progress">
+              <div class="jp-seek-bar">
+                <div class="audio-play-bar jp-play-bar" style="width:20%;"></div>
+              </div>
+              <!--jp-seek-bar-->
+            </div>
+            <!--audio-progress-->
+          </div>
+          <!--player-status-->
         </div>
         <!--column-->
+      </div>
+      <!--inner-row-->
+    </div>
+    <!--column-->
 
-        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-          <div class="audio-list">
-            <div class="audio-list-icon"></div>
-            <div class="jp-playlist">
-              <!--Add Songs In mp3 formate here-->
-              <ul class="hidden playlist-files">
-                <li data-title="Selecciona un audio"
-                                    	data-artist=""
-                                        data-mp3=""></li>
-              </ul>
-              <!--Playlist ends-->
-              <h5>Audio Playlist</h5>
-              <div class="audio-track">
-                <ul>
-                  <li></li>
-                </ul>
-              </div>
-            </div>
+    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+      <div class="audio-list">
+        <div class="audio-list-icon"></div>
+        <div class="jp-playlist">
+          <!--Add Songs In mp3 formate here-->
+
+          <ul id="hiddenPlaylist" class="hidden playlist-files"></ul>
+
+          <!--Playlist ends-->
+          <h5>Audio Playlist</h5>
+          <div class="audio-track">
+            <ul>
+              <li></li>
+            </ul>
           </div>
         </div>
       </div>
-      <!--row-->
     </div>
   </div>
+  <!--row-->
+</div>
+</div>
 </section>
 
 <div id="ajaxArea">
-    <div class="pageContentArea" ng-controller="categoryDetailController">
-    <!--=================================
-    bread crums
-    =================================-->
-      <section class="breadcrumb">
+    <div class="pageContentArea">
+
+    <section class="breadcrumb">
            <div class="container">
                 <div class="row">
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <h1>Categoría</h1>
-                        <h5>{{ category.name }}</h5>
+                        <h5 id="categoryName"></h5>
                     </div>
                     <div class="col-lg-6 col-md-6 col-sm-6">
                         <ul>
@@ -142,146 +134,79 @@ Style Sheets
            </div>
       </section>
     <div class="clearfix"></div>
-    
-    
-    <!--=================================
-    videos
-    =================================-->
-    
+
     <section id="albums">
         <div class="container">
             <div class="row">
                 <div class="album-detail">
+
+                    <!--=================================
+                    PANEL IZQUIERDO CATEGORIA
+                    =================================-->
                     <div class="album-purchase">
                         <div class="col-lg-3 col-md-3 col-sm-3">
-                            <img src="{{ category.image }}" alt=""/>
-                            <a href="#">Total audios<span>{{ audios.length }}</span></a>
+                            <img id="categoryImage" src="" alt=""/>
+                            <a href="#">Total audios<span id="totalAudios"></span></a>
                         </div>
-                        </div>
-                         <div class="col-lg-9 col-md-9 col-sm-9">
-                            <div class="album-detail-content">
-                                <h3>¿Qué encontrarás?</h3>
-                                <h4>{{ category.name }}</h4>
-                                <p>Descripción de comedia</p>
-                            </div><!--//artist-detail-content-->
-                            
-                            <div class="album-tracks">
-                                <h1>Audios</h1>
-                                <div class="alreadyAdded-warning alert-theme alert">
-                                    	<div class="row">
-                                        	<div class="col-xs-12 col-sm-9">
-                                            	This song is already in the playlist, Whould you like to add it anyway?
-                                            </div>
-                                            <div class="col-xs-12 col-sm-3">
-                                            	<button class="btn addAgain">Yes</button><button class="btn dontAdd">No</button>
-                                            </div>
-                                        </div>
-                                 </div><div class="clearfix"></div>
-                                <div class="track">
-                                	
-                                    
-                                    <ul>
-                                        <li class="track-head clearfix">
-                                            <div class="track_title">Titulo</div>
-                                            <div class="track_listen">Escuchar</div>
-                                            <div class="track_listen">Descargar</div>
-                                            <div class="track_time">Votos</div>
-                                            <div class="track_popularity">Popularidad</div>
-                                            <div class="track_listen">Donar</div>
-                                        </li>
-                                        
-                                        <li class="clearfix" ng-repeat="audio in audios">
-                                            <div class="track_title">{{ audio.title }}</div>
-                                            <div class="track_listen">
-                                                <span data-title='{{ audio.title }}' data-artist="{{ audio.artists[0] }}" data-mp3="{{ audio.audioPlay }}" title="add to playlist"> <i class="fa fa-play"></i></span>
-                                            </div>
-                                            <div class="track_listen"><a href="{{ audio.audioDownload }}"><i class="fa fa-download"></i></a></div>
-                                            <div class="track_time">{{ audio.numOfRatings }}</div>
-                                            <div class="track_popularity">
-                                                <ul>
-                                                    <li class="active" ng-repeat="act in getNumberActiveRating(audio.rating)"></li>
-                                                    <li ng-repeat="act in getNumberInactiveRating(audio.rating)"></li>
-                                                    <span>{{ audio.rating }}</span>
-                                                </ul>
-                                         	</div>
-                                        	<div class="track_buy"><a href="#"><i class="fa fa-money"></i></a></div>
-                                        </li>
-                                    </ul>
-                                </div><!--track-->
-                                <div class="clearfix"></div>
-                                
-                            </div><!--artist tracks-->
-                    </div><!--\\artist-->
-                </div>
-            </div><!--row-->
-            
-            <div class="related-albums">
-            <h1>Talvés te pueda interesar</h1>
-                <div class="related-album" ng-repeat="related in relatedCategories">
-                    <a href="/sonidosLibresG2/docs/category-detail.html#/?id={{ related.id }}"><img src="{{ related.image }}" alt="/"></a>
-                    <h3>{{ related.name }}</h3>
-                    <h4>Categoría</h4>
-                </div>
+                    </div>
 
+                    <!--=================================
+                    DESCRIPCION Y LISTA DE AUDIOS CATEGORIA
+                    =================================-->
+                    <div class="col-lg-9 col-md-9 col-sm-9">
+                        <div class="album-detail-content">
+                            <h3>¿Qué encontrarás?</h3>
+                            <h4 id="categoryNameSub"></h4>
+                            <p id="categoryDescription">Descripción de comedia</p>
+                        </div>
+                            
+                        <div class="album-tracks">
+                            <h1>Audios</h1>
+                            <div class="alreadyAdded-warning alert-theme alert">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-9">
+                                            Este audio ya se encuentra en el lista de reproducción, ¿Quieres volverlo a adicionar y reproducirlo inmediatamente?
+                                        </div>
+                                        <div class="col-xs-12 col-sm-3">
+                                            <button class="btn addAgain">Si</button><button class="btn dontAdd">No</button>
+                                        </div>
+                                    </div>
+                             </div><div class="clearfix"></div>
+
+                            <!--=================================
+                            LISTA DE AUDIOS CATEGORIA
+                            =================================-->
+                            <div class="track">
+                                <ul id="audiosList">
+                                    <li class="track-head clearfix">
+                                        <div class="track_title">Titulo</div>
+                                        <div class="track_listen">Escuchar</div>
+                                        <div class="track_listen">Descargar</div>
+                                        <div class="track_time">Votos</div>
+                                        <div class="track_popularity">Popularidad</div>
+                                        <div class="track_listen">Donar</div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--=================================
+            CATEGORIAS RELACIONADAS
+            =================================-->
+            <div class="related-albums">
+                <h1>Talvés te pueda interesar</h1>
+                <div id="relatedCategories"></div>
             </div>       
-        </div><!--container-->
+        </div>
     </section>
   </div>
 </div>  
 
-
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3 col-md-3 col-sm-3">
-        <h4><span class="fa fa-sitemap"></span>Mapa del Sitio</h4>
-        <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-6">
-            <ul class="sitemap">
-              <li><a href="#">INICIO</a></li>
-              <li><a href="#">CONVOCATORIAS</a></li>
-              <li><a href="#">ARTISTAS</a></li>
-              <li><a href="#">ALBUMES</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6">
-            <ul class="sitemap">
-              <li><a href="#">CATEGORIAS</a></li>
-              <li><a href="#">CONTACTO</a></li>
-              <li><a href="#">AYUDA</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <!--\\column-->
-
-      <div class="col-lg-3 col-md-3 col-sm-3">
-        <h4><span class="fa fa-twitter"></span>Obras recientemente subidas</h4>
-        <div class="latest-tweet" data-username="envato" data-limit="2"></div>
-      </div>
-      <!--\\column-->
-
-      <div class="col-lg-3 col-md-3 col-sm-3">
-        <h4><span class="fa fa-flickr"></span>Albumes recientemente creados</h4>
-        <ul id="flicker-feed" data-limit="6" data-userID="52617155@N08"></ul>
-      </div>
-      <!--\\column-->
-
-      <div class="col-lg-3 col-md-3 col-sm-3">
-        <h4><span class="fa fa-envelope"></span>Registrate</h4>
-        <form id="newsletter">
-          <input placeholder="Ingresa tu correo electrónico aquí" />
-          <button class="submit-btn">Registrarse</button>
-        </form>
-      </div>
-      <!--\\column-->
-
-    </div>
-    <!--\\row-->
-  </div>
-  <!--\\container-->
-</footer>
-
+<div id="footer"></div>
 
 <!--=================================
 Script Source
@@ -302,7 +227,9 @@ Script Source
 <script defer  src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script> 
 <script defer  src="assets/js/jquery.calendar-widget.js"></script> 
 <script defer  src="assets/js/isotope.js"></script>
-<script defer  src="assets/js/main.js"></script>   
+<script defer  src="assets/js/main.js"></script>
+<script defer  src="assets/js/app/util/util.js"></script>
+<script defer  src="assets/js/app/services/categoryDetail.js"></script>
 
 <script>/*Place Your Google Analytics code here*/</script>
 
