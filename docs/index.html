@@ -44,67 +44,7 @@
 <!--=================================
 REPRODUCTOR DE AUDIO
 =================================-->
-<section id="audio-player">
-  <div class="container">
-    <div class="rock-player">
-      <div class="playListTrigger">
-        <a href="#"><i class="fa fa-list"></i></a>
-      </div><!--triggerPlayList in responsive-->
-      <div class="row">
-        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-          <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-              <div id="player-instance" class="jp-jplayer"></div>
-              <div class="controls">
-                <div class="jp-prev"></div>
-                <div  class="play-pause jp-play"></div>
-                <div  class="play-pause jp-pause" style="display:none"></div>
-                <div class="jp-next"></div>
-              </div>
-              <!--controls-->
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-              <div class="player-status">
-                <h5 class="audio-title"> ? - ?</h5>
-                <div class="audio-timer"><span class="current-time jp-current-time">00:00</span> / <span class="total-time jp-duration">--:--</span></div>
-                <div class="audio-progress">
-                  <div class="jp-seek-bar">
-                    <div class="audio-play-bar jp-play-bar" style="width:20%;"></div>
-                  </div>
-                  <!--jp-seek-bar-->
-                </div>
-                <!--audio-progress-->
-              </div>
-              <!--player-status-->
-            </div><!--column-->
-          </div>
-          <!--inner-row-->
-        </div>
-        <!--column-->
-
-        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-          <div class="audio-list">
-            <div class="audio-list-icon"></div>
-            <div class="jp-playlist">
-              <!--Add Songs In mp3 formate here-->
-
-               <ul id="hiddenPlaylist" class="hidden playlist-files"></ul>
-
-              <!--Playlist ends-->
-              <h5>Lista de reproducción</h5>
-              <div class="audio-track">
-                <ul>
-                  <li></li>
-                </ul>
-              </div>
-          </div>
-        </div>
-      </div>
-      <!--row-->
-    </div>
-  </div>
-      </div>
-</section>
+<div id="player"></div>
 
 <div id="ajaxArea">
     <div class="pageContentArea">
@@ -164,17 +104,7 @@ REPRODUCTOR DE AUDIO
         <section id="albums">
             <div class="container">
                 <h1>Categorias</h1>
-                <div class="alreadyAdded-warning alert-theme alert">
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-9">
-                            Este audio ya se encuentra en el lista de reproducción, ¿Quieres volverlo a adicionar y reproducirlo inmediatamente?
-                        </div>
-                        <div class="col-xs-12 col-sm-3">
-                            <button class="btn addAgain">Si</button><button class="btn dontAdd">No</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
+                <div id="alreadyAddedPlayListWarning"></div>
                 <div class="top-carouselnav"> <a href="#" class="prev-album"><span class="fa fa-caret-left"></span></a> <a href="#" class="next-album"><span class="fa fa-caret-right"></span></a> </div>
                 <div id="categories" class="albums-carousel"></div>
             </div>
@@ -293,6 +223,9 @@ REPRODUCTOR DE AUDIO
     </div>
 </div>
 
+<!--=================================
+FOOTER
+=================================-->
 <div id="footer"></div>
 
 <script defer  src="assets/js/bootstrap.min.js"></script>

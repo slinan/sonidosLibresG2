@@ -1568,6 +1568,20 @@ a.next-album {
 	position: relative;
 	top: -2px;
 }
+.track_listen a i {
+	display: inline-block;
+	margin-left: 10px;
+	height: 27px;
+	width: 27px;
+	border: 1px solid #3c3c3c;
+	border-radius: 50%;
+	font-size: 10px;
+	line-height: 27px;
+	text-align: center;
+	color: #e62948;
+	position: relative;
+	top: -2px;
+}
 .track .track_release span {
 	color: #e62948;
 }

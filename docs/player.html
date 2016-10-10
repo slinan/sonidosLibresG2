@@ -1,0 +1,63 @@
+<section id="audio-player">
+    <div class="container">
+        <div class="rock-player">
+            <div class="playListTrigger">
+                <a href="#"><i class="fa fa-list"></i></a>
+            </div><!--triggerPlayList in responsive-->
+            <div class="row">
+                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                            <div id="player-instance" class="jp-jplayer"></div>
+                                <div class="controls">
+                                    <div class="track_listen">
+                                        <div class="jp-prev"></div>
+                                        <div class="play-pause jp-play"></div>
+                                        <div class="play-pause jp-pause" style="display:none"></div>
+                                        <div class="jp-next"></div>
+                                        <a target="_blank" class="audio-download" href=""><i class="fa fa-download"></i></a>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                            <div class="player-status">
+                                <h5 class="audio-title"> ? - ? </h5>
+                                <div class="audio-timer"><span class="current-time jp-current-time">00:00</span> / <span class="total-time jp-duration">--:--</span></div>
+                                <div class="audio-progress">
+                                    <div class="jp-seek-bar">
+                                        <div class="audio-play-bar jp-play-bar" style="width:20%;"></div>
+                                    </div>
+                                <!--jp-seek-bar-->
+                                </div>
+                            <!--audio-progress-->
+                            </div>
+                        <!--player-status-->
+                        </div><!--column-->
+                    </div>
+                    <!--inner-row-->
+                </div>
+                <!--column-->
+
+                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                    <div class="audio-list">
+                        <div class="audio-list-icon"></div>
+                        <div class="jp-playlist">
+                            <!--Add Songs In mp3 formate here-->
+
+                            <ul id="hiddenPlaylist" class="hidden playlist-files"></ul>
+
+                            <!--Playlist ends-->
+                            <h5>Lista de reproducción</h5>
+                            <div class="audio-track">
+                                <ul>
+                                    <li></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--row-->
+            </div>
+        </div>
+    </div>
+</section>

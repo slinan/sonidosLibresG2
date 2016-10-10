@@ -115,6 +115,7 @@ function main() {
 				new_playlist_item['title'] = $playlist_audio.eq(i).attr('data-title');
 				new_playlist_item['artist'] = $playlist_audio.eq(i).attr('data-artist');
 				new_playlist_item['mp3'] = $playlist_audio.eq(i).attr('data-mp3');
+				new_playlist_item['download'] = $playlist_audio.eq(i).attr('data-download');
 				playlist_items.push(new_playlist_item);
 			}
 
@@ -136,12 +137,14 @@ function main() {
 			});
 
 			$('.audio-title').html(werock.playlist[0].title);
+			$('.audio-download').attr('href', werock.playlist[0].download);
 			$("#player-instance").bind($.jPlayer.event.play, function (event) {
 				var current = werock.current,
 					playlist = werock.playlist;
 				jQuery.each(playlist, function (index, obj) {
 					if (index == current) {
 						$('.audio-title').html(obj.title);
+						$('.audio-download').attr('href', obj.download);
 					}
 				});
 			});
@@ -575,6 +578,8 @@ function main() {
 						title: $(this).attr('data-title'),
 						artist: $(this).attr('data-artist'),
 						mp3: $(this).attr('data-mp3'),
+						download: $(this).attr('data-download'),
+
 					}, true);
 					$(this).children('i').removeClass('fa-play').addClass('fa-check');
 				}
@@ -586,6 +591,7 @@ function main() {
 					title: trackSelector.attr('data-title'),
 					artist: trackSelector.attr('data-artist'),
 					mp3: trackSelector.attr('data-mp3'),
+					download: trackSelector.attr('data-download'),
 				}, true);
 
 			});

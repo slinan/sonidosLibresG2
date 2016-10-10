@@ -1,6 +1,8 @@
 function init() {
     $( "#socialBar" ).load( "socialBar.html" );
     $( "#navigationBar" ).load( "navigationBar.html" );
+    $( "#player" ).load( "player.html" );
+    $( "#alreadyAddedPlayListWarning" ).load( "alreadyAddedPlayListWarning.html" );
     $( "#footer" ).load( "footer.html" );
     setCategoryInfo();
 };
@@ -40,7 +42,7 @@ function setCategoryAudiosList() {
 
             var audiosList = response.results;
             for (var i=0; i < audiosList.length; i++) {
-                audiosListHtml += '<li class="clearfix"><div class="track_title">' + audiosList[i].title + '</div><div class="track_listen"><span data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" title="add to playlist"><i class="fa fa-play"></i></span></div><div class="track_listen"><a href="' + audiosList[i].audioDownload + '"><i class="fa fa-download"></i></a></div><div class="track_time">' + audiosList[i].numOfRatings + '</div><div class="track_popularity"><ul><li class="active"></li><li class="active"></li><li class="active"></li><li class="active"></li><li class="active"></li><li class="active"></li><li class="active"></li><li></li><li></li><li></li></ul></div><div class="track_buy"><a href="#"><i class="fa fa-money"></i></a></div></li>';
+                audiosListHtml += '<li class="clearfix"><div class="track_title">' + audiosList[i].title + '</div><div class="track_listen"><span data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" title="add to playlist"><i class="fa fa-play"></i></span></div><div class="track_listen"><a target="_blank" href="' + audiosList[i].audioDownload + '"><i class="fa fa-download"></i></a></div><div class="track_time">' + audiosList[i].numOfRatings + '</div><div class="track_popularity"><ul><li class="active"></li><li class="active"></li><li class="active"></li><li class="active"></li><li class="active"></li><li class="active"></li><li class="active"></li><li></li><li></li><li></li></ul></div><div class="track_buy"><a href="#"><i class="fa fa-money"></i></a></div></li>';
 
                 playListHtml += setTop3InPlayList(audiosList, i, playListHtml);
             }
@@ -54,7 +56,7 @@ function setCategoryAudiosList() {
 
 function setTop3InPlayList(audiosList, index, playListHtml) {
     if (index < 3){
-        playListHtml += '<li data-title="' + audiosList[index].title + '" data-artist="' + audiosList[index].artists[0] + '" data-mp3="' + audiosList[index].audioPlay + '"></li>';
+        playListHtml += '<li data-title="' + audiosList[index].title + '" data-artist="' + audiosList[index].artists[0] + '" data-mp3="' + audiosList[index].audioPlay + '" data-download="' + audiosList[index].audioDownload + '"></li>';
     }
 
     return playListHtml;
