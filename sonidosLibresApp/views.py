@@ -220,6 +220,18 @@ class CategoriesTopRating(APIView):
                 aud['downloadsCount'] = a.downloadsCount
                 aud['rating'] = a.rating
                 aud['uploadDate'] = a.uploadDate
+
+                artists = Artist.objects.filter(audios__in=[a.pk]).order_by('name')
+                artList = []
+                for t in artists:
+                    art = {}
+                    art['id'] = t.pk
+                    art['name'] = t.name
+                    art['image'] = t.image
+                    artList.append(art)
+
+                aud['artists'] = artList
+
                 audList.append(aud)
                 if var == int(size)-1:
                     break
