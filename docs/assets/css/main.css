@@ -105,7 +105,7 @@ h1:before {
    2-Navigation
    ========================*/
 header {
-	background: #29292b;
+	background: #151414;
 	margin-bottom: 37px;
 }
 #XV-lamp {
@@ -621,6 +621,51 @@ header .container {
 .social li:hover a {
 	color: #e62948;
 }
+
+/* =========================
+   5-Upload Files
+   ========================*/
+#uploadFiles .container {
+	position: relative;
+	padding-bottom: 10px;
+	overflow: hidden;
+	border-bottom: 3px solid #e62948;
+	padding-top: 0px;
+}
+
+#uploadFiles button {
+	color: #FFF;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 10px 24px;
+	text-align: center;
+	font-family: oswald;
+	font-size: 14px;
+	background: #e62948;
+	margin: 10px 0;
+	border: none;
+	font-family: 'Oswald', sans-serif;
+	border-radius: 4px;
+	display: inline;
+}
+
+#uploadFiles input {
+	color: #FFF;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 10px 24px;
+	text-align: center;
+	font-family: oswald;
+	font-size: 14px;
+	background: #28292b;
+	margin: 10px 0;
+	border: none;
+	font-family: 'Oswald', sans-serif;
+	border-radius: 4px;
+	display: inline;
+	width: 600px;
+}
+
 /* =========================
    5-Albums
    ========================*/
@@ -636,6 +681,7 @@ header .container {
 	width: 270px;
 	height: 270px;
 	margin-right: 15px;
+	background: #262424;
 }
 .recent-album-list .album {
 	margin-left: 7px;

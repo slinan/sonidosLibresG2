@@ -2,6 +2,7 @@ function init() {
     $( "#socialBar" ).load( "socialBar.html" );
     $( "#navigationBar" ).load( "navigationBar.html" );
     $( "#player" ).load( "player.html" );
+    $( "#upload" ).load( "upload.html" );
     $( "#alreadyAddedPlayListWarning" ).load( "alreadyAddedPlayListWarning.html" );
     $( "#footer" ).load( "footer.html" );
     setCategories();
