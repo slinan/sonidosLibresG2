@@ -37,12 +37,17 @@ function setCategoryAudiosList() {
         url: 'https://sonidoslibres.herokuapp.com/api/audios/?categories=11&page=1&page_size=20',
         dataType: 'json',
         success: function (response) {
-            var audiosListHtml = '<li class="track-head clearfix"><div class="track_title">Titulo</div><div class="track_listen">Escuchar</div><div class="track_listen">Descargar</div><div class="track_time">Votos</div><div class="track_popularity">Popularidad</div><div class="track_listen">Donar</div></li>';
+            var audiosListHtml = '<li class="track-head clearfix"><div class="track_title">Titulo</div><div class="track_listen">Escuchar</div><div class="track_listen">Descargar</div><div class="track_popularity">Votos</div><div class="track_popularity">Popularidad</div><div class="track_listen">Donar</div></li>';
             var playListHtml = '';
 
             var audiosList = response.results;
             for (var i=0; i < audiosList.length; i++) {
-                audiosListHtml += '<li class="clearfix"><div class="track_title">' + audiosList[i].title + '</div><div class="track_listen"><span data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" title="add to playlist"><i class="fa fa-play"></i></span></div><div class="track_listen"><a target="_blank" href="' + audiosList[i].audioDownload + '"><i class="fa fa-download"></i></a></div><div class="track_time">' + audiosList[i].numOfRatings + '</div><div class="track_popularity"><ul><li class="active"></li><li class="active"></li><li class="active"></li><li class="active"></li><li class="active"></li><li class="active"></li><li class="active"></li><li></li><li></li><li></li></ul></div><div class="track_buy"><a href="#"><i class="fa fa-money"></i></a></div></li>';
+                audiosListHtml += '<li class="clearfix"><div class="track_title">' + audiosList[i].title + '</div><div class="track_listen"><span data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" title="add to playlist"><i class="fa fa-play"></i></span></div><div class="track_listen"><a target="_blank" href="' + audiosList[i].audioDownload + '"><i class="fa fa-download"></i></a></div><div class="track_popularity">' + audiosList[i].rating + ' de ' + audiosList[i].numOfRatings + ' votos</div><div class="track_popularity"><ul>';
+
+                var rating = (Math.floor(audiosList[i].rating) * 2);
+                audiosListHtml += getPositiveRating(rating) + getNegativeRating(rating);
+
+                audiosListHtml += '</ul></div><div class="track_listen"><a href="#"><i class="fa fa-money"></i></a></div></li>';
 
                 playListHtml += setTop3InPlayList(audiosList, i, playListHtml);
             }
@@ -60,4 +65,22 @@ function setTop3InPlayList(audiosList, index, playListHtml) {
     }
 
     return playListHtml;
+}
+
+function getPositiveRating(rating) {
+    var positiveRating = '';
+    for (var j = 0; j < rating; j++){
+        positiveRating += '<li class="active"></li>';
+    }
+
+    return positiveRating;
+}
+
+function getNegativeRating(rating) {
+    var negativeRating = '';
+    for (var j = 0; j < 10 - rating; j++){
+        negativeRating += '<li></li>';
+    }
+
+    return negativeRating;
 }
