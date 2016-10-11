@@ -34,7 +34,7 @@ function setCategoryInfo() {
 function setCategoryAudiosList() {
     $.ajax({
         type: 'GET',
-        url: 'https://sonidoslibres.herokuapp.com/api/audios/?categories=11&page=1&page_size=20',
+        url: 'https://sonidoslibres.herokuapp.com/api/audios/?categories=11&page=1&page_size=10',
         dataType: 'json',
         success: function (response) {
             var audiosListHtml = '<li class="track-head clearfix"><div class="track_title">Titulo</div><div class="track_listen">Escuchar</div><div class="track_listen">Descargar</div><div class="track_popularity">Votos</div><div class="track_popularity">Popularidad</div><div class="track_listen">Donar</div></li>';
@@ -49,7 +49,7 @@ function setCategoryAudiosList() {
 
                 audiosListHtml += '</ul></div><div class="track_listen"><a href="#"><i class="fa fa-money"></i></a></div></li>';
 
-                playListHtml += setTop3InPlayList(audiosList, i, playListHtml);
+                playListHtml = setTop3InPlayList(audiosList, i, playListHtml);
             }
             $('#audiosList').html(audiosListHtml);
             $('#hiddenPlaylist').html(playListHtml);

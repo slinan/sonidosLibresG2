@@ -1,9 +1,11 @@
 <h1>Sube tus audios</h1>
-<form onSubmit="return uploadFile()">
+<!--<form onSubmit="uploadFile()">-->
     <div style="display: inline-block">
-        <label></label>
         <input class= "filestyle" type="file" id="file-upload" accept = ".mp3"/>
-        <button class="submit-btn" type="submit">Subir</button>
+        <label>Categoría:</label>
+        <select id="categoriesList" class="input-list" name="categoriesList">
+        </select>
+        <button class="submit-btn" type="submit" onclick="uploadFile()">Subir</button>
     </div>
-</form>
+<!--</form>-->
 <h4 id="results"></h4>

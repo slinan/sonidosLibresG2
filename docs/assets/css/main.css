@@ -663,7 +663,54 @@ header .container {
 	font-family: 'Oswald', sans-serif;
 	border-radius: 4px;
 	display: inline;
-	width: 600px;
+	width: 500px;
+}
+
+#uploadFiles .input-list{
+	color: #FFF;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 10px 24px;
+	text-align: center;
+	font-family: oswald;
+	font-size: 14px;
+	background: #28292b;
+	margin: 10px 0;
+	border: none;
+	font-family: 'Oswald', sans-serif;
+	border-radius: 4px;
+	display: inline;
+	width: 200px;
+}
+
+#uploadFiles label{
+	color: #FFF;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 5px 5px;
+	text-align: center;
+	font-family: oswald;
+	font-size: 14px;
+	margin: 10px 0;
+	border: none;
+	font-family: 'Oswald', sans-serif;
+	border-radius: 4px;
+	display: inline;
+}
+
+#uploadFiles select option{
+	color: #FFF;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 5px 5px;
+	text-align: center;
+	font-family: oswald;
+	font-size: 14px;
+	margin: 10px 0;
+	border: none;
+	font-family: 'Oswald', sans-serif;
+	border-radius: 4px;
+	display: inline;
 }
 
 /* =========================

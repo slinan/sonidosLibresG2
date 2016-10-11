@@ -15,18 +15,23 @@ function setCategories() {
         dataType: 'json',
         success: function (response) {
             var categoriesHtml = '';
+            var listCategoriesHtml = '';
 
             for (var i = 0; i < response.length; i++) {
-                categoriesHtml += '<div class="album" ><header><h1><span class="icon icon-top"></span>' + response[i].name + '</h1>Top 5 por popularidad - <a class="h-right more"href="/sonidosLibresG2/docs/category-detail.html?id=' + response[i].id + '"><span class="icon icon-more"></span>Ver más</a></header>';
+                categoriesHtml += '<div class="album" ><header><h1><span class="icon icon-top"></span>' + response[i].name + '</h1><a class="h-right more"href="/sonidosLibresG2/docs/category-detail.html?id=' + response[i].id + '"><span class="icon icon-more"></span>Ver más</a></header>';
 
                 var audiosHtml = '';
+                var cont = 1;
                 for (var j = response[i].audios.length - 1; j >= 0 ; j--){
-                    audiosHtml += '<div class="track_listen">' + (j + 2 - response[i].audios.length) + '. ' + response[i].audios[j].title + '<span data-title="' + response[i].audios[j].title + '" data-artist="' + response[i].audios[j].title + '" data-mp3="' + response[i].audios[j].audioPlay + '" data-download="' + response[i].audios[j].audioDownload + '" title="add to playlist"><i class="fa fa-play"></i></span><a target="_blank" href="' + response[i].audios[j].audioDownload + '"><i class="fa fa-download"></i></a></div></div>';
+                    audiosHtml += '<div class="track_listen"><label style="width: 130px; padding-left: 5px;">' + (cont++) + '. ' + response[i].audios[j].title.substring(0, 12) + '...</label><span data-title="' + response[i].audios[j].title + '" data-artist="' + response[i].audios[j].title + '" data-mp3="' + response[i].audios[j].audioPlay + '" data-download="' + response[i].audios[j].audioDownload + '" title="add to playlist"><i class="fa fa-play"></i></span><a target="_blank" href="' + response[i].audios[j].audioDownload + '"><i class="fa fa-download"></i></a></div>';
                 }
 
-                categoriesHtml += audiosHtml;
+                categoriesHtml += audiosHtml + '</div>';
+
+                listCategoriesHtml += '<option value="' + response[i].id + '">' + response[i].name + '</option>';
             }
             $('#categories').html(categoriesHtml);
+            $('#categoriesList').html(listCategoriesHtml);
 
             setInitialPlayList();
         }
