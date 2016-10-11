@@ -18,7 +18,7 @@ function setCategories() {
             var listCategoriesHtml = '';
 
             for (var i = 0; i < response.length; i++) {
-                categoriesHtml += '<div class="album" ><header><h1><span class="icon icon-top"></span>' + response[i].name + '</h1><a class="h-right more"href="/sonidosLibresG2/docs/category-detail.html?id=' + response[i].id + '"><span class="icon icon-more"></span>Ver más</a></header>';
+                categoriesHtml += '<div class="album" ><header><h1><span class="icon icon-top"></span>' + response[i].name + '</h1><a class="h-right more"href="/category-detail.html?id=' + response[i].id + '"><span class="icon icon-more"></span>Ver más</a></header>';
 
                 var audiosHtml = '';
                 var cont = 1;
