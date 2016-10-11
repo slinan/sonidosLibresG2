@@ -23,7 +23,7 @@ function setCategories() {
                 var audiosHtml = '';
                 var cont = 1;
                 for (var j = response[i].audios.length - 1; j >= 0 ; j--){
-                    audiosHtml += '<div class="track_listen"><label style="width: 130px; padding-left: 5px;">' + (cont++) + '. ' + response[i].audios[j].title.substring(0, 12) + '...</label><span data-title="' + response[i].audios[j].title + '" data-artist="' + response[i].audios[j].title + '" data-mp3="' + response[i].audios[j].audioPlay + '" data-download="' + response[i].audios[j].audioDownload + '" title="add to playlist"><i class="fa fa-play"></i></span><a target="_blank" href="' + response[i].audios[j].audioDownload + '"><i class="fa fa-download"></i></a></div>';
+                    audiosHtml += '<div class="track_listen"><label style="width: 130px; padding-left: 5px;">' + (cont++) + '. ' + response[i].audios[j].title.substring(0, 12) + '...</label><span data-title="' + response[i].audios[j].title + '" data-artist="' + response[i].audios[j].title + '" data-mp3="' + response[i].audios[j].audioPlay + '" data-download="' + response[i].audios[j].audioDownload + '" data-audio-id="' + response[i].audios[j].id + '" title="add to playlist"><i class="fa fa-play"></i></span><a target="_blank" href="' + response[i].audios[j].audioDownload + '"><i class="fa fa-download"></i></a></div>';
                 }
 
                 categoriesHtml += audiosHtml + '</div>';
@@ -48,7 +48,7 @@ function setInitialPlayList() {
 
             var audiosList = response.results;
             for (var i = 0; i < audiosList.length; i++) {
-                playListHtml += '<li data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '"></li>';
+                playListHtml += '<li data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" data-audio-id="' + audiosList[i].id + '" data-download="' + audiosList[i].audioDownload + '"></li>';
             }
 
             $('#hiddenPlaylist').html(playListHtml);

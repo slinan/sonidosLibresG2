@@ -42,7 +42,7 @@ function setCategoryAudiosList() {
 
             var audiosList = response.results;
             for (var i=0; i < audiosList.length; i++) {
-                audiosListHtml += '<li class="clearfix"><div class="track_title">' + audiosList[i].title + '</div><div class="track_listen"><span data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" title="add to playlist"><i class="fa fa-play"></i></span></div><div class="track_listen"><a target="_blank" href="' + audiosList[i].audioDownload + '"><i class="fa fa-download"></i></a></div><div class="track_popularity">' + audiosList[i].rating + ' de ' + audiosList[i].numOfRatings + ' votos</div><div class="track_popularity"><ul>';
+                audiosListHtml += '<li class="clearfix"><div class="track_title">' + audiosList[i].title + '</div><div class="track_listen"><span data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" data-audio-id="' + audiosList[i].id + '" title="add to playlist"><i class="fa fa-play"></i></span></div><div class="track_listen"><a target="_blank" href="' + audiosList[i].audioDownload + '"><i class="fa fa-download"></i></a></div><div class="track_popularity">' + audiosList[i].rating + ' de ' + audiosList[i].numOfRatings + ' votos</div><div class="track_popularity"><ul>';
 
                 var rating = (Math.floor(audiosList[i].rating) * 2);
                 audiosListHtml += getPositiveRating(rating) + getNegativeRating(rating);
@@ -61,7 +61,7 @@ function setCategoryAudiosList() {
 
 function setTop3InPlayList(audiosList, index, playListHtml) {
     if (index < 3){
-        playListHtml += '<li data-title="' + audiosList[index].title + '" data-artist="' + audiosList[index].artists[0] + '" data-mp3="' + audiosList[index].audioPlay + '" data-download="' + audiosList[index].audioDownload + '"></li>';
+        playListHtml += '<li data-title="' + audiosList[index].title + '" data-artist="' + audiosList[index].artists[0] + '" data-mp3="' + audiosList[index].audioPlay + '" data-download="' + audiosList[index].audioDownload + '" data-audio-id="' + audiosList[index].id + '"></li>';
     }
 
     return playListHtml;
