@@ -45,7 +45,7 @@ class Album (models.Model):
 
 class Audio(models.Model):
     def __str__(self):
-        return self.title
+        return self.title + " "+str(self.id)
     name = models.CharField(max_length=40)
     title = models.CharField(max_length=40)
     audioDownload = models.URLField()
