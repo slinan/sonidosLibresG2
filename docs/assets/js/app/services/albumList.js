@@ -18,8 +18,8 @@ function getAlbums() {
                       '<img src="'+albums[i].image+'" alt=""/>'+
                       '<div class="hover">'+
                           '<ul>'+
-                              '<li><a href="#" data-rel="prettyPhoto" onclick="loader(\'album-detail\', {idAlbum:' + albums[i].id + '})"><span class="fa fa-plus-circle"  ></span></a></li>'+
-                              '<li><a href="category-detail.html"><span class="fa fa-link"></span></a></li>'+
+                              '<li><a href="#" data-rel="prettyPhoto" onclick="loader(\'album-detail\', {idAlbum:' + albums[i].id + '})"><span class="fa fa-eye"  ></span></a></li>'+
+                              '<li><a href="#" onclick="addAudioAlbum('+albums[i].id+')"><span class="fa fa-plus-circle" ></span></a></li>'+
                           '</ul>'+
                           '<h3>'+albums[i].rating+'</h3>'+
                           '<h2>'+albums[i].title+'</h2>'+
@@ -58,4 +58,46 @@ function createAlbum () {
     $('#modalCreateAlbum').modal('hide');
 
 }
+var currentAlbum = -1
+function addAudioAlbum(idAlbum) {
+    setAudios()
+    $('#audioAlbumsModal').modal('show');
+    currentAlbum = idAlbum
+}
+
+function setAudios() {
+        $.ajax({
+        type: 'GET',
+        url: 'https://sonidoslibres.herokuapp.com/api/audios/',
+        dataType: 'json',
+        success: function (response) {
+            items = response.results
+
+            $.each(items, function (i, item) {
+            $('#audiosList').append($('<option>', {
+            value: item.id,
+            text: item.title
+        }));
+    });
+        }
+    });
+}
+
+function associateAudioAlbum () {
+
+    idAudio = $('#audiosList').val();
+    idAlbum = currentAlbum
+
+            $.ajax({
+        type: 'GET',
+        url: 'https://sonidoslibres.herokuapp.com/api/albumAudio/'+idAudio+'/'+idAlbum,
+        dataType: 'json',
+        success: function (response) {
+            alert('El audio se ha asociado al álbum')
+            currentAlbum = -1
+            $('#audioAlbumsModal').modal('hide');
+        }
+    });
+}
+
 
