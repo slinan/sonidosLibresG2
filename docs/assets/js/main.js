@@ -139,6 +139,7 @@ function main() {
 
 			$('.audio-title').html(werock.playlist[0].title);
 			$('.audio-download').attr('href', werock.playlist[0].download);
+			$('.audio-download').attr('onclick', 'audioDownload(' + werock.playlist[0].id + ')');
 			$('.audio-id').html(werock.playlist[0].id);
 			$("#player-instance").bind($.jPlayer.event.play, function (event) {
 				var current = werock.current,
@@ -147,6 +148,7 @@ function main() {
 					if (index == current) {
 						$('.audio-title').html(obj.title);
 						$('.audio-download').attr('href', obj.download);
+						$('.audio-download').attr('onclick', 'audioDownload(' + obj.id + ')');
 						$('.audio-id').html(obj.id);
 					}
 				});

@@ -1671,7 +1671,7 @@ a.next-album {
 }
 .track_listen span i {
 	display: inline-block;
-	margin-left: 10px;
+	margin-left: 0px;
 	height: 27px;
 	width: 27px;
 	border: 1px solid #3c3c3c;
@@ -1685,7 +1685,7 @@ a.next-album {
 }
 .track_listen a i {
 	display: inline-block;
-	margin-left: 10px;
+	margin-left: 6px;
 	height: 27px;
 	width: 27px;
 	border: 1px solid #3c3c3c;
@@ -1749,21 +1749,35 @@ a.next-album {
 	color: #4a4a4a;
 }
 .album-tracks .track .track_popularity {
-	width: 19%;
+	width: 13%;
+	text-align: center;
 }
 .album-tracks .track .track_listen {
 	width: 10%;
 }
+
+.album-tracks .track .track_plays_count {
+	width: 13%;
+	text-align: center;
+}
+
+.album-tracks .track .track_download_count {
+	width: 10%;
+	text-align: center;
+}
+
 .album-tracks .track .track_listen span {
 	text-decoration: none;
 }
 .album-tracks .track .track_buy {
-	width: 23%;
+	width: 10%;
+	text-align: center;
 }
 .album-tracks .track .track_popularity ul {
 	margin: 4px 0 0;
 	padding: 0;
 	border: none;
+	text-align: center;
 }
 .album-tracks .track .track_popularity li {
 	height: 15px;

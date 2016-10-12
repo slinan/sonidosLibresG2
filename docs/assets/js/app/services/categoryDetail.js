@@ -8,16 +8,17 @@ function init() {
 };
 
 function setCategoryInfo() {
+    var idCategory = getUrlParameter('id');
     $.ajax({
         type: 'GET',
-        url: 'https://sonidoslibres.herokuapp.com/api/categories/' + getUrlParameter('id'),
+        url: 'https://sonidoslibres.herokuapp.com/api/categories/' + idCategory,
         dataType: 'json',
         success: function (response) {
             $('#categoryName').html(response.name);
             $('#categoryNameSub').html(response.name);
             $('#categoryImage').attr( "src", response.image);
             $('#totalAudios').html(10);
-            $('#categoryDescription').attr( "src", response.description);
+            $('#categoryDescription').html(response.description);
 
             var relatedCategoriesHtml = '';
             var relatedCategories = response.relatedCategories;
@@ -26,28 +27,29 @@ function setCategoryInfo() {
             }
             $('#relatedCategories').html(relatedCategoriesHtml);
 
-            setCategoryAudiosList();
+            setCategoryAudiosList(idCategory);
         }
     });
 };
 
-function setCategoryAudiosList() {
+function setCategoryAudiosList(idCategory) {
     $.ajax({
         type: 'GET',
-        url: 'https://sonidoslibres.herokuapp.com/api/audios/?categories=11&page=1&page_size=10',
+        url: 'https://sonidoslibres.herokuapp.com/api/audios?categories=' + idCategory + '&page=1&page_size=10',
         dataType: 'json',
         success: function (response) {
-            var audiosListHtml = '<li class="track-head clearfix"><div class="track_title">Titulo</div><div class="track_listen">Escuchar</div><div class="track_listen">Descargar</div><div class="track_popularity">Votos</div><div class="track_popularity">Popularidad</div><div class="track_listen">Donar</div></li>';
+            var audiosListHtml = '<li class="track-head clearfix"><div class="track_title">Titulo</div><div class="track_listen">Escuchar</div><div class="track_download_count">Descargas</div><div class="track_plays_count">Reproducciones</div><div class="track_popularity">Popularidad</div><div class="track_buy">Donar</div></li>';
             var playListHtml = '';
 
             var audiosList = response.results;
             for (var i=0; i < audiosList.length; i++) {
-                audiosListHtml += '<li class="clearfix"><div class="track_title">' + audiosList[i].title + '</div><div class="track_listen"><span data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" data-audio-id="' + audiosList[i].id + '" title="add to playlist"><i class="fa fa-play"></i></span></div><div class="track_listen"><a target="_blank" href="' + audiosList[i].audioDownload + '"><i class="fa fa-download"></i></a></div><div class="track_popularity">' + audiosList[i].rating + ' de ' + audiosList[i].numOfRatings + ' votos</div><div class="track_popularity"><ul>';
+                //audiosListHtml += '<li class="clearfix"><div class="track_title">' + audiosList[i].title + '</div><div class="track_listen" style="display: inline-flex;"><span data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" data-audio-id="' + audiosList[i].id + '" title="add to playlist"><i class="fa fa-play"></i></span></div><div class="track_listen"><a target="_blank" onclick="audioDownload(' + audiosList[i].id + ')" href="' + audiosList[i].audioDownload + '"><i class="fa fa-download"></i></a></div><div class="track_popularity">' + audiosList[i].rating + ' de ' + audiosList[i].numOfRatings + ' votos</div><div class="track_popularity"><ul>';
+                audiosListHtml += '<li class="clearfix"><div class="track_title">' + audiosList[i].title + '</div><div class="track_listen" style="display: inline-flex;"><span data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" data-audio-id="' + audiosList[i].id + '" title="add to playlist"><i class="fa fa-play"></i></span><a target="_blank" onclick="audioDownload(' + audiosList[i].id + ')" href="' + audiosList[i].audioDownload + '"><i class="fa fa-download"></i></a></div><div class="track_download_count">' + audiosList[i].downloadsCount + '</div><div class="track_plays_count">' + audiosList[i].playCount + '</div><div class="track_popularity"><ul title="' + audiosList[i].rating + ' de ' + audiosList[i].numOfRatings + ' votos">';
 
                 var rating = (Math.floor(audiosList[i].rating) * 2);
                 audiosListHtml += getPositiveRating(rating) + getNegativeRating(rating);
 
-                audiosListHtml += '</ul></div><div class="track_listen"><a href="#"><i class="fa fa-money"></i></a></div></li>';
+                audiosListHtml += '</ul></div><div class="track_buy"><a href="#"><i class="fa fa-money"></i></a></div></li>';
 
                 playListHtml = setTop3InPlayList(audiosList, i, playListHtml);
             }
