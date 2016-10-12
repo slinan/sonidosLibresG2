@@ -39,6 +39,21 @@
    background-color: #4b4b4b;
 }
 
+.modal-dialog {
+        position: absolute;
+        top: 135px;
+        right: 100px;
+        bottom: 0;
+        left: 0;
+        z-index: 10040;
+        overflow: auto;
+        overflow-y: auto;
+}
+
+.close {
+    color: #ffffff;
+    opacity: 1;
+}
 
 .loader {
 	position: fixed;

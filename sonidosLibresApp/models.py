@@ -40,8 +40,8 @@ class Album (models.Model):
     title = models.CharField(max_length=100)
     rating = models.FloatField(editable=False, default = 0)
     numOfRatings = models.IntegerField(editable=False, default = 0)
-    categories = models.ManyToManyField(Category,related_name="albums")
-    artists = models.ManyToManyField(Artist, related_name="albums")
+    categories = models.ManyToManyField(Category,related_name="albums", blank=True)
+    artists = models.ManyToManyField(Artist, related_name="albums", blank=True)
     image = models.URLField()
 
 class Audio(models.Model):

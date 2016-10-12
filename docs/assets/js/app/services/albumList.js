@@ -31,3 +31,31 @@ function getAlbums() {
         }
     });
 };
+
+function createAlbumPost(data) {
+    $.ajax({
+        type: 'POST',
+        url: 'https://sonidoslibres.herokuapp.com/api/albums/',
+        dataType: 'json',
+        data: data,
+        success: function (response) {
+            alert('El álbum ha sido creado');
+        }
+    });
+};
+
+
+function createAlbum () {
+    var title= $('#albumTitleForm').val();
+    var image= $('#albumImageForm').val();
+    var categories= $('#albumCategoriesForm').val();
+    album = {};
+    album.title = title;
+    album.image = image;
+    album.categories = categories;
+    console.log(album)
+    createAlbumPost(album)
+    $('#modalCreateAlbum').modal('hide');
+
+}
+
