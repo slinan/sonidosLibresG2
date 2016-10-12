@@ -16,6 +16,11 @@ function loader(page, param) {
                 initAlbums();
             } );
             break;
+        case 'album-detail':
+            $( "#loadContent" ).load( "album-detail.html", function() {
+                initAlbums();
+            } );
+            break;
         default:
             $( "#loadContent" ).load( "home.html", function() {
                 initHome();

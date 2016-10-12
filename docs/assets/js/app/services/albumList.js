@@ -15,14 +15,14 @@ function getAlbums() {
 
             for (var i = 0; i < albums.length; i++) {
                 albumsHtml += '                  <div class="album">'+
-                      '<img src="assets/img/albums/1.jpg" alt=""/>'+
+                      '<img src="'+albums[i].image+'" alt=""/>'+
                       '<div class="hover">'+
                           '<ul>'+
-                              '<li><a href="'+albums[i].image+'" data-rel="prettyPhoto"><span class="fa fa-plus-circle"  ></span></a></li>'+
+                              '<li><a href="#" data-rel="prettyPhoto" onclick="loader(\'album-detail\', {idAlbum:' + albums[i].id + '})"><span class="fa fa-plus-circle"  ></span></a></li>'+
                               '<li><a href="category-detail.html"><span class="fa fa-link"></span></a></li>'+
                           '</ul>'+
-                          '<h3>Lorem Artist</h3>'+
-                          '<h2>Album</h2>'+
+                          '<h3>'+albums[i].rating+'</h3>'+
+                          '<h2>'+albums[i].title+'</h2>'+
                       '</div>'+
                   '</div>'
             }
