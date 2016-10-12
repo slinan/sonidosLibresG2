@@ -53,7 +53,15 @@ SUBIR AUDIOS
 =================================-->
 <section id="uploadFiles">
     <div class="container">
-        <div id="upload"></div>
+        <h1>Sube tus audios</h1>
+        <div style="display: inline-block">
+            <input class= "filestyle" type="file" id="file-upload" accept = ".mp3"/>
+            <label>Categoría:</label>
+            <select id="categoriesList" class="input-list" name="categoriesList">
+            </select>
+            <button class="submit-btn" type="submit" onclick="uploadFile()">Subir</button>
+        </div>
+        <h4 id="results"></h4>
     </div>
 </section>
 
