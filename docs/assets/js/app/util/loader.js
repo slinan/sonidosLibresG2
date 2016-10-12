@@ -18,7 +18,7 @@ function loader(page, param) {
             break;
         case 'album-detail':
             $( "#loadContent" ).load( "album-detail.html", function() {
-                initAlbums();
+                initAlbumDetail();
             } );
             break;
         default:

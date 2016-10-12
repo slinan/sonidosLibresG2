@@ -75,7 +75,7 @@
               <ul class="dropdown-menu">
 
                 <li><a href="#" onclick="loader('albums',{})">Lista de álbumes </a> </li>
-                <li><a href="category-detail.html">Sin asignar</a> </li>
+                <li><a href="category-detail.html">Crear nuevo álbum</a> </li>
               </ul>
             </li>
             <li class="yamm-fw dropdown"><a href="#" >Categorias <i class="fa fa-caret-right"></i></a>
@@ -138,3 +138,34 @@
       </div>
     </div>
   </nav>
+
+<div id="modalCreateAlbum" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Calificar audio</h4>
+            </div>
+            <div class="modal-body">
+                <h5>
+                    ¿Qué opinas de este audio?
+                </h5>
+                <textarea class="form-control" id="message-text"></textarea>
+                <p>   
+                <div>
+                    <div id="rateYo" style="margin: 10px auto"></div>
+                </div>
+                </p>
+                <p>
+                    <button onclick="guardar()" data-dismiss="modal" > Guardar</button>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="submit-btn" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
