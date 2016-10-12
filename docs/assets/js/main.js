@@ -95,7 +95,6 @@ function main() {
 	 Jplayer
 	 ============================*/
 
-	var werock, playlistScroller;
 	$('.playListTrigger > a').click(function () {
 		$('#audio-player').toggleClass('open');
 		return false;
