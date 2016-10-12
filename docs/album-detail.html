@@ -1,253 +1,103 @@
-<!DOCTYPE html>
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
-<head>
-<meta charset="utf-8">
-<title>WeRock</title>
-
-<!--=================================
-Meta tags
-=================================-->
-<meta name="description" content="">
-<meta content="yes" name="apple-mobile-web-app-capable" />
-<meta name="viewport" content="minimum-scale=1.0, width=device-width, maximum-scale=1, user-scalable=no" />
-
-<!--=================================
-Style Sheets
-=================================-->
-<link href='http://fonts.googleapis.com/css?family=Oswald:400,700,300' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Roboto:400,400italic,700' rel='stylesheet' type='text/css'>
-<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
-<link rel="stylesheet" href="assets/css/font-awesome.min.css">
-<link rel="stylesheet" type="text/css" href="assets/css/flexslider.css">
-<link rel="stylesheet" type="text/css" href="assets/css/prettyPhoto.css">
-<link rel="stylesheet" type="text/css" href="assets/css/jquery.vegas.css">
-<link rel="stylesheet" type="text/css" href="assets/css/jquery.mCustomScrollbar.css">
-<link rel="stylesheet" href="assets/css/main.css">
-
-<!--<link rel="stylesheet" type="text/css" href="assets/css/blue.css">
-<link rel="stylesheet" type="text/css" href="assets/css/orange.css">
-<link rel="stylesheet" type="text/css" href="assets/css/red.css">
-<link rel="stylesheet" type="text/css" href="assets/css/green.css">
-<link rel="stylesheet" type="text/css" href="assets/css/purple.css">-->
-
-    <script defer  src="assets/js/lib/angular/1.5.2/angular.min.js"></script>
-    <script defer  src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.2/angular-resource.js"></script>
-    <script async  src="assets/js/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-    <script defer  src="assets/js/jquery.js"></script>
-    <script defer  src="assets/js/app/mainApp.js"></script>
-    <script defer  src="assets/js/app/controller/categoryDetailController.js"></script>
-    <script defer  src="assets/js/app/controller/audioController.js"></script>
-    <script defer  src="assets/js/app/services/categoryService.js"></script>
-    <script defer  src="assets/js/app/services/audioService.js"></script>
-</head>
-<body ng-app="mainApp">
-
-    <header>
-          <div ng-include="'socialBar.html'"></div>
-          <div ng-include="'navigationBar.html'"></div>
-    </header>
-
-    <ul class="vegas-slides hidden">
-      <li><img data-fade='2000' src="assets/img/BG/bg4.jpg" alt="" /></li>
-    </ul>
-
-
-<div id="ajaxArea">
-    <div class="pageContentArea" ng-controller="categoryDetailController">
-    <!--=================================
-    bread crums
-    =================================-->
-      <section class="breadcrumb">
-           <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <h1>Categoría</h1>
-                        <h5>{{ category.name }}</h5>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <ul>
-                            <li><a href="/sonidosLibresG2/docs/index.html#">Inicio</a></li>
-                            <li><a href="#">Categoría</a></li>
-
-                        </ul>
-                    </div>
-                </div>
-           </div>
-      </section>
-    <div class="clearfix"></div>
-    
-    
-    <!--=================================
-    videos
-    =================================-->
-    
-    <section id="albums">
-        <div class="container">
-            <div class="row">
-                <div class="album-detail">
-                    <div class="album-purchase">
-                        <div class="col-lg-3 col-md-3 col-sm-3">
-                            <img src="{{ category.image }}" alt=""/>
-                            <a href="#">Total audios<span>{{ audios.length }}</span></a>
-                        </div>
-                        </div>
-                         <div class="col-lg-9 col-md-9 col-sm-9">
-                            <div class="album-detail-content">
-                                <h3>¿Qué encontrarás?</h3>
-                                <h4>{{ category.name }}</h4>
-                                <ul>
-                                    <li><span>Rating</span></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                    <li><i class="fa fa-star"></i></li>
-                                </ul>
-                                <p>Descripción de comedia</p>
-                            </div><!--//artist-detail-content-->
-                            
-                            <div class="album-tracks">
-                                <h1>Audios</h1>
-                                <div class="alreadyAdded-warning alert-theme alert">
-                                    	<div class="row">
-                                        	<div class="col-xs-12 col-sm-9">
-                                            	This song is already in the playlist, Whould you like to add it anyway?
-                                            </div>
-                                            <div class="col-xs-12 col-sm-3">
-                                            	<button class="btn addAgain">Yes</button><button class="btn dontAdd">No</button>
-                                            </div>
-                                        </div>
-                                 </div><div class="clearfix"></div>
-                                <div class="track">
-                                	
-                                    
-                                    <ul>
-                                        <li class="track-head clearfix">
-                                            <div class="track_title">Titulo</div>
-                                            <div class="track_listen">Escuchar</div>
-                                            <div class="track_listen">Descargar</div>
-                                            <div class="track_time">Votos</div>
-                                            <div class="track_popularity">Popularidad</div>
-                                            <div class="track_listen">Donar</div>
-                                        </li>
-                                        
-                                        <li class="clearfix" ng-repeat="audio in audios">
-                                            <div class="track_title">{{ audio.title }}</div>
-                                            <div class="track_listen">
-                                                <span  data-title="{{ audio.artists[0] }} - {{ audio.title }}" data-artist="{{ audio.artists[0] }}" data-mp3="{{ audio.audioPlay }}" title="add to playlist"> <i class="fa fa-play"></i></span>
-                                            </div>
-                                            <div class="track_listen"><a href="{{ audio.audioDownload }}"><i class="fa fa-download"></i></a></div>
-                                            <div class="track_time">{{ audio.numOfRatings }}</div>
-                                            <div class="track_popularity">
-                                                <ul>
-                                                    <li class="active" ng-repeat="act in getNumberActiveRating(audio.rating)"></li>
-                                                    <li ng-repeat="act in getNumberInactiveRating(audio.rating)"></li>
-                                                    <span>{{ audio.rating }}</span>
-                                                </ul>
-                                         	</div>
-                                        	<div class="track_buy"><a href="#"><i class="fa fa-money"></i></a></div>
-                                        </li>
-                                    </ul>
-                                </div><!--track-->
-                                <div class="clearfix"></div>
-                                
-                            </div><!--artist tracks-->
-                    </div><!--\\artist-->
-                </div>
-            </div><!--row-->
-            
-            <div class="related-albums">
-            <h1>Talvés te pueda interesar</h1>
-                <div class="related-album" ng-repeat="related in relatedCategories">
-                    <a href="/sonidosLibresG2/docs/category-detail.html#/?id={{ related.id }}"><img src="{{ related.image }}" alt="/"></a>
-                    <h3>{{ related.name }}</h3>
-                </div>
-
-            </div>       
-        </div><!--container-->
-    </section>
-  </div>
-</div>  
-
-
-<footer>
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-3 col-md-3 col-sm-3">
-        <h4><span class="fa fa-sitemap"></span>Mapa del Sitio</h4>
+<section class="breadcrumb">
+    <div class="container">
         <div class="row">
-          <div class="col-lg-6 col-md-6 col-sm-6">
-            <ul class="sitemap">
-              <li><a href="#">INICIO</a></li>
-              <li><a href="#">CONVOCATORIAS</a></li>
-              <li><a href="#">ARTISTAS</a></li>
-              <li><a href="#">ALBUMES</a></li>
-            </ul>
-          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6">
-            <ul class="sitemap">
-              <li><a href="#">CATEGORIAS</a></li>
-              <li><a href="#">CONTACTO</a></li>
-              <li><a href="#">AYUDA</a></li>
-            </ul>
-          </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <h1>Categoría</h1>
+                <h5 id="categoryName"></h5>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <ul>
+                    <li><a href="#" onclick="loader('home',{})">Inicio</a></li>
+                    <li><a href="#">Categoría</a></li>
+
+                </ul>
+            </div>
         </div>
-      </div>
-      <!--\\column-->
+    </div>
+</section>
+<div class="clearfix"></div>
 
-      <div class="col-lg-3 col-md-3 col-sm-3">
-        <h4><span class="fa fa-twitter"></span>Obras recientemente subidas</h4>
-        <div class="latest-tweet" data-username="envato" data-limit="2"></div>
-      </div>
-      <!--\\column-->
+<section id="albums">
+    <div class="container">
+        <div class="row">
+            <div class="album-detail">
 
-      <div class="col-lg-3 col-md-3 col-sm-3">
-        <h4><span class="fa fa-flickr"></span>Albumes recientemente creados</h4>
-        <ul id="flicker-feed" data-limit="6" data-userID="52617155@N08"></ul>
-      </div>
-      <!--\\column-->
+                <!--=================================
+                PANEL IZQUIERDO CATEGORIA
+                =================================-->
+                <div class="album-purchase">
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <img id="categoryImage" src="" alt=""/>
+                        <a href="#">Total audios<span id="totalAudios"></span></a>
+                    </div>
+                </div>
 
-      <div class="col-lg-3 col-md-3 col-sm-3">
-        <h4><span class="fa fa-envelope"></span>Registrate</h4>
-        <form id="newsletter">
-          <input placeholder="Ingresa tu correo electrónico aquí" />
-          <button class="submit-btn">Registrarse</button>
-        </form>
-      </div>
-      <!--\\column-->
+                <!--=================================
+                DESCRIPCION Y LISTA DE AUDIOS CATEGORIA
+                =================================-->
+                <div class="col-lg-9 col-md-9 col-sm-9">
+                    <div class="album-detail-content">
+                        <h3>¿Qué encontrarás?</h3>
+                        <h4 id="categoryNameSub"></h4>
+                        <p id="categoryDescription">Descripción de comedia</p>
+                    </div>
+
+                    <div class="album-tracks">
+                        <h1>Audios</h1>
+                        <div id="alreadyAddedPlayListWarning"></div>
+                        <!--=================================
+                        LISTA DE AUDIOS CATEGORIA
+                        =================================-->
+                        <div class="track">
+                            <ul id="audiosList">
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--=================================
+        CATEGORIAS RELACIONADAS
+        =================================-->
+        <div class="related-albums">
+            <h1>Talvés te pueda interesar</h1>
+            <div id="relatedCategories"></div>
+        </div>
+    </div>
+</section>
+
+<!-- MODAL -->
+
+<div id="modal3" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Calificar audio</h4>
+            </div>
+            <div class="modal-body">
+                <h5>
+                    ¿Qué opinas de este audio?
+                </h5>
+                <textarea class="form-control" id="message-text"></textarea>
+                <p>   
+                <div>
+                    <div id="rateYo" style="margin: 10px auto"></div>
+                </div>
+                </p>
+                <p>
+                    <button onclick="guardar()" data-dismiss="modal" > Guardar</button>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="submit-btn" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
 
     </div>
-    <!--\\row-->
-  </div>
-  <!--\\container-->
-</footer>
+</div>
 
-
-<!--=================================
-Script Source
-=================================--> 
-
-<script defer  src="assets/js/bootstrap.min.js"></script>
-<script defer  src="assets/js/jquery.easing-1.3.pack.js"></script>
-<script defer  src="assets/js/jquery.mCustomScrollbar.concat.min.js"></script> 
-<script defer  src="assets/js/jquery.mousewheel.min.js"></script> 
-<script defer  src="assets/js/jflickrfeed.min.js"></script> 
-<script defer  src="assets/js/jquery.flexslider-min.js"></script> 
-<script defer  src="assets/js/jquery.carouFredSel-6.2.1-packed.js"></script> 
-<script defer  src="assets/js/tweetie.min.js"></script> 
-<script defer  src="assets/js/jquery.prettyPhoto.js"></script> 
-<script defer  src="assets/jPlayer/jquery.jplayer.min.js"></script> 
-<script defer  src="assets/jPlayer/add-on/jplayer.playlist.min.js"></script> 
-<script defer  src="assets/js/jquery.vegas.min.js"></script> 
-<script defer  src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script> 
-<script defer  src="assets/js/jquery.calendar-widget.js"></script> 
-<script defer  src="assets/js/isotope.js"></script>
-<script defer  src="assets/js/main.js"></script>   
-
-<script>/*Place Your Google Analytics code here*/</script>
-
-</body>
-</html>

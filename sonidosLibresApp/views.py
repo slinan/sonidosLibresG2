@@ -96,8 +96,8 @@ class AlbumList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Generic
     serializer_class = AlbumSerializer
     filter_backends = (filters.DjangoFilterBackend,filters.OrderingFilter,)
     pagination_class = StandardResultsSetPagination
-    filter_fields = ('title', 'rating', 'categories','numOfRatings','artists')
-    ordering_fields = ('title', 'rating', 'categories','numOfRatings','artists')
+    filter_fields = ('title', 'rating', 'categories','numOfRatings','artists','id')
+    ordering_fields = ('title', 'rating', 'categories','numOfRatings','artists','id')
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)

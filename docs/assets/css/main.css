@@ -20,6 +20,26 @@
 /* =========================
    1-Genral
    ========================*/
+.modal-header{
+    background-color: #1f1f1f;
+}
+.modal-body {
+   background-color: #696e71;
+}
+.modal-footer{
+    background-color: #1f1f1f;
+}
+
+.modal-content{
+        background-color:#e62948;
+;
+}
+
+.modal-backdrop {
+   background-color: #4b4b4b;
+}
+
+
 .loader {
 	position: fixed;
 	left: 0;

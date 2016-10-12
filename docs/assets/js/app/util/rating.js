@@ -1,8 +1,11 @@
+//Make sure that the dom is ready
+function initRating() {
 
-$(function () {
+    $(function () {
 
-  $("#rateYo").rateYo({
-    rating: 2,
-    fullStar: true
-  });
-});
+        $("#rateYo").rateYo({
+            rating: 3.6
+        });
+
+    });
+}
