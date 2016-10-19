@@ -2,7 +2,7 @@ var werock = {};
 var playlistScroller = {};
 var globalParameters = {};
 
-$( "#socialBar" ).load( "socialBar.html" );
+$( "#login" ).load( "login.html" );
 $( "#navigationBar" ).load( "navigationBar.html" );
 $( "#player" ).load( "player.html" );
 $( "#loadContent" ).load( "home.html", function () {

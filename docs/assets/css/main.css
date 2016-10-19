@@ -2404,6 +2404,63 @@ blockquote{
 	margin-right: 5px;
 	margin-bottom: 10px;
 }
+
+/* =========================
+   14-Login
+   ========================*/
+#loginContainer #email, #loginContainer #password, #loginContainer input {
+	height: 30px;
+	background: #171717;
+	border: 1px solid #202020;
+	width: 100%;
+}
+#loginContainer #password, #contact #email, #contact input {
+	height: 30px;
+	color: #fff;
+	padding-left: 5px;
+}
+#loginContainer #btnLogin {
+	color: #FFF;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 6px 30px;
+	text-align: center;
+	font-family: oswald;
+	font-size: 14px;
+	background: #1f1f1f;
+	margin-top: 0px;
+	border: none;
+	border-radius: 3px;
+}
+
+#loginContainer #btnRegister {
+	color: #FFF;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 6px 35px;
+	text-align: center;
+	font-family: oswald;
+	font-size: 14px;
+	background: #1f1f1f;
+	margin-top: 0px;
+	border: none;
+	border-radius: 3px;
+}
+
+#loginContainer #btnLogin:hover {
+	background: #e62948;
+	color: #FFF;
+}
+
+#loginContainer #btnRegister:hover .formRegister{
+	display: block;
+	background: #e62948;
+	color: #FFF;
+}
+.loginAlign {
+	float: right;
+}
+
 /* =========================
    14-Contact
    ========================*/
