@@ -61,4 +61,7 @@ function setInitialPlayList() {
     });
 };
 
+function setFacebookLink() {
+    var base = $(location).attr('href');
+};
 
