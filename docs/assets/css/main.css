@@ -2461,6 +2461,21 @@ blockquote{
 	float: right;
 }
 
+#loginErrorMessage{
+	display: none;
+	background: red;
+	color: #f7f7f7;
+}
+
+#divUserLoginForm{
+	display: block;
+}
+
+#divSuccessLogin{
+	display: none;
+}
+
+
 /* =========================
    14-Contact
    ========================*/

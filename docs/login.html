@@ -16,7 +16,7 @@
                 </div>
             </div>
         </form>
-        <div class="formRegister" style="display: none">
+        <div id="divUserLoginForm" class="formRegister" style="display: none">
             <form id="contactform" action="login()" method="post">
                 <div class="row loginAlign">
                     <div class="col-lg-4 col-md-4 col-sm-4">
@@ -31,8 +31,19 @@
                     <div class="col-lg-3 col-md-3 col-sm-3">
                         <button id="btnRegister" type="submit">Registrarse</button>
                     </div>
+                    <span id="loginErrorMessage"></span>
                 </div>
             </form>
+            <div id="divSuccessLogin">
+                <div class="row loginAlign">
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <label id="labelUsername"></label>
+                    </div>
+                    <div class="col-lg-2 col-md-2 col-sm-2">
+                        <button id="btnExit" type="submit" onclick="logout()">Salir</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
   </div>
