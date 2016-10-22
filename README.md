@@ -1,3 +1,0 @@
-Sonidos Libres
-
-Descripcion
