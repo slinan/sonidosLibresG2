@@ -1,0 +1,79 @@
+<section id="contact">
+    <div class="container">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <h1>Registro</h1>
+            <h5>Nuevo usuario</h5>
+        </div>
+      <div class="row">
+          <div class="col-lg-9 col-md-9 col-sm-9">
+              <form id="contactform" method="post">
+                  <div class="row">
+                      <div class="col-lg-5 col-md-5 col-sm-5">
+                          <h5>Correo Electrónico:</h5>
+                          <input type="email" name="rEmail" id="rEmail" />
+                      </div>
+                      <div class="col-lg-5 col-md-5 col-sm-5">
+                          <h5>Apodo:</h5>
+                           <input type="text" name="rNickname" id="rNickname" />
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-5 col-md-5 col-sm-5">
+                          <h5>Contraseña:</h5>
+                          <input type="password" name="rPassword" id="rPassword" />
+                      </div>
+                      <div class="col-lg-5 col-md-5 col-sm-5">
+                          <h5>Confirmar Contraseña:</h5>
+                           <input type="password" name="rConfirmPassword" id="rConfirmPassword" />
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-5 col-md-5 col-sm-5">
+                          <h5>Nombres:</h5>
+                          <input type="text" name="rFirtsName" id="rFirtsName" />
+                      </div>
+                      <div class="col-lg-5 col-md-5 col-sm-5">
+                          <h5>Apellidos:</h5>
+                           <input type="text" name="rLastName" id="rLastName" />
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-5 col-md-5 col-sm-5">
+                          <h5>Fecha de nacimiento:</h5>
+                          <input type="date" name="rBirthdate" id="rBirthdate" />
+                      </div>
+                      <div class="col-lg-5 col-md-5 col-sm-5">
+                          <h5>Genero:</h5>
+                           <select id="rGenere" class="input-list" name="rGenere">
+                               <option value="F" selected>Femenino</option>
+                               <option value="M">Masculino</option>
+                               <option value="L">LGTB</option>
+                           </select>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                          <h5>Foto:</h5>
+                          <input type="image" name="rImage" id="rImage" />
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                          <h5>Algo sobre tí:</h5>
+                          <textarea name="rDesciption" id="rDescription"></textarea>
+                      </div>
+                  </div>
+                  <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
+                      <div class="col-lg-5 col-md-5 col-sm-5">
+                          <button id="rBtnCancel" type="submit" onclick="loader('home')" class="btn">Cancelar</button>
+                      </div>
+                      <div class="col-lg-5 col-md-5 col-sm-5">
+                          <button id="rBtnSend" type="submit" onclick="userCreate()" class="btn">Enviar</button>
+                      </div>
+                  </div>
+              </form>
+              <div id="valid-issue" style="display:none;"> Please Provide Valid Information</div>
+          </div>
+      </div><!--row-->
+    </div><!--//container-->
+    </section>

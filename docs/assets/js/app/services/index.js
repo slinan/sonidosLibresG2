@@ -2,25 +2,45 @@ var werock = {};
 var playlistScroller = {};
 var globalParameters = {};
 
-function loadPage() {
-    $( "#login" ).load( "login.html" );
-    $( "#navigationBar" ).load( "navigationBar.html" );
-    $( "#player" ).load( "player.html" );
-    $( "#loadContent" ).load( "home.html", function () {
-        $( "#alreadyAddedPlayListWarning" ).load( "alreadyAddedPlayListWarning.html" );
-    } );
-    $( "#footer" ).load( "footer.html" );
-}
-
 function initHome() {
     loadPage();
     setCategories();
 };
 
+function loadPage() {
+    $( "#navigationBar" ).load( "navigationBar.html" );
+    $( "#player" ).load( "player.html" );
+    $( "#footer" ).load( "footer.html" );
+
+    $( "#loadContent" ).load( "home.html", function () {
+        $( "#alreadyAddedPlayListWarning" ).load( "alreadyAddedPlayListWarning.html" );
+
+        if(isAuthenticated()){
+            $( "#login" ).load( "login.success.html", function(result) {
+                var label = $(this).find('#labelUsername');
+                label.html('Bienvenido, ' + getUsername());
+            });
+
+            var name = getUsername();
+            setControlsWhenUserIsAuthenticated(name);
+
+            setTopsForUser();
+
+            $( "#audiosUpload" ).load( "upload.html", function () {
+                audiosUpload();
+            });
+        }
+        else{
+            $( "#login" ).load( "login.form.html" );
+            $( '#personalitationUser' ).load('slider.html');
+            setControlsWhenUserIsNotAuthenticated();
+        }
+    });
+}
+
 function setCategories() {
     GET('/api/categoriesTopRating/5', function (response) {
         var categoriesHtml = '';
-        var listCategoriesHtml = '';
 
         for (var i = 0; i < response.length; i++) {
             categoriesHtml += '<div class="album" ><header><h1><span class="icon icon-top"></span>' + response[i].name + '</h1><a class="h-right more" href="#" onclick="loader(\'category-detail\', {idCategory:' + response[i].id + '})"><span class="icon icon-more"></span>Ver más</a></header>';
@@ -36,11 +56,8 @@ function setCategories() {
             }
 
             categoriesHtml += audiosHtml + '</div>';
-
-            listCategoriesHtml += '<option value="' + response[i].id + '">' + response[i].name + '</option>';
         }
         $('#categories').html(categoriesHtml);
-        $('#categoriesList').html(listCategoriesHtml);
 
         setInitialPlayList();
     });

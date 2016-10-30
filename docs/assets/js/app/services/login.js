@@ -1,31 +1,32 @@
 function initLogin() {
-
+    isAuthenticated();
 };
 
-function login(username, password) {
-    var data = '{"username":"' + username + '", "password":"' + password + '"}';
+function isAuthenticated(){
+    USER = localStorage.getItem("user") ? JSON.parse(localStorage.getItem("user")) : undefined;
+    if (USER && USER.token){
+        return true;
+    }
 
-    POST('/api/login/', data, function (response) {
-        if(response.isAuthenticated){
-            localStorage.setItem("user", response);
-            var name = username;
-            if (response.nickname){
-                name = response.nickname;
-            }
-            else if(response.firtsName && response.lastName){
-                name = response.firtsName + ' ' +  response.lastName;
-            }
+    return false;
+}
 
-            $('#labelUsername').html('Bienvenido ' + name);
-            $('#loginErrorMessage').html('');
-            $('#divSuccessLogin').css('display', 'block');
-            $('#loginErrorMessage').css('display', 'none');
-            $('#divUserLoginForm').css('display', 'none');
+function loginSongs() {
+    var username = $('#email').val();
+    var password = $('#password').val();
 
+    var data = '{"username": "' + username + '", "password": "' + password + '"}';
+
+    POST('/api/login', data, function (response) {
+        if(response.token){
+            USER = response;
+            localStorage.setItem("user", JSON.stringify(USER));
+            var name = getUsername();
+            setControlsWhenUserIsAuthenticated(name);
             initHome();
         }
         else{
-            errorMessage(response.error);
+            errorMessage(response);
         }
     },
     function (error) {
@@ -33,20 +34,19 @@ function login(username, password) {
     });
 }
 
-function logout() {
-    var user = localStorage.getItem("user");
-    if (user){
-        var data = '{"token": "' + user.token + '"}';
+function logoutSongs() {
+    if (USER){
+        var data = '{"token": "' + USER.token + '"}';
+
+        localStorage.clear();
+        USER = undefined;
+        $( "#login" ).load( "login.form.html" );
+        setControlsWhenUserIsNotAuthenticated();
+        initHome();
 
         POST('/api/logout/', data, function (response) {
             if(response.success){
-                $('#labelUsername').html('');
-                $('#divUserLoginForm').css('display', 'block');
-                $('#loginErrorMessage').css('display', 'none');
-                $('#divSuccessLogin').css('display', 'none');
 
-                localStorage.clear();
-                initHome();
             }
             else{
                 errorMessage(response.error);
@@ -61,7 +61,38 @@ function logout() {
 function errorMessage(error) {
     $('#loginErrorMessage').html(error);
     $('#labelUsername').html('');
-    $('#loginErrorMessage').css('display', 'block');
-    $('#divUserLoginForm').css('display', 'block');
-    $('#divSuccessLogin').css('display', 'none');
+    $('#loginErrorMessage').show();
+    $('#loginForm').show();
+    $('#divSuccessLogin').hide();
+}
+
+function setControlsWhenUserIsAuthenticated(username){
+    $('#labelUsername').html('Bienvenido ' + username);
+    $('#loginErrorMessage').html('');
+    $('#divSuccessLogin').show();
+    $('#loginErrorMessage').hide();
+    $('#loginForm').hide();
+}
+
+function setControlsWhenUserIsNotAuthenticated(){
+    $('#labelUsername').html('');
+    $('#loginForm').show();
+    $('#loginErrorMessage').hide();
+    $('#divSuccessLogin').hide();
+}
+
+function getUsername() {
+    var name = '';
+
+    if (USER.user.nickname){
+        name = USER.user.nickname;
+    }
+    else if(USER.user.first_name && USER.user.last_name){
+        name = USER.user.first_name + ' ' +  USER.user.last_name;
+    }
+    else if(USER.user.username){
+        name = USER.user.username;
+    }
+
+    return name;
 }

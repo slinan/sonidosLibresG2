@@ -21,6 +21,11 @@ function loader(page, param) {
                 initAlbumDetail();
             } );
             break;
+        case 'register':
+            $( "#loadContent" ).load( "register.html", function() {
+
+            } );
+            break;
         default:
             $( "#loadContent" ).load( "home.html", function() {
                 initHome();
