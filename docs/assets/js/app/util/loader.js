@@ -21,6 +21,11 @@ function loader(page, param) {
                 initAlbumDetail();
             } );
             break;
+        case 'convocations':
+            $( "#loadContent" ).load( "convocations.html", function() {
+                initConvocations();
+            } );
+            break;
         default:
             $( "#loadContent" ).load( "home.html", function() {
                 initHome();
