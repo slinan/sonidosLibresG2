@@ -2,6 +2,9 @@ var werock = {};
 var playlistScroller = {};
 var globalParameters = {};
 
+
+$( "#player" ).load( "player.html" );
+
 function initHome() {
     loadPage();
     setCategories();
@@ -10,12 +13,13 @@ function initHome() {
 function loadPage() {
     $( "#adminMenuUsers" ).html('');
     $( "#navigationBar" ).load( "navigationBar.html" );
-    $( "#player" ).load( "player.html" );
+
     $( "#footer" ).load( "footer.html" );
 
     $( "#loadContent" ).load( "home.html", function () {
 
         $( "#alreadyAddedPlayListWarning" ).load( "alreadyAddedPlayListWarning.html" );
+
         if(isAuthenticated()){
             $( "#login" ).load( "login.success.html", function(result) {
                 var label = $(this).find('#labelUsername');
