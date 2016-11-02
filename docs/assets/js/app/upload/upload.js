@@ -22,22 +22,15 @@ function uploadFile() {
                             audioDownload: link,
                             audioPlay: link,
                             categories:[idCategory],
-                            artists: [1],
+                            artists: [USER.user.id],
                             albums:[1]
                         };
 
-                        $.ajax({
-                            type: 'POST',
-                            url: 'https://sonidoslibres.herokuapp.com/api/audios',
-                            contentType: "application/json; charset=utf-8",
-                            dataType: 'json',
-                            data: JSON.stringify(audio),
-                            success: function (response) {
-                                $('#results').html('Audio [' + title + '] Cargado!');
-                            },
-                            fail: function (error) {
-                                $('#results').html('' + error);
-                            }
+                        POST('/api/audios', JSON.stringify(audio), function (res) {
+                            $('#results').html('Audio [' + title + '] Cargado!');
+                        },
+                        function (err) {
+                            $('#results').html('' + err);
                         });
                     });
             }
