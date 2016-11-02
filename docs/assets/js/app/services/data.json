@@ -1,0 +1,30 @@
+[
+    {
+        "name" : "Convocatoria 1",
+        "dateIni" :"2016/07/08",
+        "dateEnd" : "2016/08/08",
+        "status" : "Publicada",
+        "participants" : 100
+    },
+    {
+        "name" : "Convocatoria 2",
+        "dateIni" : "2016/07/23",
+        "dateEnd" : "2016/08/31",
+        "status" : "Publicada",
+        "participants" : 25
+    },
+    {
+        "name" : "Convocatoria 2",
+        "dateIni" : "2016/07/23",
+        "dateEnd" : "2016/08/31",
+        "status" : "Cerrada",
+        "participants" : 1000
+    },
+    {
+        "name" : "Convocatoria 2",
+        "dateIni" : "2016/07/23",
+        "dateEnd" : "2016/07/23",
+        "status" : "Retirada",
+        "participants" : 0
+    }
+]
