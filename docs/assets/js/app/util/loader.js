@@ -24,6 +24,9 @@ function loader(page, param) {
         case 'convocations':
             $( "#loadContent" ).load( "convocations.html", function() {
                 initConvocations();
+        case 'register':
+            $( "#loadContent" ).load( "register.html", function() {
+
             } );
             break;
         default:

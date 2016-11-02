@@ -530,7 +530,7 @@ header .container {
 	height: 63px;
 	width: 63px;
 	border-radius: 50%;
-	background: url(../jPlayer/controls/list.png) center center #e62948 no-repeat;
+	background: url(../jPlayer/controls/fb.png) center center #3b5998 no-repeat;
 }
 .jp-playlist {
 	padding-left: 80px;
@@ -2447,13 +2447,36 @@ blockquote{
 	border-radius: 3px;
 }
 
+#loginContainer #btnLogout {
+	color: #FFF;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 6px 30px;
+	text-align: center;
+	font-family: oswald;
+	font-size: 14px;
+	background: #1f1f1f;
+	margin-top: 0px;
+	border: none;
+	border-radius: 3px;
+}
+
 #loginContainer #btnLogin:hover {
 	background: #e62948;
 	color: #FFF;
 }
 
+#loginContainer #btnRegister:hover {
+	background: #e62948;
+	color: #FFF;
+}
+
+#loginContainer #btnLogout:hover {
+	background: #e62948;
+	color: #FFF;
+}
+
 #loginContainer #btnRegister:hover .formRegister{
-	display: block;
 	background: #e62948;
 	color: #FFF;
 }
@@ -2462,19 +2485,48 @@ blockquote{
 }
 
 #loginErrorMessage{
-	display: none;
 	background: red;
 	color: #f7f7f7;
 }
 
 #divUserLoginForm{
-	display: block;
+
 }
 
 #divSuccessLogin{
-	display: none;
+
 }
 
+#labelUsername{
+	width: 300px;
+	float: right;
+	text-align: right;
+	font-size: large;
+    color: brown;
+}
+
+#loginForm {
+	margin-top: 20px;
+}
+
+.btn {
+	color: #FFF;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 6px 35px;
+	text-align: center;
+	font-family: oswald;
+	font-size: 14px;
+	background: #1f1f1f;
+	margin-top: 0px;
+	border: none;
+	border-radius: 3px;
+}
+
+.btn:hover {
+	background: #e62948;
+	color: #FFF;
+}
 
 /* =========================
    14-Contact
@@ -2534,8 +2586,10 @@ blockquote{
 }
 #contact #message, #contact textarea {
 	height: 146px;
+	width: 83%;
 	padding-left: 5px;
-	color: #fff;
+	color: black;
+	background: darkgray;
 }
 #contact #submit1 {
 	color: #FFF;
@@ -3072,8 +3126,14 @@ ul.dropdown-menu.open {
 	width:55%;
 }
 .album-tracks .track .track_listen{
-	width:
+
 }
+}
+
+.track_listen label{
+	display: inline-block;
+    margin-bottom: 5px;
+	font-weight: normal;
 }
 
 /* Landscape phones and down */

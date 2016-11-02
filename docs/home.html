@@ -4,66 +4,20 @@ SLIDER PRINCIPAL
 <section id="home-slider">
     <div class="container">
     <div class="home-inner">
+        <div id="homeSliderNav" class="slider-nav">
+          <a id="home-prev" href="#" class="prev fa fa-chevron-left"></a>
+          <a id="home-next" href="#" class="next fa fa-chevron-right"></a>
+        </div><!--sliderNav-->
 
-    <div id="homeSliderNav" class="slider-nav">
-      <a id="home-prev" href="#" class="prev fa fa-chevron-left"></a>
-      <a id="home-next" href="#" class="next fa fa-chevron-right"></a>
-    </div><!--sliderNav-->
-
-    <div id="flex-home" class="flexslider" data-animation="slide" data-animationSpeed="1000" data-autoPlay="true" data-slideshowSpeed="7000">
-      <ul class="slides">
-        <li> <img src="assets/img/slider/slider.jpg" alt="" >
-          <div class="flex-caption">
-            <h2>Sube tus audios</h2>
-          </div>
-        </li>
-        <li> <img src="assets/img/slider/slider-1.jpg" alt="" >
-          <div class="flex-caption">
-            <h2>Crea convocatorias</h2>
-          </div>
-        </li>
-        <li> <img src="assets/img/slider/slider-2.jpg" alt="" >
-          <div class="flex-caption">
-            <h2>Descarga y reproduce lo que quieras</h2>
-          </div>
-        </li>
-        <li> <img src="assets/img/slider/slider-3.jpg" alt="" >
-          <div class="flex-caption">
-            <h2>Dona si te gustó un audio</h2>
-          </div>
-        </li>
-        <li> <img src="assets/img/slider/slider-4.jpg" alt="" >
-          <div class="flex-caption">
-            <h2>Descubre nuevos audios</h2>
-          </div>
-        </li>
-        <li> <img src="assets/img/slider/slider-5.jpg" alt="" >
-          <div class="flex-caption">
-            <h2>Haz que te encuentren</h2>
-          </div>
-        </li>
-      </ul>
+        <div id="personalitationUser"></div>
     </div>
-  </div>
     </div>
 </section>
 
 <!--=================================
 SUBIR AUDIOS
 =================================-->
-<section id="uploadFiles">
-    <div class="container">
-        <h1>Sube tus audios</h1>
-        <div style="display: inline-block">
-            <input class= "filestyle" type="file" id="file-upload" accept = ".mp3"/>
-            <label>Categoría:</label>
-            <select id="categoriesList" class="input-list" name="categoriesList">
-            </select>
-            <button class="submit-btn" type="submit" onclick="uploadFile()">Subir</button>
-        </div>
-        <h4 id="results"></h4>
-    </div>
-</section>
+<div id="audiosUpload"></div>
 
 <!--=================================
 CATEGORIAS
