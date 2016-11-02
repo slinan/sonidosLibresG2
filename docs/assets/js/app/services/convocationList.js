@@ -61,12 +61,12 @@ function createConvocation () {
     convocation.title = title;
     convocation.dateInit = dateInit;
     convocation.dateEnd = dateEnd;
-    convocation.type = type;
+    convocation.typeConvocation = type;
     convocation.status = status;
     convocation.dateLimit = dateLimit;
     convocation.terms = terms;
     convocation.detail = detail;
-    convocation.agent = "3";
+    convocation.agent = 3;
     console.log(convocation);
     createConvocationPost(convocation);
     //$('#modalCreateAlbum').modal('hide');
