@@ -1,8 +1,5 @@
 function userCreate(){
-    var email = $('#rEmail').val();
     var nickname = $('#rNickname').val();
-    var password = $('#rPassword').val();
-    var confirmPassword = $('#rConfirmPassword').val();
     var firtsName = $('#rFirtsName').val();
     var lastName = $('#rLastName').val();
     var birthdate = $('#rBirthdate').val();
@@ -10,17 +7,23 @@ function userCreate(){
     var image = $('#rImage').val();
     var description = $('#rDescription').val();
 
+
     var data = {
-    "name": "",
-    "image": "",
-    "user": null
-    };
+        username: $('#rEmail').val(),
+        password: $('#rPassword').val(),
+        email: $('#rEmail').val(),
+        first_name: $('#rFirtsName').val(),
+        last_name: $('#rLastName').val(),
+        groups: [3]
+    }
 
-    /*
-    POST('/api/artists', data, function (response) {
 
+    POST('/api/signUp/artist', JSON.stringify(data), function (response) {
+        if (response){
+            login(username, password);
+        }
     });
-    */
+
 }
 
 function loadUserData(){

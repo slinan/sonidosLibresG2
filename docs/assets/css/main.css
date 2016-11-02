@@ -2413,6 +2413,7 @@ blockquote{
 	background: #171717;
 	border: 1px solid #202020;
 	width: 100%;
+	color: white;
 }
 #loginContainer #password, #contact #email, #contact input {
 	height: 30px;
