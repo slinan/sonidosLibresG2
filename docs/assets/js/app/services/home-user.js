@@ -1,6 +1,6 @@
 function setTopsForUser() {
     getTopMeRatingAudios();
-    audiosUpload();
+    listCategoriesForAudiosUpload();
 };
 
 function getTopMeRatingAudios() {
@@ -56,11 +56,11 @@ function getTopMePlayAudios(topsHtml) {
         }
         topsHtml += audiosHtml + '</div>';
 
-        getTopMeConvocatories(topsHtml);
+        getTopMeConvocatoriesUser(topsHtml);
     });
 }
 
-function getTopMeConvocatories(topsHtml) {
+function getTopMeConvocatoriesUser(topsHtml) {
     GET('/api/audios?ordering=-playCount&page=1&page_size=5', function (response) {
         topsHtml += '<div class="album" ><header><h1><span class="icon icon-top"></span>Mis Convocatorias</h1></header>';
 
@@ -79,7 +79,7 @@ function getTopMeConvocatories(topsHtml) {
     });
 };
 
-function audiosUpload() {
+function listCategoriesForAudiosUpload() {
     GET('/api/categories', function (response) {
         var listCategoriesHtml = '';
 

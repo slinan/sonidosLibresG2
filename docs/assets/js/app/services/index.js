@@ -8,27 +8,35 @@ function initHome() {
 };
 
 function loadPage() {
+    $( "#adminMenuUsers" ).html('');
     $( "#navigationBar" ).load( "navigationBar.html" );
     $( "#player" ).load( "player.html" );
     $( "#footer" ).load( "footer.html" );
 
     $( "#loadContent" ).load( "home.html", function () {
-        $( "#alreadyAddedPlayListWarning" ).load( "alreadyAddedPlayListWarning.html" );
 
+        $( "#alreadyAddedPlayListWarning" ).load( "alreadyAddedPlayListWarning.html" );
         if(isAuthenticated()){
             $( "#login" ).load( "login.success.html", function(result) {
                 var label = $(this).find('#labelUsername');
                 label.html('Bienvenido, ' + getUsername());
             });
 
-            var name = getUsername();
-            setControlsWhenUserIsAuthenticated(name);
+            if (isArtistUser()){
+                setTopsForUser();
 
-            setTopsForUser();
-
-            $( "#audiosUpload" ).load( "upload.html", function () {
-                audiosUpload();
+                $( "#audiosUpload" ).load( "upload.html", function () {
+                listCategoriesForAudiosUpload();
             });
+            }
+
+            if (isAgentUser()){
+                setTopsForAgent();
+            }
+
+            if (isAdminUser()){
+                $( "#adminMenuUsers" ).html('<a href="#">Usuarios <i class="fa fa-caret-right"></i></a><ul class="dropdown-menu"><li><a href="#" onclick="loader(\'register-admin\',{})">Crear</a></li></ul>');
+            }
         }
         else{
             $( "#login" ).load( "login.form.html" );

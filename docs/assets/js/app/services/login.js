@@ -11,6 +11,30 @@ function isAuthenticated(){
     return false;
 }
 
+function isAdminUser() {
+    if (USER && $.inArray(1, USER.user.groups) == 0){
+        return true;
+    }
+
+    return false;
+}
+
+function isArtistUser() {
+    if (USER && $.inArray(3, USER.user.groups) == 0){
+        return true;
+    }
+
+    return false;
+}
+
+function isAgentUser() {
+    if (USER && $.inArray(2, USER.user.groups) == 0){
+        return true;
+    }
+
+    return false;
+}
+
 function loginSongs() {
     var username = $('#email').val();
     var password = $('#password').val();
@@ -48,18 +72,6 @@ function logoutSongs() {
         $( "#login" ).load( "login.form.html" );
         setControlsWhenUserIsNotAuthenticated();
         initHome();
-
-        POST('/api/logout/', data, function (response) {
-            if(response.success){
-
-            }
-            else{
-                errorMessage(response.error);
-            }
-        },
-        function (error) {
-            errorMessage(error);
-        });
     }
 }
 
