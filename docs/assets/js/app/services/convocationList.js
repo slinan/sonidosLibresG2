@@ -39,6 +39,8 @@ function getConvocations() {
 function createConvocationPost(data) {
     POST('/api/convocations/', data, function (response) {
         alert('Se ha creado la convocatoria');
+        var form = document.getElementById("convocForm");
+        form.reset();
         getConvocations();
     });
 };
