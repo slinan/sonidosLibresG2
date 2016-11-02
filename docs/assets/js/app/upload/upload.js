@@ -5,6 +5,10 @@ function uploadFile() {
     var title = file.name.substring(0, file.name.lastIndexOf("."));
     var name = MD5(file.name);
 
+    $('#btnUpload').attr("style", "background:url('assets/img/gif/loader.gif') no-repeat center center;width:32px;height:32px;");
+    $('#btnUpload').html("");
+    $('#btnUpload').prop('disabled', true);
+
     dbx.filesUpload({path: '/songs/' + name +'.mp3', contents: file})
         .then(function(response) {
             var supload = response;
@@ -28,6 +32,10 @@ function uploadFile() {
 
                         POST('/api/audios', JSON.stringify(audio), function (res) {
                             $('#results').html('Audio [' + title + '] Cargado!');
+
+                            $('#btnUpload').attr("style", "");
+                            $('#btnUpload').html("Subir");
+                            $('#btnUpload').prop('disabled', false);
                         },
                         function (err) {
                             $('#results').html('' + err);
