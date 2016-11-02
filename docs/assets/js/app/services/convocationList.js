@@ -1,6 +1,7 @@
 function initConvocations() {
     $( "#alreadyAddedPlayListWarning" ).load( "alreadyAddedPlayListWarning.html" );
     getConvocations();
+    getConvocationExp();
 };
 
 function getConvocations() {
@@ -21,26 +22,25 @@ function getConvocations() {
     });
 };
 
-/*function getSoonConvocations() {
-    GET('/api/convocations/', function (response) {
-        convocations = response.results
+function getConvocationExp() {
+    GET('/api/convocationExpired/', function (response) {
+        convocations = response
+        console.log(convocations);
         soonEndHtml = '';
         for (var i = 0; i < convocations.length; i++) {
-            convocatoriesHtml += '<div class="event-feed">'+
-			    '<div class="date">'+convocations[i].dateEnd+'<span class="day">24</span> <span class="month">AUG</span> </div>'+
+            soonEndHtml += '<div class="event-feed">'+
+			    '<div class="date"><span class="day">'+convocations[i].dateEnd.substring(8,10)+'</span><span class="month">'+convocations[i].dateEnd.substring(5,7)+'</span></div>'+
 				'<h5><a href="">'+convocations[i].title+'</a></h5>'+
-				'<p>'convocation[i].details+'</p>'+
+				'<p>'+convocations[i].detail+'</p>'+
 			'</div>'
         }
         $('#soonEndConvocation').html(soonEndHtml);
     });
-};*/
+};
 
 function createConvocationPost(data) {
     POST('/api/convocations/', data, function (response) {
         alert('Se ha creado la convocatoria');
-        var form = document.getElementById("convocForm");
-        form.reset();
     });
 };
 
@@ -58,13 +58,13 @@ function createConvocation () {
     convocation = {};
     convocation.name = name;
     convocation.title = title;
+    convocation.detail = detail;
+    convocation.typeConvocation = type;
+    convocation.terms = terms;
     convocation.dateInit = dateInit;
     convocation.dateEnd = dateEnd;
-    convocation.typeConvocation = type;
-    convocation.status = status;
     convocation.dateLimit = dateLimit;
-    convocation.terms = terms;
-    convocation.detail = detail;
+    convocation.status = status;
     convocation.agent = 3;
     console.log(convocation);
     createConvocationPost(convocation);
