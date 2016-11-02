@@ -24,7 +24,7 @@ function loader(page, param) {
         case 'convocations':
             $( "#loadContent" ).load( "convocations.html", function() {
                 initConvocations();
-                            } );
+            } );
             break;
         case 'register':
             $( "#loadContent" ).load( "register.html", function() {
