@@ -5,7 +5,7 @@ function setTopsForAgent() {
 function getTopMeConvocatoriesAgentLimitSendAudios() {
     GET('/api/convocations?page=1&page_size=5', function (response) {
         var topsHtml = '';
-        topsHtml += '<div class="album" ><header><h1><span class="icon icon-top"></span>Mis convocatorias próximas a vencer el plazo de envío de audios</h1></header>';
+        topsHtml += '<div class="album-large" ><header><h1><span class="icon icon-top"></span>Mis convocatorias próximas a vencer el plazo de envío de audios</h1></header>';
 
         var convocationsHtml = '';
         for (var i = 0; i < response.results.length ; i++){
@@ -24,7 +24,7 @@ function getTopMeConvocatoriesAgentLimitSendAudios() {
 
 function getTopMeConvocatoriesAgentComingSoonOvercome(topsHtml) {
     GET('/api/convocations?page=1&page_size=5', function (response) {
-        topsHtml += '<div class="album" ><header><h1><span class="icon icon-top"></span>Mis convocatorias próximas a vencer</h1></header>';
+        topsHtml += '<div class="album-large" ><header><h1><span class="icon icon-top"></span>Mis convocatorias próximas a vencer en el plazo de votaciones</h1></header>';
 
         var convocationsHtml = '';
         for (var i = 0; i < response.results.length ; i++){

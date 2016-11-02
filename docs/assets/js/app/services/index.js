@@ -35,7 +35,7 @@ function loadPage() {
             }
 
             if (isAdminUser()){
-                $( "#adminMenuUsers" ).html('<a href="#">Usuarios <i class="fa fa-caret-right"></i></a><ul class="dropdown-menu"><li><a href="#" onclick="loader(\'register-admin\',{})">Crear</a></li></ul>');
+                $( "#adminMenuUsers" ).load('admin-menu-users.html');
             }
         }
         else{

@@ -61,7 +61,7 @@ function getTopMePlayAudios(topsHtml) {
 }
 
 function getTopMeConvocatoriesUser(topsHtml) {
-    GET('/api/audios?ordering=-playCount&page=1&page_size=5', function (response) {
+    GET('/api/convocations?page=1&page_size=5', function (response) {
         topsHtml += '<div class="album" ><header><h1><span class="icon icon-top"></span>Mis Convocatorias</h1></header>';
 
         var convocatorias = '';
@@ -70,7 +70,7 @@ function getTopMeConvocatoriesUser(topsHtml) {
             if (response.results[i].title.length > 24){
                 dots = '...';
             }
-            convocatorias += '<div class="track_listen"><label style="width: 200px; padding-left: 5px;">' + (i + 1) + '. ' + response.results[i].title.substring(0, 22) + dots + '</label><label></label></div>';
+            convocatorias += '<div class="track_listen"><label style="width: 200px; padding-left: 5px;">' + (i + 1) + '. ' + response.results[i].title.substring(0, 22) + dots + '</label><label> - Fecha Vencimiento: ' + response.results[i].dateEnd + '</label></div>';
         }
         topsHtml += convocatorias + '</div>';
 
