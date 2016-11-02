@@ -15,6 +15,10 @@ function loginSongs() {
     var username = $('#email').val();
     var password = $('#password').val();
 
+    login(username, password);
+}
+
+function login(username, password) {
     var data = '{"username": "' + username + '", "password": "' + password + '"}';
 
     POST('/api/login', data, function (response) {
@@ -33,6 +37,7 @@ function loginSongs() {
         errorMessage(error);
     });
 }
+
 
 function logoutSongs() {
     if (USER){
