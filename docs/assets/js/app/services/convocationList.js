@@ -41,7 +41,6 @@ function createConvocationPost(data) {
         alert('Se ha creado la convocatoria');
         var form = document.getElementById("convocForm");
         form.reset();
-        getConvocations();
     });
 };
 
