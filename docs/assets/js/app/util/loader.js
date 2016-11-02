@@ -31,6 +31,11 @@ function loader(page, param) {
 
             } );
             break;
+        case 'register-admin':
+            $( "#loadContent" ).load( "register-admin.html", function() {
+
+            } );
+            break;
         default:
             $( "#loadContent" ).load( "home.html", function() {
                 initHome();

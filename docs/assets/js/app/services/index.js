@@ -2,17 +2,22 @@ var werock = {};
 var playlistScroller = {};
 var globalParameters = {};
 
+
+$( "#player" ).load( "player.html" );
+
 function initHome() {
     loadPage();
     setCategories();
 };
 
 function loadPage() {
+    $( "#adminMenuUsers" ).html('');
     $( "#navigationBar" ).load( "navigationBar.html" );
-    $( "#player" ).load( "player.html" );
+
     $( "#footer" ).load( "footer.html" );
 
     $( "#loadContent" ).load( "home.html", function () {
+
         $( "#alreadyAddedPlayListWarning" ).load( "alreadyAddedPlayListWarning.html" );
 
         if(isAuthenticated()){
@@ -21,14 +26,21 @@ function loadPage() {
                 label.html('Bienvenido, ' + getUsername());
             });
 
-            var name = getUsername();
-            setControlsWhenUserIsAuthenticated(name);
+            if (isArtistUser()){
+                setTopsForUser();
 
-            setTopsForUser();
+                $( "#audiosUpload" ).load( "upload.html", function () {
+                    listCategoriesForAudiosUpload();
+                });
+            }
 
-            $( "#audiosUpload" ).load( "upload.html", function () {
-                audiosUpload();
-            });
+            if (isAgentUser()){
+                setTopsForAgent();
+            }
+
+            if (isAdminUser()){
+                $( "#adminMenuUsers" ).load('admin-menu-users.html');
+            }
         }
         else{
             $( "#login" ).load( "login.form.html" );
@@ -63,19 +75,53 @@ function setCategories() {
     });
 };
 
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
+
 function setInitialPlayList() {
-    GET('/api/audios?ordering=-uploadDate&page=1&page_size=5', function (response) {
-        var playListHtml = '';
+    song = getUrlVars()['song'];
+    if(song)
+    {
+        GET('/api/audios/'+song, function (response) {
+            var playListHtml = '';
+            var list = [];
+            list.push(response);
+            var audiosList = list;
+            for (var i = 0; i < audiosList.length; i++) {
+                playListHtml += '<li data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" data-audio-id="' + audiosList[i].id + '" data-download="' + audiosList[i].audioDownload + '"></li>';
+            }
 
-        var audiosList = response.results;
-        for (var i = 0; i < audiosList.length; i++) {
-            playListHtml += '<li data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" data-audio-id="' + audiosList[i].id + '" data-download="' + audiosList[i].audioDownload + '"></li>';
-        }
+            $('#hiddenPlaylist').html(playListHtml);
 
-        $('#hiddenPlaylist').html(playListHtml);
+            main();
+        });
+    }
+    else
+    {
 
-        main();
-    });
+        GET('/api/audios?ordering=-uploadDate&page=1&page_size=5', function (response) {
+            var playListHtml = '';
+
+            var audiosList = response.results;
+            for (var i = 0; i < audiosList.length; i++) {
+                playListHtml += '<li data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" data-audio-id="' + audiosList[i].id + '" data-download="' + audiosList[i].audioDownload + '"></li>';
+            }
+
+            $('#hiddenPlaylist').html(playListHtml);
+
+            main();
+        });
+    }
 };
 
 function setFacebookLink() {

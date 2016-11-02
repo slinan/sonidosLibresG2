@@ -1,8 +1,9 @@
 <section id="contact">
     <div class="container">
         <div class="col-lg-6 col-md-6 col-sm-6">
-            <h1>Registro</h1>
+            <h1>Administrador - Registro</h1>
             <h5>Nuevo usuario</h5>
+            <h3 id="messageRegister"></h3>
         </div>
       <div class="row">
           <div class="col-lg-9 col-md-9 col-sm-9">
@@ -42,12 +43,20 @@
                           <h5>Fecha de nacimiento:</h5>
                           <input type="date" name="rBirthdate" id="rBirthdate" />
                       </div>
-                      <div class="col-lg-5 col-md-5 col-sm-5">
+                      <div class="col-lg-3 col-md-3 col-sm-3">
                           <h5>Genero:</h5>
                            <select id="rGenere" class="input-list" name="rGenere">
                                <option value="F" selected>Femenino</option>
                                <option value="M">Masculino</option>
                                <option value="L">LGTB</option>
+                           </select>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-sm-4">
+                          <h5>Tipo de Usuario:</h5>
+                           <select id="rTipoUsuario" class="input-list" name="rTipoUsuario">
+                               <option value="1" >Administrador</option>
+                               <option value="2" selected>Agente</option>
+                               <option value="3">Artista</option>
                            </select>
                       </div>
                   </div>
@@ -62,7 +71,7 @@
                           <button id="rBtnCancel" type="submit" onclick="loader('home')" class="btn">Cancelar</button>
                       </div>
                       <div class="col-lg-5 col-md-5 col-sm-5">
-                          <button id="rBtnSend" type="submit" onclick="userCreate()" class="btn">Enviar</button>
+                          <button id="rBtnSend" type="submit" onclick="userCreateAdmin()" class="btn">Enviar</button>
                       </div>
                   </div>
               </div>

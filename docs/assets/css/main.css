@@ -787,6 +787,16 @@ header .container {
 	margin-right: 15px;
 	background: #262424;
 }
+
+.album-large {
+	position: relative;
+	float: left;
+	width: 550px;
+	height: 270px;
+	margin-right: 15px;
+	background: #262424;
+}
+
 .recent-album-list .album {
 	margin-left: 7px;
 	margin-right: 7px;

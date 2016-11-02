@@ -1,10 +1,10 @@
 function setTopsForUser() {
     getTopMeRatingAudios();
-    audiosUpload();
+    listCategoriesForAudiosUpload();
 };
 
 function getTopMeRatingAudios() {
-    GET('/api/audios?ordering=-rating&page=1&page_size=5', function (response) {
+    GET('/api/audios?ordering=-rating&page=1&page_size=5&artists=' + USER.user.id, function (response) {
         var topsHtml = '';
         topsHtml += '<div class="album" ><header><h1><span class="icon icon-top"></span>Mis audios más votados</h1></header>';
 
@@ -24,7 +24,7 @@ function getTopMeRatingAudios() {
 }
 
 function getTopMeDownloadAudios(topsHtml) {
-    GET('/api/audios?ordering=-downloadsCount&page=1&page_size=5', function (response) {
+    GET('/api/audios?ordering=-downloadsCount&page=1&page_size=5&artists=' + USER.user.id, function (response) {
         topsHtml += '<div class="album" ><header><h1><span class="icon icon-top"></span>Mis audios más descargados</h1></header>';
 
         audiosHtml = '';
@@ -43,7 +43,7 @@ function getTopMeDownloadAudios(topsHtml) {
 }
 
 function getTopMePlayAudios(topsHtml) {
-    GET('/api/audios?ordering=-playCount&page=1&page_size=5', function (response) {
+    GET('/api/audios?ordering=-playCount&page=1&page_size=5&artists=' + USER.user.id, function (response) {
         topsHtml += '<div class="album" ><header><h1><span class="icon icon-top"></span>Mis audios más reproducidos</h1></header>';
 
         audiosHtml = '';
@@ -56,12 +56,12 @@ function getTopMePlayAudios(topsHtml) {
         }
         topsHtml += audiosHtml + '</div>';
 
-        getTopMeConvocatories(topsHtml);
+        getTopMeConvocatoriesUser(topsHtml);
     });
 }
 
-function getTopMeConvocatories(topsHtml) {
-    GET('/api/audios?ordering=-playCount&page=1&page_size=5', function (response) {
+function getTopMeConvocatoriesUser(topsHtml) {
+    GET('/api/convocations?page=1&page_size=5', function (response) {
         topsHtml += '<div class="album" ><header><h1><span class="icon icon-top"></span>Mis Convocatorias</h1></header>';
 
         var convocatorias = '';
@@ -70,7 +70,7 @@ function getTopMeConvocatories(topsHtml) {
             if (response.results[i].title.length > 24){
                 dots = '...';
             }
-            convocatorias += '<div class="track_listen"><label style="width: 200px; padding-left: 5px;">' + (i + 1) + '. ' + response.results[i].title.substring(0, 22) + dots + '</label><label></label></div>';
+            convocatorias += '<div class="track_listen"><label style="width: 200px; padding-left: 5px;">' + (i + 1) + '. ' + response.results[i].title.substring(0, 22) + dots + '</label><label> - Fecha Vencimiento: ' + response.results[i].dateEnd + '</label></div>';
         }
         topsHtml += convocatorias + '</div>';
 
@@ -79,7 +79,7 @@ function getTopMeConvocatories(topsHtml) {
     });
 };
 
-function audiosUpload() {
+function listCategoriesForAudiosUpload() {
     GET('/api/categories', function (response) {
         var listCategoriesHtml = '';
 
