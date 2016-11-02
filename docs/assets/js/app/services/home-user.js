@@ -4,7 +4,7 @@ function setTopsForUser() {
 };
 
 function getTopMeRatingAudios() {
-    GET('/api/audios?ordering=-rating&page=1&page_size=5', function (response) {
+    GET('/api/audios?ordering=-rating&page=1&page_size=5&artists=' + USER.user.id, function (response) {
         var topsHtml = '';
         topsHtml += '<div class="album" ><header><h1><span class="icon icon-top"></span>Mis audios más votados</h1></header>';
 
@@ -24,7 +24,7 @@ function getTopMeRatingAudios() {
 }
 
 function getTopMeDownloadAudios(topsHtml) {
-    GET('/api/audios?ordering=-downloadsCount&page=1&page_size=5', function (response) {
+    GET('/api/audios?ordering=-downloadsCount&page=1&page_size=5&artists=' + USER.user.id, function (response) {
         topsHtml += '<div class="album" ><header><h1><span class="icon icon-top"></span>Mis audios más descargados</h1></header>';
 
         audiosHtml = '';
@@ -43,7 +43,7 @@ function getTopMeDownloadAudios(topsHtml) {
 }
 
 function getTopMePlayAudios(topsHtml) {
-    GET('/api/audios?ordering=-playCount&page=1&page_size=5', function (response) {
+    GET('/api/audios?ordering=-playCount&page=1&page_size=5&artists=' + USER.user.id, function (response) {
         topsHtml += '<div class="album" ><header><h1><span class="icon icon-top"></span>Mis audios más reproducidos</h1></header>';
 
         audiosHtml = '';
