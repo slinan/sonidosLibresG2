@@ -39,7 +39,7 @@ function getConvocationExp() {
 };
 
 function createConvocationPost(data) {
-    POST('/api/convocations/', data, function (response) {
+    POST('/api/convocations/', JSON.stringify(data), function (response) {
         alert('Se ha creado la convocatoria');
     });
 };
@@ -53,6 +53,7 @@ function createConvocation () {
     var type        = $('#convocType').val();
     var status      = $('#convocStatus').val();
     var dateLimit   = $('#convocDateupl').val();
+    var dateResults = $('#convocResults').val();
     var terms       = $('#convocTerms').val();
     var detail      = $('#convocDetails').val();
     convocation = {};
@@ -64,6 +65,7 @@ function createConvocation () {
     convocation.dateInit = dateInit;
     convocation.dateEnd = dateEnd;
     convocation.dateLimit = dateLimit;
+    convocation.dateResults = dateResults;
     convocation.status = status;
     convocation.agent = 3;
     console.log(convocation);
