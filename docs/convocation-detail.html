@@ -1,0 +1,107 @@
+        <section class="breadcrumb">
+             <div class="container">
+                  <div class="row">
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                          <h1>Convocatorias</h1>
+                          <h5>Lista y crea tus convocatorias</h5>
+                      </div>
+
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                          <ul>
+                              <li><a href="#" onclick="loader('home',{})">Inicio</a></li>
+                              <li><a href="#">Convocatorias</a></li>
+                          </ul>
+                      </div>
+                  </div>
+             </div>
+        </section>
+
+		<div class="clearfix"></div>
+
+		<!--=================================
+		Latest Events
+		=================================-->
+
+		<section id="updates">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-3 col-sm-3">
+						<h1>Upcoming events</h1>
+                        <div class="soonEndConvocation" id="soonEndConvocation"></div>
+						<!--\\event-->
+					</div>
+					<!--latest events-->
+
+                    <div class="col-xs-12 col-sm-9">
+                        <h1>Detalle Convocatoria</h1>
+                            <div class="form-group">
+                                <h5>Nombre Convocatoria</h5>
+                                <div id="convocName"></div>
+                                <div class="form-group">
+                                    <h5>Tipo de Convocatoria</h5>
+                                    <div id="convocType"></div>
+                                </div>
+                                <div class="form-group">
+                                    <h5>Términos y Condiciones</h5>
+                                    <a href="" id="convocTerms"></a>
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="form-group">
+                                    <h5>Fecha de Inicio</h5>
+                                    <div id="convocDateini"></div>
+                                </div>
+                                <div class="form-group">
+                                    <h5>Fecha límite subir audios</h5>
+                                    <div id="convocDateupl"></div>
+                                </div>
+                                <div class="form-group">
+                                    <h5>Fecha Final</h5>
+                                    <div id="convocDateend"></div>
+                                </div>
+                                <div class="form-group">
+                                    <h5>Entrega de Resultados</h5>
+                                    <div id="convocResults"></div>
+                                </div>
+                                <div class="form-group">
+                                    <h5>Estado</h5>
+                                    <div id="convocStatus"></div>
+                                </div>
+                                <h5>Detalle de la convocatoria</h5>
+                                <div id="convocDetails"></div>
+                            </div>
+                        </form>
+					    <h1>Obras</h1>
+                        <div class="track">
+                            <ul class="list-unstyled">
+                                <li class="track-head clearfix">
+                                    <div class="track_title">Título</div>
+                                    <div class="track_listen">Escuchar</div>
+                                    <div class="track_download_count">Descargas</div>
+                                    <div class="track_plays_count">Reproducciones</div>
+                                    <div class="track_popularity">Votaciones</div>
+                                    <div class="track_buy"></div>
+                                </li>
+                                <div style="padding:0;" id="audiosList">
+                                </div>
+						    </ul>
+					    </div><!--track-->
+                        <div class="clearfix">
+                            <div class="header">
+                                <h4 class="title">Añadir un audio</h4>
+                            </div>
+                            <div class="body">
+                                <h5>Seleccione el audio que desee añadir a esta convocatoria.
+                                </h5>
+                                <p>
+                                    <select id="audiosListSelect"></select>
+                                </p>
+
+                                <p>
+                                    <button onclick="associateAudioAlbum()"> Guardar</button>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+				</div><!--row-->
+			</div><!--container-->
+		</section>

@@ -26,6 +26,11 @@ function loader(page, param) {
                 initConvocations();
             } );
             break;
+        case 'convocation-detail':
+            $( "#loadContent" ).load( "convocation-detail.html", function() {
+                initConvocationDetail();
+            } );
+            break;
         case 'register':
             $( "#loadContent" ).load( "register.html", function() {
 

@@ -11,7 +11,7 @@ function getConvocations() {
         convocationsHtml = '';
         for (var i = 0; i < convocations.length; i++) {
             convocationsHtml += '<li class="clearfix">'+
-                '<div style="width: 160px; word-wrap: break-word;"><a href="'+convocations[i].id+'"> '+convocations[i].title+'</a></div>'+
+                '<div style="width: 160px; word-wrap: break-word;"><a href="#" onclick="loader(\'convocation-detail\', {idConvocation:' + convocations[i].id + '})"> '+convocations[i].title+'</a></div>'+
                 '<div style="min-width: 160px;">'+convocations[i].dateInit+'</div>'+
                 '<div style="min-width: 160px;">'+convocations[i].dateEnd+'</div>'+
                 '<div style="min-width: 160px;">'+convocations[i].status+'</div>'+
@@ -70,6 +70,4 @@ function createConvocation () {
     convocation.agent = 3;
     console.log(convocation);
     createConvocationPost(convocation);
-    //$('#modalCreateAlbum').modal('hide');
-
 }
