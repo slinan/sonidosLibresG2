@@ -1,0 +1,104 @@
+        <section class="breadcrumb">
+             <div class="container">
+                  <div class="row">
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                          <h1>Convocatorias</h1>
+                          <h5>Lista y crea tus convocatorias</h5>
+                      </div>
+
+                      <div class="col-lg-6 col-md-6 col-sm-6">
+                          <ul>
+                              <li><a href="#" onclick="loader('home',{})">Inicio</a></li>
+                              <li><a href="#">Convocatorias</a></li>
+                          </ul>
+                      </div>
+                  </div>
+             </div>
+        </section>
+
+		<div class="clearfix"></div>
+
+		<!--=================================
+		Latest Events
+		=================================-->
+
+		<section id="updates">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-3 col-sm-3">
+						<h1>Upcoming events</h1>
+                        <div class="soonEndConvocation" id="soonEndConvocation"></div>
+						<!--\\event-->
+					</div>
+					<!--latest events-->
+
+                    <div class="col-xs-12 col-sm-9">
+                        <h1>Crear Convocatoria</h1>
+                        <div style="padding:0;" id="editConvocation"></div>
+                        <form action="javascript:;" onsubmit="createConvocation(this)" class="form-inline"
+                      novalidate="" id="convocForm">
+                            <div class="form-group">
+                                <h5>Nombre Convocatoria</h5>
+                                <input class="form-control" type="text" name="nombre" id="convocName">
+                                <div class="form-group">
+                                    <h5>Tipo de Convocatoria</h5>
+                                    <select class="form-control" id="convocType">
+                                        <option value="PUB">Convocatoria Pública</option>
+                                        <option value="PRI">Convocatoria Privada</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <h5>Subir Términos y Condiciones</h5>
+                                    <input name="terms" type="file" class="form-control" id="convocTerms">
+                                </div>
+                                <div class="clearfix"></div>
+                                <div class="form-group">
+                                    <h5>Fecha de Inicio</h5>
+                                    <input name="dateini" class="form-control" type="datetime" id="convocDateini">
+                                </div>
+                                <div class="form-group">
+                                <h5>Fecha límite subir audios</h5>
+                                <input name="dateupl" class="form-control" type="datetime" id="convocDateupl">
+                                </div>
+                                <div class="form-group">
+                                    <h5>Fecha Final</h5>
+                                    <input name="dateend" class="form-control" type="datetime" id="convocDateend">
+                                </div>
+                                <div class="form-group">
+                                <h5>Fecha de Resultados</h5>
+                                <input name="dateresults" class="form-control" type="datetime" id="convocResults">
+                                </div>
+                                <div class="form-group">
+                                    <h5>Estado</h5>
+                                    <select name="status" class="form-control" id="convocStatus">
+                                        <option value="P">Publicada</option>
+                                        <option value="U">Sin Publicar</option>
+                                        <option value="V">En Votación</option>
+                                        <option value="C">Cerrada</option>
+                                    </select>
+                                </div>
+                                <h5>Detalle de la convocatoria</h5>
+                                <textarea class="form-control" id="convocDetails"></textarea>
+                                &nbsp;
+                                <button class="btn form-control" name="submit" type="submit">Crear</button>
+
+                            </div>
+                        </form>
+					    <h1>Convocatorias</h1>
+                        <div class="track">
+                            <ul class="list-unstyled">
+                                <li class="track-head clearfix">
+                                    <div style="min-width: 160px" class="track_title">Nombre</div>
+                                    <div style="min-width: 160px" class="track_title">Fecha de Inicio</div>
+                                     <div style="min-width: 160px" class="track_title">Fecha Final </div>
+                                    <div style="min-width: 160px" class="track_title">Estado</div>
+                                    <div style="min-width: 160px" class="track_title">Ganador</div>
+                                </li>
+                                <div style="padding:0;" id="listConvocations">
+                                </div>
+						    </ul>
+					    </div><!--track-->
+                    </div>
+				</div><!--row-->
+			</div><!--container-->
+		</section>

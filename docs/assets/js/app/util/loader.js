@@ -31,6 +31,11 @@ function loader(page, param) {
                 initConvocationDetail();
             } );
             break;
+        case 'convocations-agent':
+            $( "#loadContent" ).load( "convocations-agent.html", function() {
+                initConvocationsAgent();
+            } );
+            break;
         case 'register':
             $( "#loadContent" ).load( "register.html", function() {
 

@@ -3,11 +3,14 @@ function initConvocations() {
     getConvocations();
     getConvocationExp();
 };
+function initConvocationsAgent() {
+    $( "#alreadyAddedPlayListWarning" ).load( "alreadyAddedPlayListWarning.html" );
+    getConvocationsAgent();
+};
 
 function getConvocations() {
     GET('/api/convocations/', function (response) {
         convocations = response.results
-        console.log(response);
         convocationsHtml = '';
         for (var i = 0; i < convocations.length; i++) {
             convocationsHtml += '<li class="clearfix">'+
@@ -22,10 +25,27 @@ function getConvocations() {
     });
 };
 
+function getConvocationsAgent() {
+    GET('/api/convocations/', function (response) {
+        convocations = response.results
+        convocationsHtml = '';
+        for (var i = 0; i < convocations.length; i++) {
+            convocationsHtml += '<li class="clearfix">'+
+                '<div style="width: 160px; word-wrap: break-word;"><a href="#" onclick="loader(\'convocation-edit\', {idConvocation:' + convocations[i].id + '}) "> '+convocations[i].title+'</a></div>'+
+                '<div style="min-width: 160px;">'+convocations[i].dateInit+'</div>'+
+                '<div style="min-width: 160px;">'+convocations[i].dateEnd+'</div>'+
+                '<div style="min-width: 160px;">'+convocations[i].status+'</div>'+
+                '<div style="min-width: 160px;">'+convocations[i].winner+'</div>'+
+            '</li>'
+        }
+        $('#listConvocations').html(convocationsHtml);
+    });
+};
+
+
 function getConvocationExp() {
     GET('/api/convocationExpired/', function (response) {
         convocations = response
-        console.log(convocations);
         soonEndHtml = '';
         for (var i = 0; i < convocations.length; i++) {
             soonEndHtml += '<div class="event-feed">'+
@@ -68,6 +88,6 @@ function createConvocation () {
     convocation.dateResults = dateResults;
     convocation.status = status;
     convocation.agent = 3;
-    console.log(convocation);
+    //console.log(convocation);
     createConvocationPost(convocation);
 }

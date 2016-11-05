@@ -1,8 +1,10 @@
 function initConvocationDetail() {
     $( "#alreadyAddedPlayListWarning" ).load( "alreadyAddedPlayListWarning.html" );
-
     setConvocationInfo();
+    setAudiosConv();
 };
+
+
 
 
 function setConvocationInfo() {
@@ -17,18 +19,22 @@ function setConvocationInfo() {
         $('#convocResults').html(response.dateresults);
         $('#convocTerms').html(response.terms);
         $('#convocDetails').html(response.detail);
-        console.log(response);
+
         setConvocationAudiosList(idConvocation);
     });
 };
 
 function setConvocationAudiosList(idConvocation) {
-    GET('/api/convocation=' + idConvocation + '', function(response) {
+    addAudioConvocation(idConvocation);
+    GET('/api/convocationAudios/' + idConvocation + '', function(response) {
         var audiosListHtml = '';
 
-        var audiosList = response.results;
+        var audiosList = response;
         for (var i=0; i < audiosList.length; i++) {
-            audiosListHtml += '<li class="clearfix"><div class="track_title">' + audiosList[i].title + '</div><div class="track_listen" style="display: inline-flex;"><span data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" data-audio-id="' + audiosList[i].id + '" title="Adicionar a la lista de reproducción"><i class="fa fa-play"></i></span><a target="_blank" title="Descargar" onclick="audioDownload(' + audiosList[i].id + ')" href="' + audiosList[i].audioDownload + '"><i class="fa fa-download"></i></a></div><div class="track_download_count">' + audiosList[i].downloadsCount + '</div><div class="track_plays_count">' + audiosList[i].playCount + '</div><div class="track_popularity"><ul title="' + audiosList[i].rating + ' de ' + audiosList[i].numOfRatings + ' votos">';
+            audiosListHtml += '<li class="clearfix">'+
+                '<div class="track_title">' + audiosList[i].title + '</div>'+
+                '<div class="track_listen" style="display: inline-flex;">'+
+                '<span data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" data-audio-id="' + audiosList[i].id + '" title="Adicionar a la lista convocatoria"><i class="fa fa-play"></i></span><a target="_blank" title="Descargar" onclick="audioDownload(' + audiosList[i].id + ')" href="' + audiosList[i].audioDownload + '"><i class="fa fa-download"></i></a></div><div class="track_download_count">' + audiosList[i].downloadsCount + '</div><div class="track_plays_count">' + audiosList[i].playCount + '</div><div class="track_popularity"><ul title="' + audiosList[i].rating + ' de ' + audiosList[i].numOfRatings + ' votos">';
 
             var rating = (Math.floor(audiosList[i].rating) * 2);
             audiosListHtml += getPositiveRating(rating) + getNegativeRating(rating);
@@ -43,15 +49,13 @@ function setConvocationAudiosList(idConvocation) {
 
 var currentConvocation = -1
 function addAudioConvocation(idConvocation) {
-    setAudios()
-    //$('#audioAlbumsModal').modal('show');
+    setAudiosConv()
     currentConvocation = idConvocation
 }
 
-function setAudios() {
+function setAudiosConv() {
     GET('/api/audios/', function (response) {
         items = response.results
-        console.log(response);
         $.each(items, function (i, item) {
             $('#audiosListSelect').append($('<option>', {
                 value: item.id,
@@ -61,13 +65,13 @@ function setAudios() {
     });
 }
 
-function associateAudioConvoc () {
-    idAudio = $('#audiosList').val();
+function associateAudioConvocation(idConvocation) {
+    idAudio = $('#audiosListSelect').val();
     idConvocation = currentConvocation;
-
     GET('/api/convocationAudio/' + idAudio + '/' + idConvocation, function (response) {
         alert('El audio se ha asociado a la convocatoria');
         currentConvocation = -1;
         //$('#audioAlbumsModal').modal('hide');
+        setConvocationInfo()
     });
 }
