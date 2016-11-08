@@ -28,18 +28,18 @@ function setConvocationAudiosList(idConvocation) {
     addAudioConvocation(idConvocation);
     GET('/api/convocationAudios/' + idConvocation + '', function(response) {
         var audiosListHtml = '';
-
+        var idConvoc = idConvocation;
+        var idArtist = 10;
         var audiosList = response;
         for (var i=0; i < audiosList.length; i++) {
             audiosListHtml += '<li class="clearfix">'+
                 '<div class="track_title">' + audiosList[i].title + '</div>'+
-                '<div class="track_listen" style="display: inline-flex;">'+
-                '<span data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" data-audio-id="' + audiosList[i].id + '" title="Adicionar a la lista convocatoria"><i class="fa fa-play"></i></span><a target="_blank" title="Descargar" onclick="audioDownload(' + audiosList[i].id + ')" href="' + audiosList[i].audioDownload + '"><i class="fa fa-download"></i></a></div><div class="track_download_count">' + audiosList[i].downloadsCount + '</div><div class="track_plays_count">' + audiosList[i].playCount + '</div><div class="track_popularity"><ul title="' + audiosList[i].rating + ' de ' + audiosList[i].numOfRatings + ' votos">';
+                '<div class="track_listen" style="display: inline-flex; width: 113px;">'+
+                '<span data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" data-audio-id="' + audiosList[i].id + '" title="Adicionar a la lista convocatoria"><i class="fa fa-play"></i></span><a target="_blank" title="Descargar" onclick="audioDownload(' + audiosList[i].id + ')" href="' + audiosList[i].audioDownload + '"><i class="fa fa-download"></i></a></div>'+
+                '<div class="track_download_count" style="width: 122px;">' + audiosList[i].downloadsCount + '</div>' +
+                '<div class="track_popularity"><a href="#" onclick="voteAudioConvocation('+idConvoc+', '+idArtist+');">Votar</a></div>'+
+                '<div class="track_popularity" style="width: 174px;">20</div></li>';
 
-            var rating = (Math.floor(audiosList[i].rating) * 2);
-            audiosListHtml += getPositiveRating(rating) + getNegativeRating(rating);
-
-            audiosListHtml += '</ul></div><div class="track_buy"><a data-target="#modal3" data-toggle="modal" id="comment" href="#modal3"><i class="fa fa-pencil-square-o"></i></a></div></li>';
         }
         $('#audiosList').html(audiosListHtml);
 
@@ -73,5 +73,12 @@ function associateAudioConvocation(idConvocation) {
         currentConvocation = -1;
         //$('#audioAlbumsModal').modal('hide');
         setConvocationInfo()
+    });
+}
+
+function voteAudioConvocation(idConvocation, idArtist){
+    //console.log(idConvocation, idArtist);
+    GET('/api/voting/' + idConvocation + '/' + idArtist, function (response) {
+        alert('UD ah votado por este Audio');
     });
 }
