@@ -18,6 +18,7 @@ function GET(uri, callbackResponse, callbackError) {
 }
 
 function POST(uri, data, callbackResponse, callbackError) {
+    data = parseData(data);
     $.ajax({
         type: 'POST',
         url: URL_HOME + uri,
@@ -38,6 +39,7 @@ function POST(uri, data, callbackResponse, callbackError) {
 };
 
 function PUT(uri, data, callbackResponse, callbackError){
+    data = parseData(data);
     $.ajax({
         type: 'PUT',
         url: URL_HOME + uri,
@@ -57,6 +59,13 @@ function PUT(uri, data, callbackResponse, callbackError){
     });
 };
 
+function parseData(data) {
+    if (data !== null && typeof data === 'object'){
+        data = JSON.stringify(data);
+    }
+
+    return data;
+}
 function getToken() {
     var token = {"Content-Type" : "application/json"};
     var user = localStorage.getItem('user');

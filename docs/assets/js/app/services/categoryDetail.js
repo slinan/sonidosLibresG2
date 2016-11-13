@@ -27,6 +27,8 @@ function setCategoryInfo() {
 
 function setCategoryAudiosList(idCategory) {
     GET('/api/audios?categories=' + idCategory + '&page=1&page_size=10', function (response) {
+        $('#totalAudios').html(response.count);
+
         var audiosListHtml = '<li class="track-head clearfix"><div class="track_title">Titulo</div><div class="track_listen">Escuchar</div><div class="track_download_count">Descargas</div><div class="track_plays_count">Reproducciones</div><div class="track_popularity">Popularidad</div><div class="track_buy">Comentar</div></li>';
 
         var audiosList = response.results;

@@ -1,16 +1,15 @@
 function userCreate(){
-    var nickname = $('#rNickname').val();
-    var birthdate = $('#rBirthdate').val();
-    var genere = $('#rGenere option:selected').val();
-    var description = $('#rDescription').val();
-
-
     var data = {
         username: $('#rEmail').val(),
         password: $('#rPassword').val(),
         email: $('#rEmail').val(),
         first_name: $('#rFirtsName').val(),
         last_name: $('#rLastName').val(),
+        image: $('#rImage').val(),
+        nickname: $('#rNickname').val(),
+        birthdate: $('#rBirthdate').val(),
+        genere: $('#rGenere option:selected').val(),
+        description: $('#rDescription').val(),
         groups: [3]
     }
 
@@ -19,7 +18,6 @@ function userCreate(){
             login(data.username, data.password);
         }
     });
-
 }
 
 function loadUserData(){
@@ -55,9 +53,7 @@ function userUpdate(){
     "user": null
     };
 
-
     PUT('/api/artists/' + USER.user.id, data, function (response) {
 
     });
-
 }

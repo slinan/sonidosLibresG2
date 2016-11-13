@@ -27,6 +27,21 @@ function getAlbums() {
     });
 };
 
+function getMenuTop5Albums() {
+    GET('/api/albums/', function (response) {
+        albums = response.results
+        albumsHtml = '';
+
+        for (var i = 0; i < albums.length; i++) {
+            albumsHtml += '<a href="#" onclick="loader(\'album-detail\', {idAlbum:' + albums[i].id + '})">' +
+                            '<img src="' + albums[i].image + '" alt="' + albums[i].title + '">' +
+                          '</a>';
+        }
+
+        $('#menuArtistTopAlbums').html(albumsHtml);
+    });
+};
+
 function createAlbumPost(data) {
     POST('/api/albums/', data, function (response) {
         alert('El álbum ha sido creado');

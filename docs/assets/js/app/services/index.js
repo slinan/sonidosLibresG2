@@ -12,7 +12,10 @@ function initHome() {
 
 function loadPage() {
     $( "#adminMenuUsers" ).html('');
-    $( "#navigationBar" ).load( "navigationBar.html" );
+    $( "#navigationBar" ).load( "navigationBar.html", function () {
+        loadTop5Artist();
+        getMenuTop5Albums();
+    } );
 
     $( "#footer" ).load( "footer.html" );
 
@@ -75,8 +78,7 @@ function setCategories() {
     });
 };
 
-function getUrlVars()
-{
+function getUrlVars(){
     var vars = [], hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
     for(var i = 0; i < hashes.length; i++)
@@ -90,8 +92,7 @@ function getUrlVars()
 
 function setInitialPlayList() {
     song = getUrlVars()['song'];
-    if(song)
-    {
+    if(song) {
         GET('/api/audios/'+song, function (response) {
             var playListHtml = '';
             var list = [];
@@ -106,9 +107,7 @@ function setInitialPlayList() {
             main();
         });
     }
-    else
-    {
-
+    else{
         GET('/api/audios?ordering=-uploadDate&page=1&page_size=5', function (response) {
             var playListHtml = '';
 

@@ -1,25 +1,28 @@
-function initAlbumDetail() {
+function initArtistDetail() {
     $( "#alreadyAddedPlayListWarning" ).load( "alreadyAddedPlayListWarning.html" );
 
-    setAlbumInfo();
+    setArtistDetail();
 };
 
-function setAlbumInfo() {
-    var idAlbum = globalParameters.idAlbum;
-    var description = 'Este es un ejemplo de la descripción del álbum';
+function setArtistDetail() {
+    GET('/api/artists/' + globalParameters.idArtist, function(response) {
+        $('#artistName').html(response.name);
+        $('#artistNickname').html( response.nickname);
+        $('#artistDescription').html( response.description);
+        $('#artistNameTec').html( response.name);
+        $('#artistAge').html( response.age);
+        $('#artistGenere').html( response.genere);
+        $('#artistImage').attr( "src", response.image);
+        $('#artistDescription').html(response.description);
 
-    GET('/api/albums/' + idAlbum, function(response) {
-        $('#albumName').html(response.title);
-        $('#albumImage').attr( "src", response.image);
-        $('#albumDescription').html(description);
-
-        setAlbumAudiosList(idAlbum);
+        setArtistAudiosList(globalParameters.idArtist);
     });
 };
 
-function setAlbumAudiosList(idAlbum) {
-    GET('/api/audios?albums=' + idAlbum + '', function(response) {
+function setArtistAudiosList(idArtist) {
+    GET('/api/audios?artists=' + idArtist, function(response) {
         $('#totalAudios').html(response.count);
+
         var audiosListHtml = '<li class="track-head clearfix"><div class="track_title">Titulo</div><div class="track_listen">Escuchar</div><div class="track_download_count">Descargas</div><div class="track_plays_count">Reproducciones</div><div class="track_popularity">Popularidad</div><div class="track_buy">Comentar</div></li>';
 
         var audiosList = response.results;
