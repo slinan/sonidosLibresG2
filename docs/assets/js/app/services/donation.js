@@ -6,7 +6,7 @@ function initDonation() {
 
 function getArtistDetail() {
     GET('/api/artists/' + globalParameters.idArtist, function(response) {
-        $('#artistName').html(response.name);        
+        $('#artistName').val(response.name);
     });
 };
 

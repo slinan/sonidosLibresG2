@@ -10,7 +10,7 @@ function userCreate(){
         birthday: $('#rBirthdate').val(),
         gender: $('#rGenere option:selected').val(),
         description: $('#rDescription').val(),
-        groups: [3]
+        account: $('#rAccount').val()
     };
 
     POST('/api/signUp/artist', JSON.stringify(data), function (response) {
@@ -32,6 +32,7 @@ function loadUserData(){
         $('#rGenere option:selected').val(response.gender);
         $('#rImage').val(response.image);
         $('#rDescription').val(response.description);
+        $('#rAccount').val(response.account);
     });
 }
 
@@ -47,7 +48,7 @@ function userUpdate(){
         birthday: $('#rBirthdate').val(),
         gender: $('#rGenere option:selected').val(),
         description: $('#rDescription').val(),
-        groups: [3]
+        account: $('#rAccount').val()
     }
 
     PUT('/api/artists/' + USER.user.id, data, function (response) {
