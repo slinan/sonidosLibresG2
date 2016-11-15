@@ -6,12 +6,27 @@ function initArtistDetail() {
 
 function setArtistDetail() {
     GET('/api/artists/' + globalParameters.idArtist, function(response) {
+        var birthday = new Date(response.birthday);
+        var hoy = new Date();
+        var age = parseInt((hoy -birthday)/365/24/60/60/1000);
+
+        var gender = 'Masculino';
+        if(response.gender == 'M'){
+            gender = 'Masculino';
+        }
+        else if(response.gender == 'F'){
+            gender = 'Femenino';
+        }
+        else{
+            gender = 'LGTB';
+        }
+
         $('#artistName').html(response.name);
         $('#artistNickname').html( response.nickname);
         $('#artistDescription').html( response.description);
         $('#artistNameTec').html( response.name);
-        $('#artistAge').html( response.age);
-        $('#artistGenere').html( response.genere);
+        $('#artistAge').html(age);
+        $('#artistGenere').html(gender);
         $('#artistImage').attr( "src", response.image);
         $('#artistDescription').html(response.description);
         $('#btnDonate').attr('onclick', 'loader("donation", {idArtist: ' + globalParameters.idArtist + '})');

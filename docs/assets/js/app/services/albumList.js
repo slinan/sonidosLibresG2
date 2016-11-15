@@ -28,7 +28,7 @@ function getAlbums() {
 };
 
 function getMenuTop5Albums() {
-    GET('/api/albums/', function (response) {
+    GET('/api/albums?page=1&page_size=4', function (response) {
         albums = response.results
         albumsHtml = '';
 
