@@ -56,6 +56,11 @@ function loader(page, param) {
                 initArtist();
             } );
             break;
+        case 'donation':
+            $( "#loadContent" ).load( "donation.html", function() {
+                initDonation();
+            } );
+            break;
         default:
             $( "#loadContent" ).load( "home.html", function() {
                 initHome();

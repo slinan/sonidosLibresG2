@@ -1,0 +1,86 @@
+<section id="contact">
+    <div class="container">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <h1>Donación</h1>
+            <h5>Artistas</h5>
+        </div>
+      <div class="row">
+          <div class="col-lg-9 col-md-9 col-sm-9">
+              <div id="donateform">
+                  <div class="row">
+                      <div class="col-lg-5 col-md-5 col-sm-5">
+                          <h5>Artista beneficiario:</h5>
+                          <input type="text" name="artistName" id="artistName" readonly/>
+                      </div>
+                      <div class="col-lg-5 col-md-5 col-sm-5">
+                          <h5>Monto:</h5>
+                           <input type="number" name="amount" id="amount" placeholder="$"/>
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-5 col-md-5 col-sm-5">
+                          <h5>Franquicia:</h5>
+                           <select id="franchise" class="input-list" name="franchise">
+                               <option value="visa" selected>Visa</option>
+                               <option value="mastercard">MasterCard</option>
+                               <option value="diners">Diners</option>
+                           </select>
+                      </div>
+                      <div class="col-lg-5 col-md-5 col-sm-5">
+                          <h5>Número tarjeta crédito:</h5>
+                          <input type="number" name="creditCard" id="creditCard" />
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-5 col-md-5 col-sm-5">
+                          <h5>Fecha vencimiento:</h5>
+                           <input type="text" name="creditCardExpirationDate" id="creditCardExpirationDate" placeholder="mm/yy"/>
+                      </div>
+                      <div class="col-lg-5 col-md-5 col-sm-5">
+                          <h5>Código verificación (CVS):</h5>
+                           <input type="number" name="creditCardCvs" id="creditCardCvs" />
+                      </div>
+                  </div>
+                  <div class="row">
+                      <div class="col-lg-12 col-md-12 col-sm-12">
+                          <h5>Nombre propietario de la tarjeta:</h5>
+                          <input type="text" name="creditCardOwnerName" id="creditCardOwnerName" />
+                      </div>
+                  </div>
+                  <div class="row" style="padding-top: 20px; padding-bottom: 20px;">
+                      <div class="col-lg-5 col-md-5 col-sm-5">
+                          <button id="dBtnCancel" type="submit" onclick="loader('artist')" class="btn">Cancelar</button>
+                      </div>
+                      <div class="col-lg-5 col-md-5 col-sm-5">
+                          <button id="dBtnDonate" type="submit" onclick="donate()" class="btn">Donar</button>
+                      </div>
+                  </div>
+              </div>
+              <div id="donateResponse">
+                    <div class="artist-tracks">
+                         <h1>¡Donación exitosa!</h1>
+                         <div class="track clearfix">
+                              <div class="track_title">Código referencia bancario</div>
+                              <div id="resCodRef" class="track_release"></div>
+                          </div>
+
+                         <div class="track clearfix">
+                              <div class="track_title">Artista beneficiario</div>
+                              <div id="resArtistName" class="track_release"></div>
+                         </div>
+
+                         <div class="track clearfix">
+                              <div class="track_title">Monto</div>
+                              <div id="resAmount" class="track_release"></div>
+                         </div>
+
+                         <div class="track clearfix">
+                              <div class="track_buy"><a id="btnTerminar" href="#" onclick="loader('artist', {})"><i class="fa fa-money"></i>Terminar</a></div>
+                         </div>
+                    </div>
+              </div>
+              <div id="valid-issue" style="display:none;"> Por favor ingrese información válida</div>
+          </div>
+      </div><!--row-->
+    </div><!--//container-->
+    </section>

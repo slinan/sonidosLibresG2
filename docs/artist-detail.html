@@ -8,6 +8,7 @@
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <ul>
                     <li><a href="#" onclick="loader('home',{})">Inicio</a></li>
+                    <li><a href="#" onclick="loader('artist',{})">Artistas</a></li>
                     <li><a href="#">Artista</a></li>
 
                 </ul>
@@ -41,7 +42,7 @@
                         <h4 id="artistNickname"></h4>
                         <div id="artistDescription" class="artist-detail-content"></div>
                         <div class="artist-tracks">
-                              <h1>Ficha técnica</h1>
+                             <h1>Ficha técnica</h1>
                              <div class="track clearfix">
                                   <div class="track_title">Nombre completo</div>
                                   <div id="artistNameTec" class="track_release"></div>
@@ -50,19 +51,18 @@
                              <div class="track clearfix">
                                   <div class="track_title">Edad</div>
                                   <div id="artistAge" class="track_release"></div>
-                              </div>
+                             </div>
 
-                              <div class="track clearfix">
+                             <div class="track clearfix">
                                   <div class="track_title">Genero</div>
                                   <div id="artistGenere" class="track_release"></div>
-                              </div>
+                             </div>
 
-                              <div class="track clearfix">
+                             <div class="track clearfix">
                                   <div class="track_title">¿Tegusta este artista?</div>
-                                  <div class="track_buy"><a href="#"><i class="fa fa-money"></i>Dona para apoyarlo</a></div>
-                              </div>
-
-                          </div>
+                                  <div class="track_buy"><a id="btnDonate" href="#"><i class="fa fa-money"></i>Dona para apoyarlo</a></div>
+                             </div>
+                        </div>
                     </div>
 
                     <div class="album-tracks">
@@ -76,6 +76,8 @@
                             </ul>
                         </div>
                         <div class="clearfix"></div>
+                        <div id="pagination" class="news-feed-btn"></div>
+                        <br>
                     </div>
                 </div>
             </div>

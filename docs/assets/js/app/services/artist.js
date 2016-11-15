@@ -1,12 +1,12 @@
 function initArtist(){
-    loadAllArtist();
+    loadAllArtist(1, 10);
 }
 
 function loadTop5Artist() {
     GET('/api/topRandomArtists/5', function (response) {
         if (response.length > 0) {
-            $('#menuArtisFeaturedName').html(response[0].name);
-            $('#menuArtisFeaturedName').attr('onclick', 'loader(\"artist-detail\", {idArtist:"' + response[0].id + '"})');
+            $('#menuArtistFeaturedName').html(response[0].name);
+            $('#menuArtistFeaturedName').attr('onclick', 'loader(\"artist-detail\", {idArtist:"' + response[0].id + '"})');
             $('#menuArtistFeaturedDescription').html(response[0].description);
             $('#menuArtistFeaturedImage').attr('src', response[0].image);
 
@@ -20,8 +20,8 @@ function loadTop5Artist() {
     });
 }
 
-function loadAllArtist() {
-    GET('/api/artists?page=1&page_size=10', function (response) {
+function loadAllArtist(page, pageSize) {
+    GET('/api/artists?page=' + page + '&page_size=' + pageSize, function (response) {
         if (response.count > 0) {
 
             var artistList = '';
@@ -35,6 +35,8 @@ function loadAllArtist() {
             }
 
             $('#artistList').html(artistList);
+
+            createPagination(page, pageSize, response.count, 'loadAllArtist');
         }
     });
 }

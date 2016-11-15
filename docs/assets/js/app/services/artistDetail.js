@@ -14,13 +14,14 @@ function setArtistDetail() {
         $('#artistGenere').html( response.genere);
         $('#artistImage').attr( "src", response.image);
         $('#artistDescription').html(response.description);
+        $('#btnDonate').attr('onclick', 'loader("donation", {idArtist: ' + globalParameters.idArtist + '})');
 
-        setArtistAudiosList(globalParameters.idArtist);
+        setArtistAudiosList(globalParameters.idArtist, 1, 10);
     });
 };
 
-function setArtistAudiosList(idArtist) {
-    GET('/api/audios?artists=' + idArtist, function(response) {
+function setArtistAudiosList(idArtist, page, pageSize) {
+    GET('/api/audios?artists=' + idArtist + '&page=' + page + '&page_size=' + pageSize, function(response) {
         $('#totalAudios').html(response.count);
 
         var audiosListHtml = '<li class="track-head clearfix"><div class="track_title">Titulo</div><div class="track_listen">Escuchar</div><div class="track_download_count">Descargas</div><div class="track_plays_count">Reproducciones</div><div class="track_popularity">Popularidad</div><div class="track_buy">Comentar</div></li>';
@@ -35,6 +36,8 @@ function setArtistAudiosList(idArtist) {
             audiosListHtml += '</ul></div><div class="track_buy"><a data-target="#modal3" data-toggle="modal" id="comment" href="#modal3"><i class="fa fa-pencil-square-o"></i></a></div></li>';
         }
         $('#audiosList').html(audiosListHtml);
+
+        createPagination(page, pageSize, response.count, 'setArtistAudiosList', idArtist + '');
 
         main();
     });
