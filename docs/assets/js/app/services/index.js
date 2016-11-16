@@ -12,7 +12,10 @@ function initHome() {
 
 function loadPage() {
     $( "#adminMenuUsers" ).html('');
-    $( "#navigationBar" ).load( "navigationBar.html" );
+    $( "#navigationBar" ).load( "navigationBar.html", function () {
+        loadTop5Artist();
+        getMenuTop5Albums();
+    } );
 
     $( "#footer" ).load( "footer.html" );
 
@@ -64,7 +67,16 @@ function setCategories() {
                 if (response[i].audios[j].title.length > 24){
                     dots = '...';
                 }
-                audiosHtml += '<div class="track_listen"><label style="width: 200px; padding-left: 5px;">' + (cont++) + '. ' + response[i].audios[j].title.substring(0, 22) + dots + '</label><span data-title="' + response[i].audios[j].title + '" data-artist="' + response[i].audios[j].title + '" data-mp3="' + response[i].audios[j].audioPlay + '" data-download="' + response[i].audios[j].audioDownload + '" data-audio-id="' + response[i].audios[j].id + '" title="Adicionar a la lista de reproducción"><i class="fa fa-play"></i></span><a target="_blank" title="Descargar" onclick="audioDownload(' + response[i].audios[j].id + ')" href="' + response[i].audios[j].audioDownload + '"><i class="fa fa-download"></i></a></div>';
+                audiosHtml += '<div class="track_listen">' +
+                    '<label style="width: 200px; padding-left: 5px;"><a href="#" title="Ir a la página del artista" onclick="loader(\'artist-detail\', {idArtist: ' + response[i].audios[j].artists[0].id + '})">' + (cont++) + '. ' + response[i].audios[j].title.substring(0, 22) + dots + '</a></label>' +
+                    '<span  data-title="' + response[i].audios[j].title +
+                            '" data-artist="' + response[i].audios[j].title +
+                            '" data-mp3="' + response[i].audios[j].audioPlay +
+                            '" data-download="' + response[i].audios[j].audioDownload +
+                            '" data-audio-id="' + response[i].audios[j].id +
+                            '" title="Adicionar a la lista de reproducción">' +
+                            '<i class="fa fa-play"></i></span>' +
+                    '<a target="_blank" title="Descargar" onclick="audioDownload(' + response[i].audios[j].id + ')" href="' + response[i].audios[j].audioDownload + '"><i class="fa fa-download"></i></a></div>';
             }
 
             categoriesHtml += audiosHtml + '</div>';
@@ -75,8 +87,7 @@ function setCategories() {
     });
 };
 
-function getUrlVars()
-{
+function getUrlVars(){
     var vars = [], hash;
     var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
     for(var i = 0; i < hashes.length; i++)
@@ -90,8 +101,7 @@ function getUrlVars()
 
 function setInitialPlayList() {
     song = getUrlVars()['song'];
-    if(song)
-    {
+    if(song) {
         GET('/api/audios/'+song, function (response) {
             var playListHtml = '';
             var list = [];
@@ -106,9 +116,7 @@ function setInitialPlayList() {
             main();
         });
     }
-    else
-    {
-
+    else{
         GET('/api/audios?ordering=-uploadDate&page=1&page_size=5', function (response) {
             var playListHtml = '';
 

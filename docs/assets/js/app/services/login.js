@@ -20,7 +20,7 @@ function isAdminUser() {
 }
 
 function isArtistUser() {
-    if (USER && $.inArray(3, USER.user.groups) == 0){
+    if (USER && $.inArray(2, USER.user.groups) == 0){
         return true;
     }
 
@@ -28,7 +28,7 @@ function isArtistUser() {
 }
 
 function isAgentUser() {
-    if (USER && $.inArray(2, USER.user.groups) == 0){
+    if (USER && $.inArray(3, USER.user.groups) == 0){
         return true;
     }
 

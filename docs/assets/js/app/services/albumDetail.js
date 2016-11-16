@@ -11,7 +11,6 @@ function setAlbumInfo() {
     GET('/api/albums/' + idAlbum, function(response) {
         $('#albumName').html(response.title);
         $('#albumImage').attr( "src", response.image);
-        $('#totalAudios').html(10);
         $('#albumDescription').html(description);
 
         setAlbumAudiosList(idAlbum);
@@ -20,11 +19,26 @@ function setAlbumInfo() {
 
 function setAlbumAudiosList(idAlbum) {
     GET('/api/audios?albums=' + idAlbum + '', function(response) {
+        $('#totalAudios').html(response.count);
         var audiosListHtml = '<li class="track-head clearfix"><div class="track_title">Titulo</div><div class="track_listen">Escuchar</div><div class="track_download_count">Descargas</div><div class="track_plays_count">Reproducciones</div><div class="track_popularity">Popularidad</div><div class="track_buy">Comentar</div></li>';
 
         var audiosList = response.results;
         for (var i=0; i < audiosList.length; i++) {
-            audiosListHtml += '<li class="clearfix"><div class="track_title">' + audiosList[i].title + '</div><div class="track_listen" style="display: inline-flex;"><span data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" data-audio-id="' + audiosList[i].id + '" title="Adicionar a la lista de reproducción"><i class="fa fa-play"></i></span><a target="_blank" title="Descargar" onclick="audioDownload(' + audiosList[i].id + ')" href="' + audiosList[i].audioDownload + '"><i class="fa fa-download"></i></a></div><div class="track_download_count">' + audiosList[i].downloadsCount + '</div><div class="track_plays_count">' + audiosList[i].playCount + '</div><div class="track_popularity"><ul title="' + audiosList[i].rating + ' de ' + audiosList[i].numOfRatings + ' votos">';
+            audiosListHtml += '<li class="clearfix">' +
+                '<div class="track_title"><a href="#" title="Ir a la página del artista" onclick="loader(\'artist-detail\', {idArtist: ' + audiosList[i].artists[0] + '})">' + audiosList[i].title + '</a>></div>' +
+                '<div class="track_listen" style="display: inline-flex;">' +
+                '<span  data-title="' + audiosList[i].title +
+                        '" data-artist="' + audiosList[i].artists[0] +
+                        '" data-mp3="' + audiosList[i].audioPlay +
+                        '" data-audio-id="' + audiosList[i].id +
+                        '" title="Adicionar a la lista de reproducción">' +
+                        '<i class="fa fa-play"></i>' +
+                '</span>' +
+                '<a target="_blank" title="Descargar" onclick="audioDownload(' + audiosList[i].id + ')" href="' + audiosList[i].audioDownload + '"><i class="fa fa-download"></i></a>' +
+                '</div>' +
+                '<div class="track_download_count">' + audiosList[i].downloadsCount + '</div>' +
+                '<div class="track_plays_count">' + audiosList[i].playCount + '</div>' +
+                '<div class="track_popularity"><ul title="' + audiosList[i].rating + ' de ' + audiosList[i].numOfRatings + ' votos">';
 
             var rating = (Math.floor(audiosList[i].rating) * 2);
             audiosListHtml += getPositiveRating(rating) + getNegativeRating(rating);

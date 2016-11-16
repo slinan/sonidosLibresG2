@@ -46,6 +46,21 @@ function loader(page, param) {
 
             } );
             break;
+        case 'artist-detail':
+            $( "#loadContent" ).load( "artist-detail.html", function() {
+                initArtistDetail();
+            } );
+            break;
+        case 'artist':
+            $( "#loadContent" ).load( "artist.html", function() {
+                initArtist();
+            } );
+            break;
+        case 'donation':
+            $( "#loadContent" ).load( "donation.html", function() {
+                initDonation();
+            } );
+            break;
         default:
             $( "#loadContent" ).load( "home.html", function() {
                 initHome();

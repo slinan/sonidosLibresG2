@@ -1,63 +1,57 @@
 function userCreate(){
-    var nickname = $('#rNickname').val();
-    var birthdate = $('#rBirthdate').val();
-    var genere = $('#rGenere option:selected').val();
-    var description = $('#rDescription').val();
-
-
     var data = {
         username: $('#rEmail').val(),
         password: $('#rPassword').val(),
         email: $('#rEmail').val(),
         first_name: $('#rFirtsName').val(),
         last_name: $('#rLastName').val(),
-        groups: [3]
-    }
+        image: $('#rImage').val(),
+        nickname: $('#rNickname').val(),
+        birthday: $('#rBirthdate').val(),
+        gender: $('#rGenere option:selected').val(),
+        description: $('#rDescription').val(),
+        account: $('#rAccount').val()
+    };
 
     POST('/api/signUp/artist', JSON.stringify(data), function (response) {
         if (response){
             login(data.username, data.password);
         }
     });
-
 }
 
 function loadUserData(){
     GET('/api/artists/' + USER.user.id, function (response) {
         $('#rEmail').val(response.email);
-        $('#rNickname').val(response.email);
-        $('#rPassword').val(response.email);
+        $('#rNickname').val(response.nickname);
+        $('#rPassword').val(response.password);
         $('#rConfirmPassword').val(response.email);
-        $('#rFirtsName').val(response.email);
-        $('#rLastName').val(response.email);
-        $('#rBirthdate').val(response.email);
-        $('#rGenere option:selected').val(response.email);
-        $('#rImage').val(response.email);
-        $('#rDescription').val(response.email);
+        $('#rFirtsName').val(response.first_name);
+        $('#rLastName').val(response.last_name);
+        $('#rBirthdate').val(response.birthday);
+        $('#rGenere option:selected').val(response.gender);
+        $('#rImage').val(response.image);
+        $('#rDescription').val(response.description);
+        $('#rAccount').val(response.account);
     });
 }
 
 function userUpdate(){
-    var email = $('#rEmail').val();
-    var nickname = $('#rNickname').val();
-    var password = $('#rPassword').val();
-    var confirmPassword = $('#rConfirmPassword').val();
-    var firtsName = $('#rFirtsName').val();
-    var lastName = $('#rLastName').val();
-    var birthdate = $('#rBirthdate').val();
-    var genere = $('#rGenere option:selected').val();
-    var image = $('#rImage').val();
-    var description = $('#rDescription').val();
-
     var data = {
-    "name": "",
-    "image": "",
-    "user": null
-    };
-
+        username: $('#rEmail').val(),
+        password: $('#rPassword').val(),
+        email: $('#rEmail').val(),
+        first_name: $('#rFirtsName').val(),
+        last_name: $('#rLastName').val(),
+        image: $('#rImage').val(),
+        nickname: $('#rNickname').val(),
+        birthday: $('#rBirthdate').val(),
+        gender: $('#rGenere option:selected').val(),
+        description: $('#rDescription').val(),
+        account: $('#rAccount').val()
+    }
 
     PUT('/api/artists/' + USER.user.id, data, function (response) {
 
     });
-
 }

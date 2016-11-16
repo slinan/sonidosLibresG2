@@ -10,8 +10,7 @@ function userCreateAdmin(){
         password: $('#rPassword').val(),
         email: $('#rEmail').val(),
         first_name: $('#rFirtsName').val(),
-        last_name: $('#rLastName').val(),
-        groups: [idGrupo]
+        last_name: $('#rLastName').val()
     }
 
     var url = '';
