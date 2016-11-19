@@ -31,5 +31,12 @@ function userCreateAdmin(){
             $('#messageRegister').html('¡Error creando usuario!');
         }
     });
+}
 
+function vetoed(idAudio, page, pageSize) {
+    PUT('/api/audios/' + idAudio, {vetoed:true}, function (response) {
+        if (response){
+            setAdminVetarAudiosList(page, pageSize);
+        }
+    });
 }

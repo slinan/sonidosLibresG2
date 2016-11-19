@@ -1816,6 +1816,11 @@ a.next-album {
 	text-align: center;
 }
 
+.album-tracks .track .smallColum {
+	width: 9%;
+	text-align: center;
+}
+
 .album-tracks .track .track_listen span {
 	text-decoration: none;
 }

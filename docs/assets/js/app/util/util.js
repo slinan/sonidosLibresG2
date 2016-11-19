@@ -14,6 +14,7 @@ function getUrlParameter(sParam) {
 };
 
 function createPagination(page, pageSize, totalElements, functionName, functionParameters) {
+    var maxPage = 10;
     if (!functionParameters){
         functionParameters = '';
     }
@@ -21,29 +22,37 @@ function createPagination(page, pageSize, totalElements, functionName, functionP
         functionParameters += ', ';
     }
 
+    if (page < maxPage){
+        page = 1;
+    }
+
     var pagination = '<ul>' +
         '<li><a href="#" onclick="' + functionName + '(' + functionParameters + ((page - 1 <= 0) ? 1 : (page - 1) ) + ', ' + pageSize + ')"><b class="fa fa-angle-left"></b></a></li>';
 
     var finalPage = '';
     var startPage = 1;
-    var numPages = totalElements / pageSize;
+    var rawNumPage = totalElements / pageSize;
+    var numPages = rawNumPage > Math.round(rawNumPage) ? Math.round(rawNumPage) + 1 : Math.round(rawNumPage);
+
     if (numPages <= 0){
         numPages = 1;
     }
-    else if (numPages > 5){
+    else if (numPages > maxPage){
         finalPage = '<li><a href="#">...</a></li>' +
                 '<li><a href="#" onclick="' + functionName + '(' + functionParameters + numPages + ', ' + pageSize + ')">' + numPages + '</a></li>';
 
-        numPages = 5;
+        numPages = maxPage;
         startPage = page;
     }
+
     for (var i = startPage; i < startPage + numPages; i++) {
         pagination += '<li><a href="#" onclick="' + functionName + '(' + functionParameters + i + ', ' + pageSize + ')">' + i + '</a></li>';
     }
 
     pagination += finalPage;
-    pagination += '<li><a href="#" onclick="' + functionName + '(' + functionParameters + ((page + 1 > totalElements / pageSize) ? page : page + 1) + ', ' + pageSize + ')"><b class="fa fa-angle-right"></b></a></li>' +
+    pagination += '<li><a href="#" onclick="' + functionName + '(' + functionParameters + ((page + 1 > numPages) ? page : page + 1) + ', ' + pageSize + ')"><b class="fa fa-angle-right"></b></a></li>' +
             '</ul>';
 
-    $('#pagination').html(pagination);
+    $('#paginationUp').html(pagination);
+    $('#paginationBottom').html(pagination);
 };

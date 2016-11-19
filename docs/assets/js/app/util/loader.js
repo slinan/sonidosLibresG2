@@ -61,6 +61,11 @@ function loader(page, param) {
                 initDonation();
             } );
             break;
+        case 'admin-vetar':
+            $( "#loadContent" ).load( "admin-vetar.html", function() {
+                initAdminVetar();
+            } );
+            break;
         default:
             $( "#loadContent" ).load( "home.html", function() {
                 initHome();

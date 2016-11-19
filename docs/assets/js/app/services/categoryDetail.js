@@ -21,12 +21,12 @@ function setCategoryInfo() {
         }
         $('#relatedCategories').html(relatedCategoriesHtml);
 
-        setCategoryAudiosList(idCategory);
+        setCategoryAudiosList(idCategory, 1, 10);
     });
 };
 
-function setCategoryAudiosList(idCategory) {
-    GET('/api/audios?categories=' + idCategory + '&page=1&page_size=10', function (response) {
+function setCategoryAudiosList(idCategory, page, pageSize) {
+    GET('/api/audios?categories=' + idCategory + '&page=' + page + '&page_size=' + pageSize, function (response) {
         $('#totalAudios').html(response.count);
 
         var audiosListHtml = '<li class="track-head clearfix"><div class="track_title">Titulo</div><div class="track_listen">Escuchar</div><div class="track_download_count">Descargas</div><div class="track_plays_count">Reproducciones</div><div class="track_popularity">Popularidad</div><div class="track_buy">Comentar</div></li>';
@@ -55,6 +55,8 @@ function setCategoryAudiosList(idCategory) {
             audiosListHtml += '</ul></div><div class="track_buy"><a data-target="#modal3" data-toggle="modal" id="comment" href="#modal3"><i class="fa fa-pencil-square-o"></i></a></div></li>';
         }
         $('#audiosList').html(audiosListHtml);
+
+        createPagination(page, pageSize, response.count, 'setCategoryAudiosList', idCategory + '');
 
         main();
     });

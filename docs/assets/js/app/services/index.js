@@ -43,6 +43,7 @@ function loadPage() {
 
             if (isAdminUser()){
                 $( "#adminMenuUsers" ).load('admin-menu-users.html');
+                $( "#adminMenuAudios" ).load('admin-menu-audios.html');
             }
         }
         else{
