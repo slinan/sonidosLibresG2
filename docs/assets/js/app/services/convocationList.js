@@ -3,6 +3,7 @@ function initConvocations() {
     getConvocations();
     getConvocationExp();
 };
+
 function initConvocationsAgent() {
     $( "#alreadyAddedPlayListWarning" ).load( "alreadyAddedPlayListWarning.html" );
     getConvocationsAgent();
@@ -31,7 +32,7 @@ function getConvocationsAgent() {
         convocationsHtml = '';
         for (var i = 0; i < convocations.length; i++) {
             convocationsHtml += '<li class="clearfix">'+
-                '<div style="width: 160px; word-wrap: break-word;"><a href="#" onclick="loader(\'convocation-edit\', {idConvocation:' + convocations[i].id + '}) "> '+convocations[i].title+'</a></div>'+
+                '<div style="width: 160px; word-wrap: break-word;"><a href="#" onclick="editConvoc('+ convocations[i].id +')"> '+convocations[i].title+'</a></div>'+
                 '<div style="min-width: 160px;">'+convocations[i].dateInit+'</div>'+
                 '<div style="min-width: 160px;">'+convocations[i].dateEnd+'</div>'+
                 '<div style="min-width: 160px;">'+convocations[i].status+'</div>'+
@@ -41,7 +42,6 @@ function getConvocationsAgent() {
         $('#listConvocations').html(convocationsHtml);
     });
 };
-
 
 function getConvocationExp() {
     GET('/api/convocationExpired/', function (response) {
@@ -61,9 +61,10 @@ function getConvocationExp() {
 function createConvocationPost(data) {
     POST('/api/convocations/', JSON.stringify(data), function (response) {
         alert('Se ha creado la convocatoria');
+        getConvocationsAgent();
+        $('#convocForm').trigger("reset");
     });
 };
-
 
 function createConvocation () {
     var name        = $('#convocName').val();
@@ -82,12 +83,12 @@ function createConvocation () {
     convocation.detail = detail;
     convocation.typeConvocation = type;
     convocation.terms = terms;
-    convocation.dateInit = dateInit;
-    convocation.dateEnd = dateEnd;
-    convocation.dateLimit = dateLimit;
-    convocation.dateResults = dateResults;
+    convocation.dateInit = dateInit+'T00:00:00.000000Z';
+    convocation.dateEnd = dateEnd+'T00:00:00.000000Z';
+    convocation.dateLimit = dateLimit+'T00:00:00.000000Z';
+    convocation.dateResults = dateResults+'T00:00:00.000000Z';
     convocation.status = status;
-    convocation.agent = 3;
-    //console.log(convocation);
+    convocation.agent = 7;
+    console.log(convocation);
     createConvocationPost(convocation);
 }

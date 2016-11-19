@@ -124,9 +124,13 @@ FOOTER
 <script defer  src="assets/js/app/util/rating.js"></script>
 <script defer  src="assets/js/app/services/convocationList.js"></script>
 <script defer  src="assets/js/app/services/convocationDetail.js"></script>
+<<<<<<< HEAD
 <script defer  src="assets/js/app/services/convocationEdit.js"></script>
+=======
+<script defer  src="assets/js/app/services/artist.js"></script>
 <script defer  src="assets/js/app/services/artistDetail.js"></script>
 <script defer  src="assets/js/app/services/donation.js"></script>
+>>>>>>> origin/master
 <script defer  src="assets/js/app/util/facebook.js"></script>
 
 
