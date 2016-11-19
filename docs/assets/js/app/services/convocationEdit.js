@@ -86,6 +86,8 @@ function editConvoc(idConvocation) {
                 '<textarea class="form-control" id="convocDetails"></textarea>' +
                 '&nbsp;' +
                 '<button class="btn form-control" name="submit" type="submit">Editar</button>' +
+                '&nbsp;' +
+                '<button class="btn form-control" onclick = "getConvocationsAgent();">Cancelar</button>' +
             '</div>' +
         '</form>'
 
