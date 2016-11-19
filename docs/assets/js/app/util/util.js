@@ -56,3 +56,140 @@ function createPagination(page, pageSize, totalElements, functionName, functionP
     $('#paginationUp').html(pagination);
     $('#paginationBottom').html(pagination);
 };
+
+function search() {
+    var query = $('#searchQuery').val();
+
+    GET('/api/search/' + query, function (response) {
+        $( '#searchResults' ).show();
+
+        $( '#queryS' ).html(query);
+        $( '#totalAudiosS' ).html(response.audios.length);
+        $( '#totalArtistsS' ).html(response.artists.length);
+        $( '#totalAlbumsS' ).html(response.albums.length);
+        $( '#totalCategoriesS' ).html(response.categories.length);
+
+        $('#audiosListS').html(getAudiosListResults(response.audios));
+        $('#artistListS').html(getArtistListResults(response.artists));
+        main();
+
+    });
+}
+
+function getAudiosListResults(audiosList) {
+    var maxAudios = 5;
+    if (audiosList.length < 5){
+        maxAudios = audiosList.length;
+    }
+
+    var audiosListHtml = '<li class="track-head clearfix">' +
+                                 '<div class="track_title">Titulo</div>' +
+                                 '<div class="track_listen">Escuchar</div>' +
+                                 '<div class="track_download_count">Descargas</div>' +
+                                 '<div class="track_plays_count">Reproducciones</div>' +
+                                 '<div class="track_popularity">Popularidad</div>' +
+                                 '<div class="track_buy">Comentar</div>' +
+                             '</li>';
+
+    for (var i=0; i < maxAudios; i++) {
+        audiosListHtml += '<li class="clearfix">' +
+            '<div class="track_title"><a href="#" title="Ir a la página del artista" onclick="loader(\'artist-detail\', {idArtist: ' + audiosList[i].artists[0] + '})">' + audiosList[i].title + '</a></div>' +
+            '<div class="track_listen" style="display: inline-flex;">' +
+            '<span data-title="' + audiosList[i].title +
+                '" data-artist="' + audiosList[i].artists[0] +
+                '" data-mp3="' + audiosList[i].audioPlay +
+                '" data-audio-id="' + audiosList[i].id +
+                '" title="Adicionar a la lista de reproducción">' +
+                '<i class="fa fa-play"></i></span>' +
+            '<a target="_blank" title="Descargar" onclick="audioDownload(' + audiosList[i].id + ')" href="' + audiosList[i].audioDownload + '"><i class="fa fa-download"></i></a>' +
+            '</div>' +
+            '<div class="track_download_count">' + audiosList[i].downloadsCount + '</div>' +
+            '<div class="track_plays_count">' + audiosList[i].playCount + '</div>' +
+            '<div class="track_popularity">' +
+                '<ul title="' + audiosList[i].rating + ' de ' + audiosList[i].numOfRatings + ' votos">';
+
+        var rating = (Math.floor(audiosList[i].rating) * 2);
+        audiosListHtml += getPositiveRating(rating) + getNegativeRating(rating);
+
+        audiosListHtml += '</ul></div><div class="track_buy"><a data-target="#modal3" data-toggle="modal" id="comment" href="#modal3"><i class="fa fa-pencil-square-o"></i></a></div></li>';
+    }
+
+    return audiosListHtml;
+}
+
+function getArtistListResults(artistList) {
+    var maxArtist = 5;
+    if (artistList.length < 5){
+        maxArtist = artistList.length;
+    }
+
+    var artistListHtml = '<li class="track-head clearfix">' +
+                                 '<div class="track_title">Nombre</div>' +
+                                 '<div class="track_listen">Alias</div>' +
+                                 '<div class="track_download_count">Edad</div>' +
+                                 '<div class="track_plays_count">Género</div>' +
+                                 '<div class="track_popularity">Donar</div>' +
+                             '</li>';
+
+    for (var i=0; i < maxArtist; i++) {
+        artistListHtml += '<li class="clearfix">' +
+            '<div class="track_title"><a href="#" title="Ir a la página del artista" onclick="loader(\'artist-detail\', {idArtist: ' + artistList[i].id + '})">' + artistList[i].name + '</a></div>' +
+            '<div class="track_listen">' + artistList[i].nickname + '</div>' +
+            '<div class="track_download_count">' + calculateAge(artistList[i].birthday) + '</div>' +
+            '<div class="track_plays_count">' + getGender(artistList[i].gender) + '</div>' +
+            '<div class="track_popularity"><a href="#" onclick="loader(\'donation\', {idArtist: ' + artistList[i].id + '})"><i class="fa fa-dollar"></i></a></div>' +
+            '</li>';
+    }
+
+    return artistListHtml;
+}
+
+function getAlbumsListResults(albumsList) {
+    var maxAlbums = 5;
+    if (albumsList.length < 5){
+        maxAlbums = albumsList.length;
+    }
+
+    var albumsListHtml = '<li class="track-head clearfix">' +
+                                 '<div class="track_title">Titulo</div>' +
+                                 '<div class="track_listen">Categoria</div>' +
+                                 '<div class="track_download_count">Artista</div>' +
+                             '</li>';
+
+    for (var i=0; i < maxAlbums; i++) {
+        albumsListHtml += '<li class="clearfix">' +
+            '<div class="track_title">' + albumsList[i].title + '</div>' +
+            '<div class="track_listen">' + albumsList[i].categories[0] + '</div>' +
+            '<div class="track_title"><a href="#" title="Ir a la página del artista" onclick="loader(\'artist-detail\', {idArtist: ' + albumsList[i].artists[0] + '})">' + albumsList[i].artists[0].id + '</a></div>' +
+            '</li>';
+    }
+
+    return albumsListHtml;
+}
+
+function calculateAge(birthday) {
+    var birthday = new Date(birthday);
+    var hoy = new Date();
+    var age = parseInt((hoy -birthday)/365/24/60/60/1000);
+
+    return age;
+}
+
+function getGender(gender) {
+    var genderT = 'Masculino';
+    if(gender == 'M'){
+        genderT = 'Masculino';
+    }
+    else if(gender == 'F'){
+        genderT = 'Femenino';
+    }
+    else{
+        genderT = 'LGTB';
+    }
+
+    return genderT;
+}
+
+function searchClose() {
+    $( '#searchResults' ).hide();
+}

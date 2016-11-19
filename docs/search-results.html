@@ -1,0 +1,148 @@
+<section class="breadcrumb">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <h1>Resultado de búsqueda</h1>
+                <h4><a href="#" onclick="searchClose()"> Cerrar</a></h4>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="clearfix"></div>
+
+<section id="albums">
+    <div class="container">
+        <div class="row">
+            <div class="album-detail">
+
+                <!--=================================
+                PANEL IZQUIERDO CATEGORIA
+                =================================-->
+                <div class="album-purchase">
+                    <div class="col-lg-3 col-md-3 col-sm-3">
+                        <a href="#">Buscaste:<span id="queryS"></span></a>
+                        <a href="#">Total audios<span id="totalAudiosS"></span></a>
+                        <a href="#">Total artistas<span id="totalArtistsS"></span></a>
+                        <a href="#">Total álbumes<span id="totalAlbumsS"></span></a>
+                        <a href="#">Total categorias<span id="totalCategoriesS"></span></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-9 col-md-9 col-sm-9">
+                    <!--=================================
+                    LISTA DE AUDIOS
+                    =================================-->
+                    <div class="album-detail-content">
+                        <h3>Top 5 audios encontrados</h3>
+                    </div>
+
+                    <div class="album-tracks">
+                        <div id="alreadyAddedPlayListWarning"></div>
+                        <div class="track">
+                            <ul id="audiosListS">
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br>
+                    </div>
+
+                    <!--=================================
+                    LISTA DE ARTIST
+                    =================================-->
+                    <div class="album-detail-content">
+                        <h3>Top 5 artistas encontrados</h3>
+                    </div>
+
+                    <div class="album-tracks">
+                        <div id="alreadyAddedPlayListWarning"></div>
+                        <div class="track">
+                            <ul id="artistListS">
+                            </ul>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MODAL -->
+
+<div id="modal3" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Calificar audio</h4>
+            </div>
+            <div class="modal-body">
+                <h5>
+                    ¿Qué opinas de este audio?
+                </h5>
+                <textarea class="form-control" id="message-text"></textarea>
+                <p>   
+                <div>
+                    <div id="rateYo" style="margin: 10px auto"></div>
+                <select id="calificacionAudio">
+                    <option value="1">1 estrella</option>
+                    <option value="2">2 estrellas</option>
+                    <option value="3">3 estrellas</option>
+                    <option value="4">4 estrellas</option>
+                    <option value="5">5 estrellas</option>
+                </select>
+                </div>
+                </p>
+                <p>
+                    <button onclick="guardar()" data-dismiss="modal" > Guardar</button>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="submit-btn" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div id="modalCalificar" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Calificar audio</h4>
+            </div>
+            <div class="modal-body">
+                <h5>
+                    ¿Qué opinas de este audio?
+                </h5>
+                <p>   
+                <div>
+                    <div id="rateYo" style="margin: 10px auto"></div>
+                <select>
+                    <option value="1">1 estrella</option>
+                    <option value="2">2 estrellas</option>
+                    <option value="3">3 estrellas</option>
+                    <option value="4">4 estrellas</option>
+                    <option value="5">5 estrellas</option>
+                </select>
+                </div>
+                </p>
+                <p>
+                    <button onclick="guardar()" data-dismiss="modal" > Guardar</button>
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="submit-btn" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+

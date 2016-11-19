@@ -9,10 +9,10 @@
         <div class="nav_wrapper">
             <div class="nav_scroll">
                 <div class="nav-search">
-                    <form>
-                        <input type="text" placeholder="Buscar"/>
-                        <button type="submit"><i class="fa fa-search"></i></button>
-                    </form>
+                    <div>
+                        <input type="text" id="searchQuery" placeholder="Buscar"/>
+                        <button type="submit" onclick="search()"><i class="fa fa-search"></i></button>
+                    </div>
                 </div>
 
                 <ul class="nav navbar-nav">
@@ -83,7 +83,6 @@
                                    href="#modalCreateAlbum">Crear nuevo álbum</a></li>
                         </ul>
                     </li>
-                    <li><a href="contact.html">Contacto</a></li>
                 </ul>
             </div>
             <!--/.nav-collapse -->

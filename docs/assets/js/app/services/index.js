@@ -17,6 +17,9 @@ function loadPage() {
         getMenuTop8Albums();
     } );
 
+    $( '#searchResults' ).load('search-results.html');
+    $( '#searchResults' ).hide();
+
     $( "#footer" ).load( "footer.html" );
 
     $( "#loadContent" ).load( "home.html", function () {

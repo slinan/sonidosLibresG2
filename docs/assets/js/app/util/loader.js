@@ -1,4 +1,5 @@
 function loader(page, param) {
+    searchClose();
     globalParameters = param;
     switch (page){
         case 'home':

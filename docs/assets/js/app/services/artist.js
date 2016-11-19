@@ -24,8 +24,8 @@ function loadTop7Artist() {
             $('#menuArtistFeaturedName').attr('onclick', 'loader(\"artist-detail\", {idArtist:"' + response[0].id + '"})');
             $('#menuArtistFeaturedDescription').html(response[0].description);
             $('#menuArtistFeaturedImage').attr('src', response[0].image);
-            $('#menuArtistFeaturedAge').html('Edad: ' + age + ' años');
-            $('#menuArtistFeaturedGender').html('Género: ' + gender);
+            $('#menuArtistFeaturedAge').html('Edad: ' + calculateAge(response[0].birthday) + ' años');
+            $('#menuArtistFeaturedGender').html('Género: ' + getGender(response[0].gender));
             $('#menuArtistFeaturedDonate').attr('onclick', 'loader(\'donation\', {idArtist: ' + response[0].id + '})');
 
             var artistList= '';
