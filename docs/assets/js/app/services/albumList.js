@@ -27,7 +27,7 @@ function getAlbums() {
     });
 };
 
-function getMenuTop5Albums() {
+function getMenuTop8Albums() {
     GET('/api/topAlbums', function (response) {
         albums = response;
         albumsHtml = '';

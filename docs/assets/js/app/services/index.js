@@ -13,8 +13,8 @@ function initHome() {
 function loadPage() {
     $( "#adminMenuUsers" ).html('');
     $( "#navigationBar" ).load( "navigationBar.html", function () {
-        loadTop5Artist();
-        getMenuTop5Albums();
+        loadTop7Artist();
+        getMenuTop8Albums();
     } );
 
     $( "#footer" ).load( "footer.html" );

@@ -2,7 +2,7 @@ function initArtist(){
     loadAllArtist(1, 10);
 }
 
-function loadTop5Artist() {
+function loadTop7Artist() {
     GET('/api/topRandomArtists/7', function (response) {
         if (response.length > 0) {
             $('#menuArtistFeaturedName').html(response[0].name);
