@@ -5,10 +5,28 @@ function initArtist(){
 function loadTop7Artist() {
     GET('/api/topRandomArtists/7', function (response) {
         if (response.length > 0) {
+            var birthday = new Date(response[0].birthday);
+            var hoy = new Date();
+            var age = parseInt((hoy -birthday)/365/24/60/60/1000);
+
+            var gender = 'Masculino';
+            if(response[0].gender == 'M'){
+                gender = 'Masculino';
+            }
+            else if(response[0].gender == 'F'){
+                gender = 'Femenino';
+            }
+            else{
+                gender = 'LGTB';
+            }
+
             $('#menuArtistFeaturedName').html(response[0].name);
             $('#menuArtistFeaturedName').attr('onclick', 'loader(\"artist-detail\", {idArtist:"' + response[0].id + '"})');
             $('#menuArtistFeaturedDescription').html(response[0].description);
             $('#menuArtistFeaturedImage').attr('src', response[0].image);
+            $('#menuArtistFeaturedAge').html('Edad: ' + age + ' años');
+            $('#menuArtistFeaturedGender').html('Género: ' + gender);
+            $('#menuArtistFeaturedDonate').attr('onclick', 'loader(\'donation\', {idArtist: ' + response[0].id + '})');
 
             var artistList= '';
             for(var i = 1; i < response.length; i++){

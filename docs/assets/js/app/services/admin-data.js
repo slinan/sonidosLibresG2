@@ -32,11 +32,3 @@ function userCreateAdmin(){
         }
     });
 }
-
-function vetoed(idAudio, page, pageSize) {
-    PUT('/api/audios/' + idAudio, {vetoed:true}, function (response) {
-        if (response){
-            setAdminVetarAudiosList(page, pageSize);
-        }
-    });
-}

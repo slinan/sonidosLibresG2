@@ -37,7 +37,7 @@ function setAdminVetarAudiosList(page, pageSize) {
                 '<div class="smallColum">' + vetoed + '</div>' +
                 '<div class="smallColum">';
 
-                if (active == 'SI') {
+                if (vetoed == 'SI') {
                     audiosListHtml += '<a href="#" onclick="vetoed(' + audiosList[i].id + ', ' + page + ', ' + pageSize + ')">' +
                         '<i class="fa fa-crosshairs"></i>' +
                         '</a>';
@@ -50,5 +50,13 @@ function setAdminVetarAudiosList(page, pageSize) {
 
         createPagination(page, pageSize, response.count, 'setAdminVetarAudiosList');
         main();
+    });
+};
+
+function vetoed(idAudio, page, pageSize) {
+    GET('/api/vetar/' + idAudio, function (response) {
+        if (response){
+            setAdminVetarAudiosList(page, pageSize);
+        }
     });
 };
