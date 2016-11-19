@@ -71,6 +71,8 @@ function search() {
 
         $('#audiosListS').html(getAudiosListResults(response.audios));
         $('#artistListS').html(getArtistListResults(response.artists));
+        $('#albumsListS').html(getAlbumsListResults(response.albums));
+        $('#categoriesListS').html(getCategoriesListResults(response.categories));
         main();
 
     });
@@ -159,12 +161,33 @@ function getAlbumsListResults(albumsList) {
     for (var i=0; i < maxAlbums; i++) {
         albumsListHtml += '<li class="clearfix">' +
             '<div class="track_title">' + albumsList[i].title + '</div>' +
-            '<div class="track_listen">' + albumsList[i].categories[0] + '</div>' +
-            '<div class="track_title"><a href="#" title="Ir a la página del artista" onclick="loader(\'artist-detail\', {idArtist: ' + albumsList[i].artists[0] + '})">' + albumsList[i].artists[0].id + '</a></div>' +
+            '<div class="track_listen"><a href="#" title="Ir a la página de la categoría" onclick="loader(\'category-detail\', {idCategory: ' + albumsList[i].categories[0] + '})">' + albumsList[i].categories[0] + '</a></div>' +
+            '<div class="track_title"><a href="#" title="Ir a la página del artista" onclick="loader(\'artist-detail\', {idArtist: ' + albumsList[i].artists[0] + '})">' + albumsList[i].artists[0] + '</a></div>' +
             '</li>';
     }
 
     return albumsListHtml;
+}
+
+function getCategoriesListResults(categoriesList) {
+    var maxCategories = 5;
+    if (categoriesList.length < 5){
+        maxCategories = categoriesList.length;
+    }
+
+    var categoriesListHtml = '<li class="track-head clearfix">' +
+                                 '<div class="track_title">Nombre</div>' +
+                                 '<div class="track_listen">Descripción</div>' +
+                             '</li>';
+
+    for (var i=0; i < maxCategories; i++) {
+        categoriesListHtml += '<li class="clearfix">' +
+            '<div class="track_title"><a href="#" title="Ir a la página de la categoría" onclick="loader(\'category-detail\', {idCategory: ' + categoriesList[i].id + '})">' + categoriesList[i].name + '</a></div>' +
+            '<div class="track_title">' + categoriesList[i].description + '</div>' +
+            '</li>';
+    }
+
+    return categoriesListHtml;
 }
 
 function calculateAge(birthday) {
