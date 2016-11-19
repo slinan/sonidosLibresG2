@@ -1,9 +1,9 @@
 function putConvocationPost(data, idConvocation) {
     PUT('/api/convocations/'+ idConvocation, JSON.stringify(data), function (response) {
-        alert('Se ha creado la convocatoria');
+        alert('Se ha editado la convocatoria');
         getConvocationsAgent();
         $('#convocForm').show();
-        $('#convocEdit').destroy();
+        $('#convocEdit').hide();
     });
 };
 
@@ -32,13 +32,12 @@ function editConvocation () {
     convocation.dateResults = dateResults+'T00:00:00.000000Z';
     convocation.status = status;
     convocation.agent = USER.user.id;
-    console.log(convocation);
     putConvocationPost(convocation, id);
 }
 
 function editConvoc(idConvocation) {
     GET('/api/convocations/'+idConvocation, function(response) {
-        console.log(response);
+
         convocEditHtml = '';
         convocEditHtml += '<form action="javascript:;" onsubmit="editConvocation(this)" class="form-inline" novalidate="" id="convocEdit">'+
             '<div class="form-group">' +
@@ -80,12 +79,15 @@ function editConvoc(idConvocation) {
                         '<option value="U">Sin Publicar</option>' +
                         '<option value="V">En Votación</option>' +
                         '<option value="C">Cerrada</option>' +
+                        '<option value="R">Retirada</option>' +
                     '</select>' +
                 '</div>' +
                 '<h5>Detalle de la convocatoria</h5>' +
                 '<textarea class="form-control" id="convocDetails"></textarea>' +
                 '&nbsp;' +
                 '<button class="btn form-control" name="submit" type="submit">Editar</button>' +
+                '&nbsp;' +
+                '<button class="btn form-control" onclick = "getConvocationsAgent();">Cancelar</button>' +
             '</div>' +
         '</form>'
 
@@ -98,9 +100,9 @@ function editConvoc(idConvocation) {
         $('#convocType').val(response.typeConvocation);
         $('#convocStatus').val(response.status);
         $('#convocDateupl').val(response.dateLimit.substring(0,10));
-        $('#convocResults').val(response.dateresults.substring(0,10));
-        $('#convocTerms').append(response.terms);
-        $('#convocDetails').append(response.detail);
+        $('#convocResults').val(response.dateResults.substring(0,10));
+        $('#convocTerms').val(response.terms);
+        $('#convocDetails').val(response.detail);
 
     });
 };
