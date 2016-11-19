@@ -10,7 +10,7 @@
             <div class="nav_scroll">
                 <div class="nav-search">
                     <div>
-                        <input type="text" id="searchQuery" placeholder="Buscar"/>
+                        <input type="text" id="searchQuery" placeholder="Buscar" onkeypress="return runScriptEnterSearch(event)"/>
                         <button type="submit" onclick="search()"><i class="fa fa-search"></i></button>
                     </div>
                 </div>

@@ -216,3 +216,9 @@ function getGender(gender) {
 function searchClose() {
     $( '#searchResults' ).hide();
 }
+
+function runScriptEnterSearch(e) {
+    if (e.which == 13 || e.keyCode == 13) {
+        search();
+    }
+}
