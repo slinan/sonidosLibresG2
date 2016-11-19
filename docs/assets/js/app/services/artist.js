@@ -3,7 +3,7 @@ function initArtist(){
 }
 
 function loadTop5Artist() {
-    GET('/api/topRandomArtists/5', function (response) {
+    GET('/api/topRandomArtists/7', function (response) {
         if (response.length > 0) {
             $('#menuArtistFeaturedName').html(response[0].name);
             $('#menuArtistFeaturedName').attr('onclick', 'loader(\"artist-detail\", {idArtist:"' + response[0].id + '"})');

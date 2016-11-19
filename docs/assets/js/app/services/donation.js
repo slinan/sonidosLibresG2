@@ -1,6 +1,7 @@
 function initDonation() {
     $('#donateform').show();
     $('#donateResponse').hide();
+    $('#breadcrumbArtist').attr('onclick', 'loader(\'artist-detail\', {idArtist:' + globalParameters.idArtist + '})');
     getArtistDetail();
 }
 
@@ -13,15 +14,15 @@ function getArtistDetail() {
 function donate() {
     var data = {
         idUser: USER.user.id,
-        idArtist: $('#idArtist').val(),
-        amount: $('#amount').val(),
+        idArtist: globalParameters.idArtist,
+        amount: parseInt($('#amount').val()),
         franchise: $('#franchise option:selected').val(),
         creditCard: $('#creditCard').val(),
         creditCardExpirationDate: $('#creditCardExpirationDate').val(),
         creditCardOwnerName: $('#creditCardOwnerName').val()
     }
 
-    POST('/api/donate', data, function (response) {
+    POST('/api/donations', data, function (response) {
         $('#donateform').hide();
         $('#donateResponse').show();
 

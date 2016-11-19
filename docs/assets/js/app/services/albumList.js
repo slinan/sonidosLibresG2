@@ -28,8 +28,8 @@ function getAlbums() {
 };
 
 function getMenuTop5Albums() {
-    GET('/api/albums?page=1&page_size=4', function (response) {
-        albums = response.results
+    GET('/api/topAlbums', function (response) {
+        albums = response;
         albumsHtml = '';
 
         for (var i = 0; i < albums.length; i++) {
