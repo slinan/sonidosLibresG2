@@ -1702,7 +1702,7 @@ a.next-album {
 }
 .track div.track_title{
 	overflow:hidden;
-	max-height:30px;
+	/*max-height:30px;*/
 }
 .track.even .track_title, .track.even .track_release {
 	background-color: #141414;

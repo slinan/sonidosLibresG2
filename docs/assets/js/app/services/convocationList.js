@@ -14,12 +14,13 @@ function getConvocations() {
         convocations = response.results
         convocationsHtml = '';
         for (var i = 0; i < convocations.length; i++) {
+            var winner = (convocations[i].winner == null)? "Evaluando": convocations[i].winner;
             convocationsHtml += '<li class="clearfix">'+
                 '<div style="width: 160px; word-wrap: break-word;"><a href="#" onclick="loader(\'convocation-detail\', {idConvocation:' + convocations[i].id + '})"> '+convocations[i].title+'</a></div>'+
-                '<div style="min-width: 160px;">'+convocations[i].dateInit+'</div>'+
-                '<div style="min-width: 160px;">'+convocations[i].dateEnd+'</div>'+
-                '<div style="min-width: 160px;">'+convocations[i].status+'</div>'+
-                '<div style="min-width: 160px;">'+convocations[i].winner+'</div>'+
+                '<div style="min-width: 160px;">'+setListsDate(convocations[i].dateInit)+'</div>'+
+                '<div style="min-width: 160px;">'+setListsDate(convocations[i].dateEnd)+'</div>'+
+                '<div style="min-width: 160px;">'+setConvocStatus(convocations[i].status)+'</div>'+
+                '<div style="min-width: 160px;">'+winner+'</div>'+
             '</li>'
         }
         $('#listConvocations').html(convocationsHtml);
@@ -31,12 +32,14 @@ function getConvocationsAgent() {
         convocations = response.results
         convocationsHtml = '';
         for (var i = 0; i < convocations.length; i++) {
+
+           var winner = (convocations[i].winner == null)? "Evaluando": convocations[i].winner;
             convocationsHtml += '<li class="clearfix">'+
                 '<div style="width: 160px; word-wrap: break-word;"><a href="#" onclick="editConvoc('+ convocations[i].id +')"> '+convocations[i].title+'</a></div>'+
-                '<div style="min-width: 160px;">'+convocations[i].dateInit+'</div>'+
-                '<div style="min-width: 160px;">'+convocations[i].dateEnd+'</div>'+
-                '<div style="min-width: 160px;">'+convocations[i].status+'</div>'+
-                '<div style="min-width: 160px;">'+convocations[i].winner+'</div>'+
+                '<div style="min-width: 160px;">'+setListsDate(convocations[i].dateInit)+'</div>'+
+                '<div style="min-width: 160px;">'+setListsDate(convocations[i].dateEnd)+'</div>'+
+                '<div style="min-width: 160px;">'+setConvocStatus(convocations[i].status)+'</div>'+
+                '<div style="min-width: 160px;">'+winner+'</div>'+
             '</li>'
         }
         $('#listConvocations').html(convocationsHtml);
@@ -92,3 +95,40 @@ function createConvocation () {
     console.log(convocation);
     createConvocationPost(convocation);
 }
+
+function setConvocStatus(convocType){
+    var typeC;
+    switch (convocType){
+        case "P" : typeC = "Publicada"
+            break;
+        case "U" : typeC = "Sin Publicar"
+            break;
+        case "V" : typeC = "En Votaión"
+            break;
+        case "C" : typeC = "Cerrada"
+            break;
+        case "R" : typeC = "Retirada"
+            break;
+        case "PUB" : typeC = "Convocatoria Pública"
+            break;
+        case "PRI" : typeC = "Convocatoria Privada"
+            break;
+    }
+    return typeC;
+}
+
+function setListsDate(dateObject) {
+    var d = new Date(dateObject);
+    var day = d.getDate();
+    var month = d.getMonth() + 1;
+    var year = d.getFullYear();
+    if (day < 10) {
+        day = "0" + day;
+    }
+    if (month < 10) {
+        month = "0" + month;
+    }
+    var date = day + "/" + month + "/" + year;
+
+    return date;
+};

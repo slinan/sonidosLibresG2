@@ -13,7 +13,7 @@ function getTopMeConvocatoriesAgentLimitSendAudios() {
             if (response.results[i].title.length > 24){
                 dots = '...';
             }
-            convocationsHtml += '<div class="track_listen"><label style="width: 200px; padding-left: 5px;">' + (i + 1) + '. ' + response.results[i].title.substring(0, 22) + dots + '</label><label> - Fecha Vencimiento: ' + response.results[i].dateEnd + '</label></div>';
+            convocationsHtml += '<div class="track_listen"><label style="width: 200px; padding-left: 5px;">' + (i + 1) + '. ' + response.results[i].title.substring(0, 22) + dots + '</label><label> - Fecha Vencimiento: ' + setListsDate(response.results[i].dateEnd) + '</label></div>';
         }
         topsHtml += convocationsHtml + '</div>';
 
@@ -32,7 +32,7 @@ function getTopMeConvocatoriesAgentComingSoonOvercome(topsHtml) {
             if (response.results[i].title.length > 24){
                 dots = '...';
             }
-            convocationsHtml += '<div class="track_listen"><label style="width: 200px; padding-left: 5px;">' + (i + 1) + '. ' + response.results[i].title.substring(0, 22) + dots + '</label><label> - Fecha Vencimiento: ' + response.results[i].dateEnd + '</label></div>';
+            convocationsHtml += '<div class="track_listen"><label style="width: 200px; padding-left: 5px;">' + (i + 1) + '. ' + response.results[i].title.substring(0, 22) + dots + '</label><label> - Fecha Vencimiento: ' + setListsDate(response.results[i].dateEnd) + '</label></div>';
         }
         topsHtml += convocationsHtml + '</div>';
 

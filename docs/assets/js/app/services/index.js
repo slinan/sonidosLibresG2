@@ -42,6 +42,7 @@ function loadPage() {
 
             if (isAgentUser()){
                 setTopsForAgent();
+                $("#agentConvocation").load('agent-convocation.html');
             }
 
             if (isAdminUser()){
