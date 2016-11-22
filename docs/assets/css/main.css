@@ -3282,7 +3282,7 @@ ul.dropdown-menu {
 }
 
 .ec-stars-wrapper:hover a {
-	color: rgb(39, 130, 228);
+	color: #ffc11a;
 }
 
 .ec-stars-wrapper > a:hover ~ a {
