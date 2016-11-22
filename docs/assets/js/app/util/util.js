@@ -107,11 +107,13 @@ function getAudiosListResults(audiosList) {
             '</div>' +
             '<div class="track_download_count">' + audiosList[i].downloadsCount + '</div>' +
             '<div class="track_plays_count">' + audiosList[i].playCount + '</div>' +
-            '<div class="track_popularity">' +
-                '<ul title="' + audiosList[i].rating + ' de ' + audiosList[i].numOfRatings + ' votos">';
+            '<div class="track_popularity" onmouseover="mostrarEstrellas(' + i + ')" onmouseout="ocultarEstrellas(' + i + ')" >' +
+                    '<div id="estrellas' + i + '" class="ec-stars-wrapper" style="display: none;">' +
+                        getStarsList(audiosList[i].id, i) +
+                    '</div>' +
+                    '<ul id="escale' + i + '" title="' + audiosList[i].rating + ' de ' + audiosList[i].numOfRatings + ' votos">';
 
-        var rating = (Math.floor(audiosList[i].rating) * 2);
-        audiosListHtml += getPositiveRating(rating) + getNegativeRating(rating);
+            audiosListHtml += getPopularity(audiosList[i].rating);
 
         audiosListHtml += '</ul></div><div class="track_buy"><a data-target="#modal3" data-toggle="modal" id="comment" href="#modal3"><i class="fa fa-pencil-square-o"></i></a></div></li>';
     }

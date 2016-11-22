@@ -1,5 +1,5 @@
 function initArtist(){
-    loadAllArtist(1, 10);
+    loadAllArtist(1, 12);
 }
 
 function loadTop7Artist() {
@@ -44,12 +44,16 @@ function loadAllArtist(page, pageSize) {
 
             var artistList = '';
             for(var i = 0; i < response.results.length; i++){
-                artistList +=   '<div class="col-lg-3 col-md-3 col-sm-4 xs-12">' +
-                                    '<div class="artist">' +
-                                        '<img src="' + response.results[i].image + '" alt=""/>' +
-                                        '<a href="#" onclick="loader(\'artist-detail\', {idArtist:' + response.results[i].id + '})">' + response.results[i].name + '</a>' +
-                                    '</div>' +
-                                '</div>';
+                artistList += '<div class="album">'+
+                      '<img src="' + response.results[i].image + '" alt="' + response.results[i].name + '"/>'+
+                      '<div class="hover">'+
+                          '<ul>'+
+                              '<li><a href="#" data-rel="prettyPhoto" onclick="loader(\'artist-detail\', {idArtist:' + response.results[i].id + '})"><span class="fa fa-eye"  ></span></a></li>'+
+                          '</ul>'+
+                          '<h3>' + response.results[i].nickname + '</h3>'+
+                          '<h2>' + response.results[i].name + '</h2>'+
+                      '</div>'+
+                  '</div>'
             }
 
             $('#artistList').html(artistList);

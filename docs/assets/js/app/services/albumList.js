@@ -10,7 +10,7 @@ function getAlbums() {
         albumsHtml = '';
 
         for (var i = 0; i < albums.length; i++) {
-            albumsHtml += '                  <div class="album">'+
+            albumsHtml += '<div class="album">'+
                   '<img src="'+albums[i].image+'" alt=""/>'+
                   '<div class="hover">'+
                       '<ul>'+
@@ -20,7 +20,7 @@ function getAlbums() {
                       '<h3>'+albums[i].rating+'</h3>'+
                       '<h2>'+albums[i].title+'</h2>'+
                   '</div>'+
-              '</div>'
+              '</div>';
         }
 
         $('#lastAlbums').html(albumsHtml);

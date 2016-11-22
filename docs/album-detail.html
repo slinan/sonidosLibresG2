@@ -2,8 +2,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
-                <h1 id="albumName">Álbum</h1>
-                <h5>Tu sonido</h5>
+                <h1>Álbum</h1>
+                <h5 id="albumName"></h5>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <ul>
@@ -36,10 +36,22 @@
                 DESCRIPCION Y LISTA DE AUDIOS CATEGORIA
                 =================================-->
                 <div class="col-lg-9 col-md-9 col-sm-9">
-                    <div class="album-detail-content">
-                        <h3>¿Qué encontrarás?</h3>
-                        <h4 id="categoryNameSub"></h4>
-                        <p id="albumDescription">Descripción de comedia</p>
+                    <div class="artist-tracks">
+                         <h1>Artista</h1>
+                         <div class="track clearfix">
+                              <div class="track_title">Nombre completo</div>
+                              <div id="artistName" class="track_release"></div>
+                          </div>
+
+                         <div class="track clearfix">
+                              <div class="track_title">Alias</div>
+                              <div id="artistNickname" class="track_release"></div>
+                         </div>
+
+                         <div class="track clearfix">
+                              <div class="track_title">Página del artista</div>
+                              <div class="track_buy"><a id="btnVisit" href="#"><i class="fa fa-eye"></i>Visitar</a></div>
+                         </div>
                     </div>
 
                     <div class="album-tracks">
@@ -60,36 +72,4 @@
     </div>
 </section>
 
-<!-- MODAL -->
-
-<div id="modal3" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-
-        <!-- Modal content-->
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Calificar audio</h4>
-            </div>
-            <div class="modal-body">
-                <h5>
-                    ¿Qué opinas de este audio?
-                </h5>
-                <textarea class="form-control" id="message-text"></textarea>
-                <p>   
-                <div>
-                    <div id="rateYo" style="margin: 10px auto"></div>
-                </div>
-                </p>
-                <p>
-                    <button onclick="guardar()" data-dismiss="modal" > Guardar</button>
-                </p>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="submit-btn" data-dismiss="modal">Cerrar</button>
-            </div>
-        </div>
-
-    </div>
-</div>
 

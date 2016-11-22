@@ -28,10 +28,27 @@ function setArtistAudiosList(idArtist, page, pageSize) {
 
         var audiosList = response.results;
         for (var i=0; i < audiosList.length; i++) {
-            audiosListHtml += '<li class="clearfix"><div class="track_title">' + audiosList[i].title + '</div><div class="track_listen" style="display: inline-flex;"><span data-title="' + audiosList[i].title + '" data-artist="' + audiosList[i].artists[0] + '" data-mp3="' + audiosList[i].audioPlay + '" data-audio-id="' + audiosList[i].id + '" title="Adicionar a la lista de reproducción"><i class="fa fa-play"></i></span><a target="_blank" title="Descargar" onclick="audioDownload(' + audiosList[i].id + ')" href="' + audiosList[i].audioDownload + '"><i class="fa fa-download"></i></a></div><div class="track_download_count">' + audiosList[i].downloadsCount + '</div><div class="track_plays_count">' + audiosList[i].playCount + '</div><div class="track_popularity"><ul title="' + audiosList[i].rating + ' de ' + audiosList[i].numOfRatings + ' votos">';
+            audiosListHtml += '<li class="clearfix">' +
+                '<div class="track_title">' + audiosList[i].title + '</div>' +
+                '<div class="track_listen" style="display: inline-flex;">' +
+                    '<span  data-title="' + audiosList[i].title + '" ' +
+                            'data-artist="' + audiosList[i].artists[0] + '" ' +
+                            'data-mp3="' + audiosList[i].audioPlay + '" ' +
+                            'data-audio-id="' + audiosList[i].id + '" ' +
+                            'title="Adicionar a la lista de reproducción">' +
+                            '<i class="fa fa-play"></i>' +
+                    '</span>' +
+                    '<a target="_blank" title="Descargar" onclick="audioDownload(' + audiosList[i].id + ')" href="' + audiosList[i].audioDownload + '"><i class="fa fa-download"></i></a>' +
+                '</div>' +
+                '<div class="track_download_count">' + audiosList[i].downloadsCount + '</div>' +
+                '<div class="track_plays_count">' + audiosList[i].playCount + '</div>' +
+                '<div class="track_popularity" onmouseover="mostrarEstrellas(' + i + ')" onmouseout="ocultarEstrellas(' + i + ')" >' +
+                    '<div id="estrellas' + i + '" class="ec-stars-wrapper" style="display: none;">' +
+                        getStarsList(audiosList[i].id, i) +
+                    '</div>' +
+                    '<ul id="escale' + i + '" title="' + audiosList[i].rating + ' de ' + audiosList[i].numOfRatings + ' votos">';
 
-            var rating = (Math.floor(audiosList[i].rating) * 2);
-            audiosListHtml += getPositiveRating(rating) + getNegativeRating(rating);
+            audiosListHtml += getPopularity(audiosList[i].rating);
 
             audiosListHtml += '</ul></div><div class="track_buy"><a data-target="#modal3" data-toggle="modal" id="comment" href="#modal3"><i class="fa fa-pencil-square-o"></i></a></div></li>';
         }
@@ -42,21 +59,3 @@ function setArtistAudiosList(idArtist, page, pageSize) {
         main();
     });
 };
-
-function getPositiveRating(rating) {
-    var positiveRating = '';
-    for (var j = 0; j < rating; j++){
-        positiveRating += '<li class="active"></li>';
-    }
-
-    return positiveRating;
-}
-
-function getNegativeRating(rating) {
-    var negativeRating = '';
-    for (var j = 0; j < 10 - rating; j++){
-        negativeRating += '<li></li>';
-    }
-
-    return negativeRating;
-}
