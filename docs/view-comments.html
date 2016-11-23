@@ -2,13 +2,13 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6">
-                <h1>Categoría</h1>
-                <h5 id="categoryName"></h5>
+                <h1>Commentarios</h1>
+                <h4>Audios</h4>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <ul>
                     <li><a href="#" onclick="loader('home',{})">Inicio</a></li>
-                    <li><a href="#">Categoría</a></li>
+                    <li><a href="#">Comentarios</a></li>
 
                 </ul>
             </div>
@@ -23,34 +23,27 @@
             <div class="album-detail">
 
                 <!--=================================
-                PANEL IZQUIERDO CATEGORIA
+                PANEL IZQUIERDO
                 =================================-->
                 <div class="album-purchase">
                     <div class="col-lg-3 col-md-3 col-sm-3">
-                        <img id="categoryImage" src="" alt=""/>
-                        <a href="#">Total audios<span id="totalAudios"></span></a>
+                        <a href="#">Audio:<span id="cAudio"></span></a>
+                        <a href="#">Total comentarios:<span id="cTotalComments"></span></a>
                     </div>
                 </div>
 
-                <!--=================================
-                DESCRIPCION Y LISTA DE AUDIOS CATEGORIA
-                =================================-->
                 <div class="col-lg-9 col-md-9 col-sm-9">
+                    <!--=================================
+                    LISTA DE COMENTARIOS
+                    =================================-->
                     <div class="album-detail-content">
-                        <h3>¿Qué encontrarás?</h3>
-                        <h4 id="categoryNameSub"></h4>
-                        <p id="categoryDescription">Descripción de comedia</p>
+                        <h3>Comentarios</h3>
                     </div>
 
                     <div class="album-tracks">
-                        <h1>Audios</h1>
-                        <div id="alreadyAddedPlayListWarning"></div>
-                        <!--=================================
-                        LISTA DE AUDIOS CATEGORIA
-                        =================================-->
                         <div id="paginationUp" class="news-feed-btn"></div>
                         <div class="track">
-                            <ul id="audiosList">
+                            <ul id="commentsList">
                             </ul>
                         </div>
                         <div class="clearfix"></div>
@@ -58,16 +51,8 @@
                         <br>
                     </div>
                 </div>
-            </div>
-        </div>
 
-        <!--=================================
-        CATEGORIAS RELACIONADAS
-        =================================-->
-        <div class="related-albums">
-            <h1>Tal vez te pueda interesar...</h1>
-            <div id="relatedCategories"></div>
+            </div>
         </div>
     </div>
 </section>
-

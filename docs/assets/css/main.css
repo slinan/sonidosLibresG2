@@ -1482,6 +1482,23 @@ a.next-album {
 	background: #e62948;
 	color: #FFF;
 }
+.news-feed-btn button {
+	padding: 5px 10px;
+	background: #171717;
+	color: #8b8b8b;
+	outline: none;
+	border: 0;
+	text-decoration: none;
+	font-size: 13px;
+	font-family: oswald;
+	font-weight: bold;
+	border-radius: 2px;
+}
+.news-feed-btn button:hover {
+	background: #e62948;
+	color: #FFF;
+}
+
 .news-feed-btn li {
 	display: inline-block;
 	padding-right: 8px;
@@ -1799,7 +1816,7 @@ a.next-album {
 	color: #4a4a4a;
 }
 .album-tracks .track .track_popularity {
-	width: 13%;
+	width: 15%;
 	text-align: center;
 }
 .album-tracks .track .track_listen {
@@ -1814,6 +1831,12 @@ a.next-album {
 .album-tracks .track .track_download_count {
 	width: 10%;
 	text-align: center;
+}
+
+.album-tracks .track .track_comments_list {
+	width: 60%;
+	color: #fff;
+	text-align: left;
 }
 
 .album-tracks .track .smallColum {
@@ -3273,18 +3296,23 @@ ul.dropdown-menu {
 	font-size: 0;
 	display: inline-block;
 }
-.ec-stars-wrapper a {
+.ec-stars-wrapper button {
 	text-decoration: none;
 	display: inline-block;
 	font-size: 32px;
-	font-size: 2rem;
+	font-size: 1.7rem;
 	color: #888;
+	background: none;
+	border: 0;
+	outline: none;
+	width: 10px;
+	height: 10px;
 }
 
-.ec-stars-wrapper:hover a {
+.ec-stars-wrapper:hover button {
 	color: #ffc11a;
 }
 
-.ec-stars-wrapper > a:hover ~ a {
+.ec-stars-wrapper > button:hover ~ button {
 	color: #888;
 }

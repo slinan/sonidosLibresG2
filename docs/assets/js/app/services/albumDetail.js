@@ -50,7 +50,16 @@ function setAlbumAudiosList(idAlbum) {
 
             audiosListHtml += getPopularity(audiosList[i].rating);
 
-            audiosListHtml += '</ul></div><div class="track_buy"><a data-target="#modal3" data-toggle="modal" id="comment" href="#modal3"><i class="fa fa-pencil-square-o"></i></a></div></li>';
+            audiosListHtml += '</ul></div>' +
+                '<div class="track_buy">' +
+                    '<button id="comment" type="submit" onclick="showCommentArea(' + i + ')" style="background:none; outline:none; border:0;">' +
+                        '<i class="fa fa-pencil-square-o" style="color: #e62948;"></i>' +
+                    '</button>' +
+                '</div>' +
+
+                getCommentHtml(i, audiosList[i].id, audiosList[i].title) +
+
+                '</li>';
         }
         $('#audiosList').html(audiosListHtml);
 

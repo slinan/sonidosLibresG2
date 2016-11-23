@@ -32,11 +32,11 @@ function getNegativeRating(rating) {
 }
 
 function getStarsList(idAudio, indice) {
-    var list = '<a href="#" data-value="1" title="Votar con 1 estrellas" onclick="rateAudio(' + idAudio + ',' + indice + ', 1)">&#9733;</a>' +
-            '<a href="#" data-value="2" title="Votar con 2 estrellas" onclick="rateAudio(' + idAudio + ',' + indice + ', 2)">&#9733;</a>' +
-            '<a href="#" data-value="3" title="Votar con 3 estrellas" onclick="rateAudio(' + idAudio + ',' + indice + ', 3)">&#9733;</a>' +
-            '<a href="#" data-value="4" title="Votar con 4 estrellas" onclick="rateAudio(' + idAudio + ',' + indice + ', 4)">&#9733;</a>' +
-            '<a href="#" data-value="5" title="Votar con 5 estrellas" onclick="rateAudio(' + idAudio + ',' + indice + ', 5)">&#9733;</a>';
+    var list = '<button href="#" data-value="1" title="Votar con 1 estrellas" onclick="rateAudio(' + idAudio + ',' + indice + ', 1)">&#9733;</button>' +
+            '<button href="#" data-value="2" title="Votar con 2 estrellas" onclick="rateAudio(' + idAudio + ',' + indice + ', 2)">&#9733;</button>' +
+            '<button href="#" data-value="3" title="Votar con 3 estrellas" onclick="rateAudio(' + idAudio + ',' + indice + ', 3)">&#9733;</button>' +
+            '<button href="#" data-value="4" title="Votar con 4 estrellas" onclick="rateAudio(' + idAudio + ',' + indice + ', 4)">&#9733;</button>' +
+            '<button href="#" data-value="5" title="Votar con 5 estrellas" onclick="rateAudio(' + idAudio + ',' + indice + ', 5)">&#9733;</button>';
 
     var rates = localStorage.getItem('rates');
     if (rates){

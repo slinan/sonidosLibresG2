@@ -27,7 +27,7 @@ function createPagination(page, pageSize, totalElements, functionName, functionP
     }
 
     var pagination = '<ul>' +
-        '<li><a href="#" onclick="' + functionName + '(' + functionParameters + ((page - 1 <= 0) ? 1 : (page - 1) ) + ', ' + pageSize + ')"><b class="fa fa-angle-left"></b></a></li>';
+        '<li><button onclick="' + functionName + '(' + functionParameters + ((page - 1 <= 0) ? 1 : (page - 1) ) + ', ' + pageSize + ')"><b class="fa fa-angle-left"></b></button></li>';
 
     var finalPage = '';
     var startPage = 1;
@@ -39,18 +39,18 @@ function createPagination(page, pageSize, totalElements, functionName, functionP
     }
     else if (numPages > maxPage){
         finalPage = '<li><a href="#">...</a></li>' +
-                '<li><a href="#" onclick="' + functionName + '(' + functionParameters + numPages + ', ' + pageSize + ')">' + numPages + '</a></li>';
+                '<li><button onclick="' + functionName + '(' + functionParameters + numPages + ', ' + pageSize + ')">' + numPages + '</button></li>';
 
         numPages = maxPage;
         startPage = page;
     }
 
     for (var i = startPage; i < startPage + numPages; i++) {
-        pagination += '<li><a href="#" onclick="' + functionName + '(' + functionParameters + i + ', ' + pageSize + ')">' + i + '</a></li>';
+        pagination += '<li><button onclick="' + functionName + '(' + functionParameters + i + ', ' + pageSize + ')">' + i + '</button></li>';
     }
 
     pagination += finalPage;
-    pagination += '<li><a href="#" onclick="' + functionName + '(' + functionParameters + ((page + 1 > numPages) ? page : page + 1) + ', ' + pageSize + ')"><b class="fa fa-angle-right"></b></a></li>' +
+    pagination += '<li><button onclick="' + functionName + '(' + functionParameters + ((page + 1 > numPages) ? page : page + 1) + ', ' + pageSize + ')"><b class="fa fa-angle-right"></b></button></li>' +
             '</ul>';
 
     $('#paginationUp').html(pagination);
@@ -115,7 +115,16 @@ function getAudiosListResults(audiosList) {
 
             audiosListHtml += getPopularity(audiosList[i].rating);
 
-        audiosListHtml += '</ul></div><div class="track_buy"><a data-target="#modal3" data-toggle="modal" id="comment" href="#modal3"><i class="fa fa-pencil-square-o"></i></a></div></li>';
+            audiosListHtml += '</ul></div>' +
+                    '<div class="track_buy">' +
+                        '<button id="comment" type="submit" onclick="showCommentArea(' + i + ')" style="background:none; outline:none; border:0;">' +
+                            '<i class="fa fa-pencil-square-o" style="color: #e62948;"></i>' +
+                        '</button>' +
+                    '</div>' +
+
+                    getCommentHtml(i, audiosList[i].id, audiosList[i].title) +
+
+                    '</li>';
     }
 
     return audiosListHtml;

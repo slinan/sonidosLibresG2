@@ -67,6 +67,11 @@ function loader(page, param) {
                 initAdminVetar();
             } );
             break;
+        case 'view-comments':
+            $( "#loadContent" ).load( "view-comments.html", function() {
+                initViewComments();
+            } );
+            break;
         default:
             $( "#loadContent" ).load( "home.html", function() {
                 initHome();
