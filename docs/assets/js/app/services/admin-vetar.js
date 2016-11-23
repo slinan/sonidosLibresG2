@@ -38,9 +38,9 @@ function setAdminVetarAudiosList(page, pageSize) {
                 '<div class="smallColum">';
 
                 if (vetoed == 'NO') {
-                    audiosListHtml += '<a href="#" onclick="vetoed(' + audiosList[i].id + ', ' + page + ', ' + pageSize + ')">' +
+                    audiosListHtml += '<button style="background: none; border: 0; outline: none; color: #ffffff;" onclick="vetoed(' + audiosList[i].id + ', ' + page + ', ' + pageSize + ')">' +
                         '<i class="fa fa-crosshairs"></i>' +
-                        '</a>';
+                        '</button>';
                 }
 
                 audiosListHtml += '</div>' +
